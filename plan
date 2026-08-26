@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>แผนการจัดการเรียนรู้ดิจิทัล: ฟังก์ชันตรีโกณมิติ</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;600;700&family=Sarabun:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- MathJax -->
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <!-- SweetAlert2 (Popup สวยๆ) -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <style>
+        body { font-family: 'Sarabun', sans-serif; background-color: #f3f4f6; }
+        h1, h2, h3, h4, h5, h6, .font-prompt { font-family: 'Prompt', sans-serif; }
+        .math-display { overflow-x: auto; overflow-y: hidden; }
+    </style>
+</head>
+<body class="text-gray-800 pb-20">
+
+    <!-- Navbar -->
+    <nav class="bg-indigo-800 text-white p-4 shadow-md sticky top-0 z-50">
+        <div class="container mx-auto flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <i class="fa-solid fa-calculator text-2xl text-yellow-400"></i>
+                <div>
+                    <span class="font-bold text-lg font-prompt block leading-tight">Digital Lesson Plan</span>
+                    <span class="text-xs text-indigo-200">Active Learning & Technology Integration</span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mx-auto max-w-5xl p-4 md:p-8 my-6 bg-white shadow-xl rounded-xl border border-gray-200">
+        
+        <!-- Header: School & Teacher Info -->
+        <header class="border-b-4 border-indigo-600 pb-6 mb-8">
+            <div class="flex flex-col md:flex-row justify-between items-start gap-6">
+                <div class="flex-1">
+                    <h5 class="text-indigo-600 font-bold uppercase tracking-wide text-sm mb-1">กลุ่มสาระการเรียนรู้คณิตศาสตร์</h5>
+                    <h1 class="text-3xl md:text-4xl font-bold text-gray-900 font-prompt">โรงเรียนห้องสอนศึกษา ในพระอุปถัมภ์ฯ</h1>
+                    <div class="mt-4 space-y-1">
+                        <h2 class="text-2xl font-bold text-gray-800">เรื่อง ฟังก์ชันตรีโกณมิติและการประยุกต์</h2>
+                        <h3 class="text-lg text-gray-500 font-light">(Trigonometric Functions & Applications)</h3>
+                    </div>
+                </div>
+                
+                <div class="bg-indigo-50 p-5 rounded-xl border border-indigo-100 min-w-[280px] shadow-sm">
+                    <div class="flex items-center gap-3 mb-2 border-b border-indigo-200 pb-2">
+                        <div class="bg-indigo-600 text-white w-8 h-8 rounded-full flex items-center justify-center"><i class="fa-solid fa-user-tie"></i></div>
+                        <div>
+                            <p class="text-xs text-gray-500">ครูผู้สอน</p>
+                            <p class="font-bold text-indigo-900">นายสมชาย ซอแอ</p>
+                        </div>
+                    </div>
+                    <div class="space-y-2 text-sm text-gray-700">
+                        <p class="flex justify-between"><span><i class="fa-solid fa-book mr-2 text-indigo-400"></i>วิชา:</span> <span class="font-bold">คณิตศาสตร์พื้นฐานวิทย์ 3 (ค32103)</span></p>
+                        <p class="flex justify-between"><span><i class="fa-solid fa-layer-group mr-2 text-indigo-400"></i>ชั้น:</span> <span class="font-bold">มัธยมศึกษาปีที่ 5</span></p>
+                        <p class="flex justify-between"><span><i class="fa-solid fa-calendar-alt mr-2 text-indigo-400"></i>ภาคเรียน:</span> <span class="font-bold">ภาคเรียนที่ 2</span></p>
+                        <p class="flex justify-between"><span><i class="fa-regular fa-clock mr-2 text-indigo-400"></i>เวลา:</span> <span class="font-bold">2 คาบ (100 นาที)</span></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Innovation Link & Download Button -->
+            <div class="mt-6 p-4 bg-gradient-to-r from-cyan-600 to-blue-700 rounded-lg text-white shadow-lg flex flex-col md:flex-row items-center justify-between gap-4">
+                <div class="flex items-center gap-4">
+                    <div class="bg-white/20 p-3 rounded-full backdrop-blur-sm">
+                        <i class="fa-solid fa-laptop-code text-2xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-lg font-prompt">สื่อการสอนนวัตกรรม (Web Application)</h3>
+                        <p class="text-blue-100 text-sm">TrigoMaster M.5 - Interactive Trigonometry Challenge</p>
+                    </div>
+                </div>
+                
+                <div class="flex flex-col sm:flex-row gap-3 w-full md:w-auto">
+                    <!-- New Button: Download -->
+                    <a href="https://drive.google.com/drive/folders/1t7ylbXk6bFDxvBFogBGms_e0D8c3Qh5G?usp=sharing" target="_blank" class="bg-white/20 border border-white/50 text-white px-5 py-2 rounded-full font-bold hover:bg-white/30 transition shadow-md flex items-center justify-center text-sm backdrop-blur-sm whitespace-nowrap">
+                        <i class="fa-brands fa-google-drive mr-2"></i> ดาวน์โหลดแผนฯ
+                    </a>
+                    
+                    <!-- Existing Button: Open App -->
+                    <a href="LearningByQuiz.html" target="_blank" class="bg-white text-blue-700 px-6 py-2 rounded-full font-bold hover:bg-blue-50 transition shadow-md transform hover:scale-105 flex items-center justify-center whitespace-nowrap">
+                        <i class="fa-solid fa-play mr-2"></i> เปิดใช้งาน App
+                    </a>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content Grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            
+            <!-- Left Column: Info & Standards -->
+            <div class="lg:col-span-1 space-y-6">
+                <!-- Learning Outcomes -->
+                <div class="bg-orange-50 p-5 rounded-lg border-l-4 border-orange-500 shadow-sm">
+                    <h3 class="font-bold text-lg text-orange-800 mb-3 font-prompt">
+                        <i class="fa-solid fa-scroll mr-2"></i> ผลการเรียนรู้
+                    </h3>
+                    <p class="text-sm text-gray-700 leading-relaxed text-justify">
+                        "เข้าใจฟังก์ชันตรีโกณมิติและลักษณะกราฟของฟังก์ชันตรีโกณมิติ และ<b>นำความรู้เกี่ยวกับฟังก์ชันตรีโกณมิติ วงกลมหนึ่งหน่วย และเอกลักษณ์ตรีโกณมิติไปใช้อธิบายและแก้ปัญหาทางคณิตศาสตร์และในชีวิตจริงได้อย่างถูกต้อง</b>"
+                    </p>
+                </div>
+
+                <!-- Concept & Equations -->
+                <div class="bg-white p-5 rounded-lg border border-gray-200 shadow-sm">
+                    <h3 class="font-bold text-lg text-gray-800 mb-3 font-prompt flex items-center">
+                        <i class="fa-solid fa-square-root-variable text-purple-600 mr-2"></i> เอกลักษณ์และสมการหลัก
+                    </h3>
+                    <div class="space-y-4">
+                        <div class="bg-gray-50 p-3 rounded text-center border border-gray-200">
+                            <span class="text-xs text-gray-500 block mb-1">เอกลักษณ์พีทาโกรัสบนวงกลมหนึ่งหน่วย</span>
+                            <div class="math-display">$$ \sin^2 \theta + \cos^2 \theta = 1 $$</div>
+                        </div>
+                        <div class="bg-gray-50 p-3 rounded text-center border border-gray-200">
+                            <span class="text-xs text-gray-500 block mb-1">ฟังก์ชันผลบวกและผลต่างของมุม</span>
+                            <div class="math-display text-xs">
+                                $$ \sin(A \pm B) = \sin A \cos B \pm \cos A \sin B $$
+                                $$ \cos(A \pm B) = \cos A \cos B \mp \sin A \sin B $$
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Objectives -->
+                <div class="bg-blue-50 p-5 rounded-lg border border-blue-100">
+                    <h3 class="font-bold text-lg text-blue-900 mb-3 font-prompt">
+                        <i class="fa-solid fa-bullseye mr-2"></i> จุดประสงค์ (KPA)
+                    </h3>
+                    <ul class="space-y-3 text-sm">
+                        <li class="flex gap-2">
+                            <span class="badge bg-blue-200 text-blue-800 px-2 rounded font-bold">K</span>
+                            <span>นักเรียนสามารถอธิบายและคำนวณหาค่าฟังก์ชันตรีโกณมิติจากวงกลมหนึ่งหน่วยและสูตรผลบวก-ผลต่างมุมได้ถูกต้อง</span>
+                        </li>
+                        <li class="flex gap-2">
+                            <span class="badge bg-green-200 text-green-800 px-2 rounded font-bold">P</span>
+                            <span>นักเรียนประยุกต์ใช้สูตรตรีโกณมิติในการแก้โจทย์ปัญหาคณิตศาสตร์ร่วมกับกระบวนการกลุ่มได้อย่างถูกต้องแม่นยำ</span>
+                        </li>
+                        <li class="flex gap-2">
+                            <span class="badge bg-red-200 text-red-800 px-2 rounded font-bold">A</span>
+                            <span>นักเรียนมีความกระตือรือร้น รับผิดชอบต่อบทบาทในกลุ่ม (STAD) และช่วยเหลือพึ่งพาอาศัยกันในการเรียนรู้</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Right Column: 5E Process -->
+            <div class="lg:col-span-2">
+                <div class="bg-white rounded-xl border border-gray-200 shadow-lg overflow-hidden">
+                    <div class="bg-gray-50 p-4 border-b border-gray-200 flex justify-between items-center">
+                        <h3 class="font-bold text-xl text-indigo-700 font-prompt">
+                            <i class="fa-solid fa-chalkboard-teacher mr-2"></i> กิจกรรมการเรียนรู้ (5E + STAD)
+                        </h3>
+                    </div>
+
+                    <div class="p-6 space-y-6">
+                        
+                        <!-- Step 1 -->
+                        <div class="relative pl-8 border-l-2 border-indigo-200">
+                            <div class="absolute -left-[17px] top-0 bg-indigo-600 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold">1</div>
+                            <h4 class="font-bold text-gray-800 font-prompt text-lg">ขั้นสร้างความสนใจ (Engagement) <span class="text-xs bg-gray-200 px-2 py-1 rounded ml-2 text-gray-600">10 นาที</span></h4>
+                            <div class="mt-2 text-gray-600 text-sm space-y-2">
+                                <p>• <b>Stimulus:</b> ครูเปิดแบบจำลองปฏิสัมพันธ์ (Interactive Unit Circle) แสดงความสัมพันธ์ระหว่างพิกัด $(x, y) = (\cos \theta, \sin \theta)$ กับคลื่นกราฟ Sine/Cosine บนวงกลมหนึ่งหน่วย</p>
+                                
+                                <div class="mt-3 mb-3">
+                                    <div class="bg-indigo-50 border border-indigo-200 rounded-lg p-3">
+                                        <p class="text-sm font-bold text-indigo-800 mb-2"><i class="fa-solid fa-vr-cardboard mr-2"></i>สื่อประกอบ: GeoGebra Interactive (Unit Circle & Trigonometric Graphs)</p>
+                                        <!-- Fixed Simulation Display -->
+                                        <div class="relative w-full aspect-video rounded-lg overflow-hidden shadow-sm bg-black">
+                                            <iframe 
+                                                src="https://www.geogebra.org/material/iframe/id/mhycxkyb/width/800/height/500/border/888888/sfsb/true/smb/false/stb/false/stbh/false/ai/true/asb/0/sri/true/rc/false/ld/false/sd/false/slt/false" 
+                                                class="absolute top-0 left-0 w-full h-full border-0" 
+                                                allow="fullscreen; accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                                allowfullscreen>
+                                            </iframe>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <p>• <b>Discussion:</b> ครูตั้งคำถามกระตุ้นความคิด "หากเราต้องการหาค่า $\sin(75^\circ)$ โดยไม่ใช้เครื่องคิดเลข เราจะใช้ค่าตรีโกณมิติพื้นฐานที่เราคุ้นเคยอย่าง $30^\circ$ และ $45^\circ$ มาช่วยคำนวณได้อย่างไร?"</p>
+                                <p>• <b>Onboarding:</b> นักเรียนเข้าสู่นวัตกรรมแอปพลิเคชัน <b>TrigoMaster M.5</b> ผ่านสมาร์ตโฟนหรือแท็บเล็ต</p>
+                            </div>
+                        </div>
+
+                        <!-- Step 2 -->
+                        <div class="relative pl-8 border-l-2 border-indigo-200">
+                            <div class="absolute -left-[17px] top-0 bg-indigo-600 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold">2</div>
+                            <h4 class="font-bold text-gray-800 font-prompt text-lg">ขั้นสำรวจและค้นหา (Exploration) <span class="text-xs bg-gray-200 px-2 py-1 rounded ml-2 text-gray-600">30 นาที</span></h4>
+                            <div class="mt-2 text-gray-600 text-sm space-y-2">
+                                <span class="inline-block bg-pink-100 text-pink-700 text-xs px-2 py-1 rounded font-bold mb-1">[STAD Phase: Teams] กิจกรรม: Trigo Squad Challenge (รอบฝึกฝนการหาค่าตรีโกณมิติ)</span>
+                                <p>• <b>Group Formation:</b> แบ่งนักเรียนออกเป็นกลุ่มละ 4 คน โดยคละความสามารถ (เก่ง ปานกลาง อ่อน) ตามหลักการของ STAD</p>
+                                <p>• <b>Mission:</b> นักเรียนเข้าเมนู <b>"สอบควิซกลุ่ม (Group Quiz)"</b> ระบบสุ่มโจทย์ฟังก์ชันตรีโกณมิติ (เช่น $\sin(A+B)$, $\cos(A-B)$ หรือเครื่องหมายตาม Quadrant) สมาชิกในกลุ่มช่วยกันคำนวณและแสดงวิธีทำลงในใบงานกลุ่ม โดยใช้ตัวเลขผลรวมเลขที่สมาชิกมาประยุกต์เข้ากับโจทย์เพื่อป้องกันการลอกคำตอบ</p>
+                                <p>• <b>Gamification:</b> กลุ่มที่ส่งคำตอบถูกและได้คะแนนสูงสุด 3 อันดับแรก จะได้รับแต้มพิเศษสะสมประจำคาบเรียน</p>
+                            </div>
+                        </div>
+
+                        <!-- Step 3: Explanation -->
+                        <div class="relative pl-8 border-l-2 border-indigo-200">
+                            <div class="absolute -left-[17px] top-0 bg-indigo-600 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold">3</div>
+                            <h4 class="font-bold text-gray-800 font-prompt text-lg">ขั้นอธิบายและลงข้อสรุป (Explanation) <span class="text-xs bg-gray-200 px-2 py-1 rounded ml-2 text-gray-600">20 นาที</span></h4>
+                            <div class="mt-2 text-gray-600 text-sm space-y-2">
+                                <span class="inline-block bg-pink-100 text-pink-700 text-xs px-2 py-1 rounded font-bold mb-1">[STAD Phase: Presentation]</span>
+                                <p>• <b>Debrief:</b> ครูนำโจทย์จากระบบมาสุ่มสุ่มตัวแทนกลุ่มออกมาอภิปรายและเขียนแสดงวิธีคิดบนกระดาน</p>
+                                <p>• <b>Correction:</b> ครูช่วยแก้ไขข้อเข้าใจคลาดเคลื่อน (Misconception) ที่มักเกิดขึ้นบ่อย เช่น การจำสับสนเครื่องหมายบวกลบของ $\cos(A+B)$ กับ $\sin(A+B)$ หรือค่าบวกลบในแต่ละ Quadrant (All-Sin-Tan-Cos)</p>
+                                <p>• <b>Tactics:</b> ตัวแทนกลุ่มที่ทำคะแนนได้ดีที่สุดออกมาแชร์ "เทคนิคการจำสูตรและการวิเคราะห์จตุภาค" ให้เพื่อนๆ ในห้อง</p>
+                            </div>
+                        </div>
+
+                        <!-- Step 4 -->
+                        <div class="relative pl-8 border-l-2 border-indigo-200">
+                            <div class="absolute -left-[17px] top-0 bg-indigo-600 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold">4</div>
+                            <h4 class="font-bold text-gray-800 font-prompt text-lg">ขั้นขยายความรู้ (Elaboration) <span class="text-xs bg-gray-200 px-2 py-1 rounded ml-2 text-gray-600">25 นาที</span></h4>
+                            <div class="mt-2 text-gray-600 text-sm space-y-2">
+                                <span class="inline-block bg-pink-100 text-pink-700 text-xs px-2 py-1 rounded font-bold mb-1">[STAD Phase: Quiz & Accountability] กิจกรรม: Master of Trigonometry (รอบสอบวัดผลรายบุคคล)</span>
+                                <p>• <b>Individual Test:</b> นักเรียนทุกคนเข้าสู่โหมด "สอบรายบุคคล" ในแอปพลิเคชัน TrigoMaster M.5 โดยระบบสุ่มโจทย์เฉพาะบุคคลที่ใช้ค่ามุมและตัวเลขผูกกับเลขที่ประจำตัวของตนเอง</p>
+                                <p>• <b>Peer Support Rule:</b> อนุญาตให้เพื่อนในกลุ่มช่วย "อธิบายสูตรและชี้แนะแนวคิด" ได้ แต่ห้ามเขียนหรือกดส่งคำตอบแทนกันโดยเด็ดขาด</p>
+                                <p>• <b>Challenge:</b> กำหนดเวลาทำแบบทดสอบ 10 นาที เพื่อประเมินความเข้าใจและนำคะแนนไปคำนวณเป็นคะแนนพัฒนาการของกลุ่ม (Improvement Score)</p>
+                            </div>
+                        </div>
+
+                         <!-- Step 5 -->
+                         <div class="relative pl-8 border-l-2 border-indigo-200">
+                            <div class="absolute -left-[17px] top-0 bg-indigo-600 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold">5</div>
+                            <h4 class="font-bold text-gray-800 font-prompt text-lg">ขั้นประเมินผล (Evaluation) <span class="text-xs bg-gray-200 px-2 py-1 rounded ml-2 text-gray-600">15 นาที</span></h4>
+                            <div class="mt-2 text-gray-600 text-sm space-y-2">
+                                <span class="inline-block bg-pink-100 text-pink-700 text-xs px-2 py-1 rounded font-bold mb-1">[STAD Phase: Recognition]</span>
+                                <p>• <b>Scoring:</b> คำนวณคะแนนพัฒนาการส่วนบุคคลเปรียบเทียบกับฐานเดิม และรวมเป็นคะแนนพัฒนาการของกลุ่ม (Team Improvement Score) พร้อมให้โบนัสกรณีสมาชิกผ่านเกณฑ์ยกกลุ่ม</p>
+                                <p>• <b>Awards:</b> ประกาศผลและมอบรางวัลเกียรติยศแก่กลุ่ม "Top Trigonometry Masters" ประจำบทเรียน</p>
+                                <p>• <b>Real-World Application:</b> ครูสรุปเชื่อมโยงการประยุกต์ใช้ฟังก์ชันตรีโกณมิติในชีวิตจริง เช่น การคำนวณคลื่นเสียง คลื่นไฟฟ้า และการออกแบบทางสถาปัตยกรรม/วิศวกรรม</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>

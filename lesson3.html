@@ -1,1 +1,1180 @@
+<!DOCTYPE html>
+<html lang="th">
 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="บทเรียนที่ 3: ค่าฟังก์ชันตรีโกณมิติของมุมในทุกจตุภาค - สื่อการเรียนรู้ตรีโกณมิติอินเทอร์แอ็กทีฟ">
+    <title>บทเรียนที่ 3: ค่าฟังก์ชันตรีโกณมิติของมุมในทุกจตุภาค</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📐</text></svg>">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts: Prompt -->
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- MathJax Configuration & Script -->
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <style>
+        html, body {
+            overflow-x: hidden !important;
+            max-width: 100vw;
+        }
+
+        body {
+            font-family: 'Prompt', sans-serif;
+            background: linear-gradient(135deg, #f8fafc 0%, #eff6ff 50%, #f0fdf4 100%);
+            min-height: 100vh;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #3b82f6;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #2563eb;
+        }
+
+        .fade-in {
+            animation: fadeIn 0.4s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+        }
+
+        .canvas-container {
+            position: relative;
+            width: 100%;
+            max-width: 460px;
+            height: 350px;
+            margin-left: auto;
+            margin-right: auto;
+            touch-action: none;
+        }
+
+        @media (min-width: 640px) {
+            .canvas-container {
+                height: 390px;
+            }
+        }
+
+        mjx-container {
+            font-size: 105% !important;
+            max-width: 100%;
+            overflow-x: auto;
+        }
+
+        .btn-interactive {
+            transition: all 0.25s ease;
+            box-shadow: 0 4px 6px -1px rgba(59, 130, 246, 0.15);
+        }
+
+        .btn-interactive:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(59, 130, 246, 0.25);
+        }
+
+        .btn-interactive:active {
+            transform: translateY(0);
+        }
+    </style>
+</head>
+
+<body class="text-slate-800">
+
+    <!-- Top Navigation Header -->
+    <header class="bg-white/90 backdrop-blur-md shadow-sm sticky top-0 z-40 border-b border-blue-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <!-- Title & Lesson Indicator -->
+                <div class="flex items-center space-x-3">
+                    <div class="bg-blue-600 text-white w-10 h-10 rounded-xl flex items-center justify-center font-bold text-lg shadow-sm">
+                        3
+                    </div>
+                    <div>
+                        <div class="text-xs font-semibold text-blue-600 tracking-wider uppercase">หลักสูตรตรีโกณมิติ 20 บทเรียน</div>
+                        <h1 class="text-base sm:text-lg font-bold text-slate-900 leading-tight">บทเรียนที่ 3: ค่าฟังก์ชันตรีโกณมิติของมุมในทุกจตุภาค</h1>
+                    </div>
+                </div>
+
+                <!-- Course Progress Button -->
+                <button onclick="toggleCurriculumModal()" class="flex items-center gap-2 bg-blue-50 hover:bg-blue-100 text-blue-700 px-3 py-1.5 rounded-lg text-xs sm:text-sm font-medium transition">
+                    <i class="fa-solid fa-list-ol"></i>
+                    <span class="hidden sm:inline">สารบัญ 20 บทเรียน</span>
+                    <span class="bg-blue-200 text-blue-800 text-xs px-2 py-0.5 rounded-full font-bold">3/20</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="max-w-6xl mx-auto p-4 sm:p-6 lg:p-8 space-y-8">
+
+        <!-- INTRO & OBJECTIVES BANNER -->
+        <section class="glass-panel rounded-2xl p-6 shadow-sm border-l-4 border-blue-600 fade-in">
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
+                <div class="space-y-3">
+                    <div class="inline-flex items-center gap-2 bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-xs font-bold">
+                        <i class="fa-solid fa-bullseye"></i> จุดประสงค์การเรียนรู้ประจำบทเรียน
+                    </div>
+                    <h2 class="text-xl sm:text-2xl font-bold text-slate-800">การแปลงมุมในทุกจตุภาคกลับสู่มุมอ้างอิง (Reference Angle)</h2>
+                    <p class="text-slate-600 text-sm sm:text-base leading-relaxed">
+                        ในบทเรียนนี้ เราจะเรียนรู้เทคนิคการหาค่าฟังก์ชันตรีโกณมิติของมุมใดๆ บนระนาบ ไม่ว่าจะเป็นมุมขนาดใหญ่เกิน $360^\circ$ หรือมุมติดลบ โดยอาศัยหลักการหา <strong>มุมอ้างอิง (Reference Angle $\theta_R$)</strong> ร่วมกับ <strong>กฎเครื่องหมายประจำจตุภาค (ASTC Rule)</strong>
+                    </p>
+                </div>
+            </div>
+
+            <!-- Learning Outcomes Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-6 pt-6 border-t border-slate-100">
+                <div class="flex items-start gap-3 bg-white p-3.5 rounded-xl border border-slate-100 shadow-xs">
+                    <div class="text-emerald-500 font-bold text-lg"><i class="fa-solid fa-circle-check"></i></div>
+                    <div class="text-xs sm:text-sm text-slate-700 font-medium">คำนวณหามุมอ้างอิง ($\theta_R$) ของมุมใน Quadrant I, II, III และ IV ได้ถูกต้อง</div>
+                </div>
+                <div class="flex items-start gap-3 bg-white p-3.5 rounded-xl border border-slate-100 shadow-xs">
+                    <div class="text-emerald-500 font-bold text-lg"><i class="fa-solid fa-circle-check"></i></div>
+                    <div class="text-xs sm:text-sm text-slate-700 font-medium">จัดการมุมสมถาน (Coterminal Angles) ที่มากกว่า $360^\circ$ หรือมุมติดลบ</div>
+                </div>
+                <div class="flex items-start gap-3 bg-white p-3.5 rounded-xl border border-slate-100 shadow-xs">
+                    <div class="text-emerald-500 font-bold text-lg"><i class="fa-solid fa-circle-check"></i></div>
+                    <div class="text-xs sm:text-sm text-slate-700 font-medium">ประเมินค่าฟังก์ชันตรีโกณมิติทั้ง 6 ตัวได้อย่างแม่นยำทุกมุมในวงกลม</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 1: INTERACTIVE EXPLORER & ANGLE REDUCTION CALCULATOR -->
+        <section class="glass-panel rounded-2xl p-4 sm:p-6 shadow-md border border-blue-100 fade-in">
+            <div class="mb-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-100 pb-3">
+                <div>
+                    <h3 class="text-lg sm:text-xl font-bold text-blue-950 flex items-center gap-2">
+                        <i class="fa-solid fa-chart-line text-blue-600"></i>
+                        ห้องทดลองปฏิสัมพันธ์: เครื่องมือสำรวจมุมอ้างอิงและลดทอนมุม (Angle Reduction Explorer)
+                    </h3>
+                    <p class="text-xs sm:text-sm text-slate-500 mt-0.5">
+                        ปรับแถบมุมด้านล่าง เพื่อดูรูปสามเหลี่ยมอ้างอิง $\theta_R$ การสะท้อนในแต่ละ จตุภาค และขั้นตอนคำนวณทีละสเต็ป
+                    </p>
+                </div>
+                <div class="flex items-center gap-2">
+                    <button id="btn-animate-explorer" onclick="toggleExplorerAnimation()" class="bg-blue-600 hover:bg-blue-700 text-white text-xs sm:text-sm px-3.5 py-2 rounded-lg transition flex items-center gap-1.5 shadow-sm">
+                        <i class="fa-solid fa-play" id="icon-animate"></i>
+                        <span id="label-animate">หมุนสำรวจ</span>
+                    </button>
+                    <button onclick="resetExplorer()" class="bg-slate-100 text-slate-600 hover:bg-slate-200 text-xs sm:text-sm px-3 py-2 rounded-lg transition flex items-center gap-1.5">
+                        <i class="fa-solid fa-rotate-right"></i> รีเซ็ต
+                    </button>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+                <!-- Visual Canvas Column (5 Cols) -->
+                <div class="lg:col-span-5 flex flex-col items-center">
+                    <div class="canvas-container bg-white rounded-2xl shadow-inner border border-slate-200 overflow-hidden cursor-crosshair w-full">
+                        <canvas id="quadrantCanvas" class="w-full h-full block"></canvas>
+                    </div>
+                    <p class="text-xs text-slate-400 mt-2 text-center">
+                        <i class="fa-solid fa-hand-pointer text-blue-500 mr-1"></i>คลิกหรือลากจุดแขนของมุมเพื่อเปลี่ยนองศาอิสระ
+                    </p>
+
+                    <!-- Interactive Angle Controls -->
+                    <div class="w-full bg-slate-50 p-4 rounded-xl border border-slate-200 mt-3 space-y-3">
+                        <div class="flex justify-between items-center">
+                            <label for="angleSlider" class="text-xs sm:text-sm font-semibold text-slate-700">ปรับขนาดมุม ($\theta$):</label>
+                            <span class="bg-blue-600 text-white text-xs font-bold px-3 py-1 rounded-full font-mono shadow-xs" id="display-deg-badge">120°</span>
+                        </div>
+                        <input type="range" id="angleSlider" min="-360" max="720" value="120" step="1" 
+                            class="w-full accent-blue-600 cursor-pointer h-2 bg-slate-200 rounded-lg" oninput="onAngleInputChange(this.value)">
+
+                        <div>
+                            <span class="text-xs text-slate-500 font-medium block mb-1.5">ตัวอย่างมุมที่พบบ่อยในข้อสอบ:</span>
+                            <div class="flex flex-wrap gap-1.5" id="preset-angle-buttons">
+                                <!-- Dynamic Angle Presets -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dynamic Reduction Steps & Trig Values (7 Cols) -->
+                <div class="lg:col-span-7 space-y-4">
+                    
+                    <!-- Step-by-Step Reduction Breakdown Card -->
+                    <div class="bg-slate-900 text-white p-5 rounded-2xl shadow-md space-y-4">
+                        <div class="flex justify-between items-center border-b border-slate-800 pb-2.5">
+                            <span class="text-xs font-semibold text-blue-400 uppercase tracking-wider flex items-center gap-1.5">
+                                <i class="fa-solid fa-gears"></i> ขั้นตอนการลดทอนมุมลงสู่ Q1
+                            </span>
+                            <span class="text-xs font-bold bg-blue-900/80 text-blue-200 border border-blue-700 px-3 py-1 rounded-full" id="calc-quadrant-badge">Quadrant II</span>
+                        </div>
+
+                        <!-- 4 Step Analysis Cards -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs sm:text-sm">
+                            <div class="bg-slate-950/80 p-3 rounded-xl border border-slate-800 space-y-1">
+                                <div class="text-slate-400 font-semibold">1. มุมในรอบ [0°, 360°]:</div>
+                                <div class="font-mono text-amber-300 font-bold" id="step1-coterminal">120°</div>
+                            </div>
+                            <div class="bg-slate-950/80 p-3 rounded-xl border border-slate-800 space-y-1">
+                                <div class="text-slate-400 font-semibold">2. มุมอ้างอิง ($\theta_R$):</div>
+                                <div class="font-mono text-emerald-400 font-bold" id="step2-refangle">180° - 120° = 60°</div>
+                            </div>
+                            <div class="bg-slate-950/80 p-3 rounded-xl border border-slate-800 space-y-1">
+                                <div class="text-slate-400 font-semibold">3. กฎเครื่องหมาย ASTC:</div>
+                                <div class="font-mono text-cyan-300 font-bold" id="step3-astc">Sin, Csc เป็น (+) | Cos, Sec, Tan, Cot เป็น (-)</div>
+                            </div>
+                            <div class="bg-slate-950/80 p-3 rounded-xl border border-slate-800 space-y-1">
+                                <div class="text-slate-400 font-semibold">4. มุมเรเดียนเทียบเท่า:</div>
+                                <div class="font-mono text-purple-300 font-bold" id="step4-radian">$$\frac{2\pi}{3} \text{ rad}$$</div>
+                            </div>
+                        </div>
+
+                        <!-- Trig Function Output Grid -->
+                        <div class="pt-2">
+                            <span class="text-xs font-semibold text-slate-400 block mb-2">ค่าฟังก์ชันตรีโกณมิติทั้ง 6 (Exact Radical & Decimal):</span>
+                            <div class="grid grid-cols-2 sm:grid-cols-3 gap-2.5 font-mono text-xs">
+                                <div class="bg-slate-800/90 p-2.5 rounded-xl border border-slate-700">
+                                    <div class="text-emerald-400 font-semibold">$\sin\theta$</div>
+                                    <div class="text-white font-bold text-sm mt-0.5" id="val-sin">$\frac{\sqrt{3}}{2}$</div>
+                                    <div class="text-slate-400 text-[10px]" id="dec-sin">≈ +0.8660</div>
+                                </div>
+                                <div class="bg-slate-800/90 p-2.5 rounded-xl border border-slate-700">
+                                    <div class="text-blue-400 font-semibold">$\cos\theta$</div>
+                                    <div class="text-white font-bold text-sm mt-0.5" id="val-cos">$-\frac{1}{2}$</div>
+                                    <div class="text-slate-400 text-[10px]" id="dec-cos">≈ -0.5000</div>
+                                </div>
+                                <div class="bg-slate-800/90 p-2.5 rounded-xl border border-slate-700">
+                                    <div class="text-amber-400 font-semibold">$\tan\theta$</div>
+                                    <div class="text-white font-bold text-sm mt-0.5" id="val-tan">$-\sqrt{3}$</div>
+                                    <div class="text-slate-400 text-[10px]" id="dec-tan">≈ -1.7321</div>
+                                </div>
+                                <div class="bg-slate-800/90 p-2.5 rounded-xl border border-slate-700">
+                                    <div class="text-emerald-300 font-semibold">$\csc\theta$</div>
+                                    <div class="text-white font-bold text-sm mt-0.5" id="val-csc">$\frac{2\sqrt{3}}{3}$</div>
+                                    <div class="text-slate-400 text-[10px]" id="dec-csc">≈ +1.1547</div>
+                                </div>
+                                <div class="bg-slate-800/90 p-2.5 rounded-xl border border-slate-700">
+                                    <div class="text-blue-300 font-semibold">$\sec\theta$</div>
+                                    <div class="text-white font-bold text-sm mt-0.5" id="val-sec">$-2$</div>
+                                    <div class="text-slate-400 text-[10px]" id="dec-sec">≈ -2.0000</div>
+                                </div>
+                                <div class="bg-slate-800/90 p-2.5 rounded-xl border border-slate-700">
+                                    <div class="text-amber-300 font-semibold">$\cot\theta$</div>
+                                    <div class="text-white font-bold text-sm mt-0.5" id="val-cot">$-\frac{\sqrt{3}}{3}$</div>
+                                    <div class="text-slate-400 text-[10px]" id="dec-cot">≈ -0.5774</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 2: THEORY OF REFERENCE ANGLES & ASTC RULE -->
+        <section class="space-y-6 fade-in">
+            <div class="border-l-4 border-blue-600 pl-4">
+                <h2 class="text-xl sm:text-2xl font-bold text-slate-900">1. นิยามและสูตรการหามุมอ้างอิง (Reference Angle Formulas)</h2>
+                <p class="text-slate-600 text-sm sm:text-base">มุมอ้างอิง ($\theta_R$) คือมุมแหลมบวกที่แขนของมุมทำกับ <strong>แกน X เสมอ</strong></p>
+            </div>
+
+            <!-- Quadrant Formulas 4 Card Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                <!-- Q1 -->
+                <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-2 border-t-4 border-t-emerald-500">
+                    <div class="flex justify-between items-center">
+                        <span class="font-bold text-emerald-700 text-base">Quadrant I</span>
+                        <span class="text-xs bg-emerald-100 text-emerald-800 font-mono font-bold px-2 py-0.5 rounded">0° - 90°</span>
+                    </div>
+                    <p class="text-xs text-slate-500">มุมอยู่ในจตุภาคที่ 1 แล้ว ไม่ต้องแปลงมุม</p>
+                    <div class="bg-emerald-50 p-2.5 rounded-xl text-center font-mono font-bold text-emerald-900 text-sm">
+                        $$\theta_R = \theta$$
+                    </div>
+                    <div class="text-xs text-slate-600 pt-1">เครื่องหมาย: <strong class="text-emerald-600">บวก (+) ทุกฟังก์ชัน</strong></div>
+                </div>
+
+                <!-- Q2 -->
+                <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-2 border-t-4 border-t-blue-500">
+                    <div class="flex justify-between items-center">
+                        <span class="font-bold text-blue-700 text-base">Quadrant II</span>
+                        <span class="text-xs bg-blue-100 text-blue-800 font-mono font-bold px-2 py-0.5 rounded">90° - 180°</span>
+                    </div>
+                    <p class="text-xs text-slate-500">วัดส่วนต่างจากเส้นแกน X ฝั่งซ้าย (180°)</p>
+                    <div class="bg-blue-50 p-2.5 rounded-xl text-center font-mono font-bold text-blue-900 text-sm">
+                        $$\theta_R = 180^\circ - \theta = \pi - \theta$$
+                    </div>
+                    <div class="text-xs text-slate-600 pt-1">เครื่องหมาย: <strong class="text-blue-600">Sin / Csc เป็น (+)</strong></div>
+                </div>
+
+                <!-- Q3 -->
+                <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-2 border-t-4 border-t-amber-500">
+                    <div class="flex justify-between items-center">
+                        <span class="font-bold text-amber-700 text-base">Quadrant III</span>
+                        <span class="text-xs bg-amber-100 text-amber-800 font-mono font-bold px-2 py-0.5 rounded">180° - 270°</span>
+                    </div>
+                    <p class="text-xs text-slate-500">วัดส่วนเกินจากเส้นแกน X ฝั่งซ้าย (180°)</p>
+                    <div class="bg-amber-50 p-2.5 rounded-xl text-center font-mono font-bold text-amber-900 text-sm">
+                        $$\theta_R = \theta - 180^\circ = \theta - \pi$$
+                    </div>
+                    <div class="text-xs text-slate-600 pt-1">เครื่องหมาย: <strong class="text-amber-600">Tan / Cot เป็น (+)</strong></div>
+                </div>
+
+                <!-- Q4 -->
+                <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-2 border-t-4 border-t-purple-500">
+                    <div class="flex justify-between items-center">
+                        <span class="font-bold text-purple-700 text-base">Quadrant IV</span>
+                        <span class="text-xs bg-purple-100 text-purple-800 font-mono font-bold px-2 py-0.5 rounded">270° - 360°</span>
+                    </div>
+                    <p class="text-xs text-slate-500">วัดส่วนขาดถึงครบรอบเส้นแกน X (360°)</p>
+                    <div class="bg-purple-50 p-2.5 rounded-xl text-center font-mono font-bold text-purple-900 text-sm">
+                        $$\theta_R = 360^\circ - \theta = 2\pi - \theta$$
+                    </div>
+                    <div class="text-xs text-slate-600 pt-1">เครื่องหมาย: <strong class="text-purple-600">Cos / Sec เป็น (+)</strong></div>
+                </div>
+            </div>
+
+            <!-- Deep Dive Explanation Card -->
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 space-y-4">
+                <h3 class="text-lg font-bold text-slate-800 flex items-center gap-2">
+                    <i class="fa-solid fa-arrows-spin text-blue-600"></i>
+                    2. การจัดการมุมมากกว่า 360° และมุมติดลบ (Coterminal Angles)
+                </h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs sm:text-sm">
+                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-2">
+                        <span class="font-bold text-blue-700 block">🌀 1) กรณีมุมมากกว่า 360° ($\theta > 360^\circ$):</span>
+                        <p class="text-slate-600 leading-relaxed">
+                            ให้หารด้วย $360^\circ$ แล้วเอาเฉพาะ <strong>"เศษที่เหลือ"</strong> มาใช้งาน เนื่องจากครบรอบหมุนกลับมาที่ตำแหน่งเดิมเสมอ:
+                        </p>
+                        <div class="bg-white p-2.5 rounded-lg border font-mono text-center text-slate-800">
+                            $$\sin(750^\circ) = \sin(2 \times 360^\circ + 30^\circ) = \sin(30^\circ) = \frac{1}{2}$$
+                        </div>
+                    </div>
+
+                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-2">
+                        <span class="font-bold text-rose-700 block">🔄 2) กรณีมุมติดลบ ($\theta < 0^\circ$):</span>
+                        <p class="text-slate-600 leading-relaxed">
+                            ใช้สมบัติสมมาตรของฟังก์ชันคู่/คี่ หรือบวกด้วย $360^\circ$ ไปเรื่อยๆ จนกว่าจะได้มุมบวกในรอบแรก:
+                        </p>
+                        <div class="bg-white p-2.5 rounded-lg border font-mono text-center text-slate-800">
+                            $$\cos(-60^\circ) = \cos(60^\circ) = \frac{1}{2} \quad | \quad \sin(-60^\circ) = -\sin(60^\circ) = -\frac{\sqrt{3}}{2}$$
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 3: ALL-FUNCTION QUADRANT SIGN MATRIX -->
+        <section class="space-y-4 fade-in">
+            <div class="border-l-4 border-blue-600 pl-4">
+                <h2 class="text-xl sm:text-2xl font-bold text-slate-900">2. ตารางสรุปเครื่องหมายตรีโกณมิติทั้ง 6 ฟังก์ชัน</h2>
+                <p class="text-slate-600 text-sm sm:text-base">สรุปเครื่องหมายบวก/ลบประจำแต่ละจตุภาคแบบสมบูรณ์</p>
+            </div>
+
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 overflow-x-auto">
+                <table class="w-full text-center text-xs sm:text-sm border-collapse">
+                    <thead>
+                        <tr class="bg-slate-900 text-white font-mono">
+                            <th class="p-3 rounded-tl-xl">ฟังก์ชัน</th>
+                            <th class="p-3 text-emerald-400">Quadrant I (0° - 90°)</th>
+                            <th class="p-3 text-blue-400">Quadrant II (90° - 180°)</th>
+                            <th class="p-3 text-amber-400">Quadrant III (180° - 270°)</th>
+                            <th class="p-3 text-purple-400 rounded-tr-xl">Quadrant IV (270° - 360°)</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-100 font-mono">
+                        <tr class="hover:bg-slate-50">
+                            <td class="p-3 font-bold text-slate-800 text-left">$\sin\theta$ (แกน Y)</td>
+                            <td class="p-3 font-bold text-emerald-600 bg-emerald-50/40">+ บวก</td>
+                            <td class="p-3 font-bold text-blue-600 bg-blue-50/40">+ บวก</td>
+                            <td class="p-3 font-semibold text-rose-500">- ลบ</td>
+                            <td class="p-3 font-semibold text-rose-500">- ลบ</td>
+                        </tr>
+                        <tr class="hover:bg-slate-50">
+                            <td class="p-3 font-bold text-slate-800 text-left">$\cos\theta$ (แกน X)</td>
+                            <td class="p-3 font-bold text-emerald-600 bg-emerald-50/40">+ บวก</td>
+                            <td class="p-3 font-semibold text-rose-500">- ลบ</td>
+                            <td class="p-3 font-semibold text-rose-500">- ลบ</td>
+                            <td class="p-3 font-bold text-purple-600 bg-purple-50/40">+ บวก</td>
+                        </tr>
+                        <tr class="hover:bg-slate-50">
+                            <td class="p-3 font-bold text-slate-800 text-left">$\tan\theta$ ($y/x$)</td>
+                            <td class="p-3 font-bold text-emerald-600 bg-emerald-50/40">+ บวก</td>
+                            <td class="p-3 font-semibold text-rose-500">- ลบ</td>
+                            <td class="p-3 font-bold text-amber-600 bg-amber-50/40">+ บวก</td>
+                            <td class="p-3 font-semibold text-rose-500">- ลบ</td>
+                        </tr>
+                        <tr class="hover:bg-slate-50">
+                            <td class="p-3 font-bold text-slate-800 text-left">$\csc\theta$ ($1/\sin$)</td>
+                            <td class="p-3 font-bold text-emerald-600 bg-emerald-50/40">+ บวก</td>
+                            <td class="p-3 font-bold text-blue-600 bg-blue-50/40">+ บวก</td>
+                            <td class="p-3 font-semibold text-rose-500">- ลบ</td>
+                            <td class="p-3 font-semibold text-rose-500">- ลบ</td>
+                        </tr>
+                        <tr class="hover:bg-slate-50">
+                            <td class="p-3 font-bold text-slate-800 text-left">$\sec\theta$ ($1/\cos$)</td>
+                            <td class="p-3 font-bold text-emerald-600 bg-emerald-50/40">+ บวก</td>
+                            <td class="p-3 font-semibold text-rose-500">- ลบ</td>
+                            <td class="p-3 font-semibold text-rose-500">- ลบ</td>
+                            <td class="p-3 font-bold text-purple-600 bg-purple-50/40">+ บวก</td>
+                        </tr>
+                        <tr class="hover:bg-slate-50">
+                            <td class="p-3 font-bold text-slate-800 text-left">$\cot\theta$ ($x/y$)</td>
+                            <td class="p-3 font-bold text-emerald-600 bg-emerald-50/40">+ บวก</td>
+                            <td class="p-3 font-semibold text-rose-500">- ลบ</td>
+                            <td class="p-3 font-bold text-amber-600 bg-amber-50/40">+ บวก</td>
+                            <td class="p-3 font-semibold text-rose-500">- ลบ</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- SECTION 4: INTERACTIVE QUIZ & ASSESSMENT -->
+        <section class="glass-panel rounded-2xl p-6 shadow-md border border-blue-100 space-y-6 fade-in">
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 border-b border-slate-100 pb-4">
+                <div>
+                    <span class="inline-block bg-amber-100 text-amber-800 text-xs px-2.5 py-1 rounded-md font-bold mb-1">
+                        <i class="fa-solid fa-pen-clip mr-1"></i>วัดความรู้ความเข้าใจ
+                    </span>
+                    <h2 class="text-xl sm:text-2xl font-bold text-slate-900">แบบทดสอบเช็กความเข้าใจประจำบทเรียนที่ 3</h2>
+                </div>
+                <div class="flex items-center gap-3">
+                    <div class="bg-blue-50 border border-blue-200 px-3 py-1.5 rounded-xl text-xs font-semibold text-blue-700">
+                        ข้อที่ <span id="quiz-current-num">1</span> / <span id="quiz-total-num">5</span>
+                    </div>
+                    <div class="bg-emerald-600 text-white px-3.5 py-1.5 rounded-xl text-xs font-bold shadow-sm">
+                        คะแนน: <span id="quiz-score">0</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quiz Active Card -->
+            <div id="quiz-card" class="bg-white p-5 sm:p-7 rounded-2xl border border-slate-200 space-y-6">
+                <!-- Question Header -->
+                <div class="space-y-2">
+                    <h3 class="text-base sm:text-lg font-bold text-slate-800 leading-relaxed" id="quiz-question-text">
+                        --
+                    </h3>
+                </div>
+
+                <!-- Multiple Choice Options -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3" id="quiz-options-container">
+                    <!-- Dynamic option buttons rendered via JS -->
+                </div>
+
+                <!-- Feedback Box -->
+                <div id="quiz-feedback-box" class="hidden p-4 rounded-xl text-sm font-medium transition-all"></div>
+
+                <!-- Solution Drawer -->
+                <div id="quiz-explanation-box" class="hidden bg-blue-50/70 border border-blue-100 p-4 rounded-xl space-y-2">
+                    <h4 class="font-bold text-blue-900 text-sm flex items-center gap-1.5">
+                        <i class="fa-solid fa-graduation-cap text-blue-600"></i> เฉลยละเอียดและวิธีคิด:
+                    </h4>
+                    <div id="quiz-explanation-text" class="text-slate-700 text-xs sm:text-sm leading-relaxed"></div>
+                </div>
+
+                <!-- Navigation Controls -->
+                <div class="flex justify-between items-center pt-4 border-t border-slate-100">
+                    <button onclick="quizPrevQuestion()" id="btn-quiz-prev" class="px-4 py-2 border border-slate-200 hover:bg-slate-100 text-slate-600 text-xs sm:text-sm rounded-xl font-medium transition flex items-center gap-2 disabled:opacity-40 disabled:hover:bg-transparent">
+                        <i class="fa-solid fa-arrow-left"></i> ข้อก่อนหน้า
+                    </button>
+                    <button onclick="quizNextQuestion()" id="btn-quiz-next" class="px-5 py-2 bg-blue-600 hover:bg-blue-700 text-white text-xs sm:text-sm rounded-xl font-semibold shadow-sm transition flex items-center gap-2">
+                        ข้อถัดไป <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 5: LESSON SUMMARY & NEXT LESSON BANNER -->
+        <section class="bg-gradient-to-br from-blue-900 to-slate-900 text-white rounded-2xl p-6 sm:p-8 shadow-xl space-y-4 fade-in">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                <div class="space-y-2 max-w-2xl">
+                    <span class="bg-blue-500/30 text-blue-200 text-xs font-bold px-3 py-1 rounded-full border border-blue-400/30">
+                        <i class="fa-solid fa-flag-checkered mr-1"></i>สรุปบทเรียนที่ 3
+                    </span>
+                    <h3 class="text-xl sm:text-2xl font-bold">คุณเชี่ยวชาญการหาค่าตรีโกณมิติทุกมุมใน 4 จตุภาคแล้ว!</h3>
+                    <p class="text-blue-200 text-xs sm:text-sm leading-relaxed">
+                        ไม่ว่ามุมจะใหญ่ซับซ้อนแค่ไหน การแปลงมุมกลับสู่ <strong>มุมอ้างอิง ($\theta_R$)</strong> และใช้กฎ <strong>ASTC</strong> จะทำให้คุณหาคำตอบได้อย่างถูกต้องเสมอ เตรียมพร้อมสำหรับบทเรียนถัดไป!
+                    </p>
+                </div>
+                <button onclick="toggleCurriculumModal()" class="btn-interactive bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-bold px-6 py-3 rounded-xl text-sm transition shrink-0 flex items-center gap-2 shadow-lg">
+                    <span>ดูบทเรียนถัดไป (บทที่ 4)</span>
+                    <i class="fa-solid fa-circle-arrow-right"></i>
+                </button>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-slate-200 mt-12 py-6 text-center text-xs text-slate-500">
+        <div class="max-w-6xl mx-auto px-4">
+            <p>© หลักสูตรตรีโกณมิติอินเทอร์แอ็กทีฟ 20 บทเรียน - ออกแบบสื่อการเรียนรู้เพื่อสร้างความเข้าใจอย่างยั่งยืน</p>
+        </div>
+    </footer>
+
+    <!-- Curriculum Navigation Modal -->
+    <div id="curriculumModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+        <div class="bg-white rounded-2xl max-w-2xl w-full max-h-[85vh] flex flex-col shadow-2xl overflow-hidden animate-in fade-in zoom-in-95 duration-200">
+            <!-- Modal Header -->
+            <div class="p-5 bg-blue-900 text-white flex justify-between items-center">
+                <div>
+                    <span class="text-xs text-blue-300 font-semibold tracking-wider uppercase">สารบัญหลักสูตรเต็ม</span>
+                    <h3 class="text-lg font-bold">20 บทเรียนตรีโกณมิติอินเทอร์แอ็กทีฟ</h3>
+                </div>
+                <button onclick="toggleCurriculumModal()" class="w-8 h-8 rounded-full bg-blue-800 hover:bg-blue-700 flex items-center justify-center text-blue-200 text-sm">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <!-- Modal Body (List of Lessons) -->
+            <div class="p-4 overflow-y-auto space-y-2 divide-y divide-slate-100" id="curriculum-list">
+                <!-- Dynamically Generated Lesson Items -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // --- 1. GLOBAL STATE & CONSTANTS ---
+        let currentAngleDeg = 120;
+        let isAnimating = false;
+        let animationReqId = null;
+
+        const PRESET_ANGLES = [30, 45, 60, 120, 135, 150, 210, 225, 240, 300, 315, 330, -45, 495, 750];
+
+        // --- 2. CANVAS RENDERING ENGINE FOR QUADRANTS & REFERENCE TRIANGLES ---
+        const canvas = document.getElementById('quadrantCanvas');
+        const ctx = canvas.getContext('2d');
+        let isDragging = false;
+
+        function resizeCanvas() {
+            const container = canvas.parentElement;
+            const width = container.clientWidth;
+            const height = container.clientHeight;
+            const dpr = window.devicePixelRatio || 1;
+
+            canvas.width = width * dpr;
+            canvas.height = height * dpr;
+            ctx.scale(dpr, dpr);
+            drawQuadrantScene();
+        }
+
+        function drawQuadrantScene() {
+            const width = canvas.width / (window.devicePixelRatio || 1);
+            const height = canvas.height / (window.devicePixelRatio || 1);
+            const cx = width / 2;
+            const cy = height / 2;
+            const radius = Math.min(width, height) * 0.36;
+
+            ctx.clearRect(0, 0, width, height);
+
+            // 1. Quadrant Background Shading
+            const normDeg = ((currentAngleDeg % 360) + 360) % 360;
+            
+            // Draw axes
+            ctx.lineWidth = 1.5;
+            ctx.strokeStyle = '#cbd5e1';
+            
+            ctx.beginPath();
+            ctx.moveTo(15, cy);
+            ctx.lineTo(width - 15, cy);
+            ctx.stroke();
+
+            ctx.beginPath();
+            ctx.moveTo(cx, 15);
+            ctx.lineTo(cx, height - 15);
+            ctx.stroke();
+
+            // Quadrant Watermark Labels
+            ctx.font = '700 16px Prompt';
+            ctx.fillStyle = normDeg >= 0 && normDeg < 90 ? 'rgba(16, 185, 129, 0.25)' : 'rgba(148, 163, 184, 0.15)';
+            ctx.fillText('Q I', cx + radius * 0.55, cy - radius * 0.55);
+
+            ctx.fillStyle = normDeg >= 90 && normDeg < 180 ? 'rgba(59, 130, 246, 0.25)' : 'rgba(148, 163, 184, 0.15)';
+            ctx.fillText('Q II', cx - radius * 0.75, cy - radius * 0.55);
+
+            ctx.fillStyle = normDeg >= 180 && normDeg < 270 ? 'rgba(245, 158, 11, 0.25)' : 'rgba(148, 163, 184, 0.15)';
+            ctx.fillText('Q III', cx - radius * 0.75, cy + radius * 0.65);
+
+            ctx.fillStyle = normDeg >= 270 && normDeg < 360 ? 'rgba(168, 85, 247, 0.25)' : 'rgba(148, 163, 184, 0.15)';
+            ctx.fillText('Q IV', cx + radius * 0.55, cy + radius * 0.65);
+
+            // Base Unit Circle Line
+            ctx.beginPath();
+            ctx.arc(cx, cy, radius, 0, 2 * Math.PI);
+            ctx.strokeStyle = '#e2e8f0';
+            ctx.lineWidth = 1.8;
+            ctx.setLineDash([4, 4]);
+            ctx.stroke();
+            ctx.setLineDash([]);
+
+            // Angle Ray Endpoint
+            const rad = (currentAngleDeg * Math.PI) / 180;
+            const px = cx + radius * Math.cos(rad);
+            const py = cy - radius * Math.sin(rad);
+
+            // Reference Angle Right-Triangle Projection to X-Axis
+            ctx.beginPath();
+            ctx.moveTo(cx, cy);
+            ctx.lineTo(px, cy); // Base along X-axis
+            ctx.lineTo(px, py); // Height perpendicular to X-axis
+            ctx.closePath();
+            ctx.fillStyle = 'rgba(59, 130, 246, 0.1)';
+            ctx.fill();
+            ctx.strokeStyle = '#3b82f6';
+            ctx.lineWidth = 1.5;
+            ctx.stroke();
+
+            // Right Angle Symbol on X-Axis Projection
+            const symbolSize = 8;
+            const dirX = px >= cx ? -1 : 1;
+            const dirY = py <= cy ? 1 : -1;
+            ctx.beginPath();
+            ctx.moveTo(px + dirX * symbolSize, cy);
+            ctx.lineTo(px + dirX * symbolSize, cy + dirY * symbolSize);
+            ctx.lineTo(px, cy + dirY * symbolSize);
+            ctx.strokeStyle = '#3b82f6';
+            ctx.lineWidth = 1.2;
+            ctx.stroke();
+
+            // Angle Arc Sweep
+            const normRad = (normDeg * Math.PI) / 180;
+            ctx.beginPath();
+            ctx.moveTo(cx, cy);
+            ctx.arc(cx, cy, radius * 0.22, 0, -normRad, true);
+            ctx.closePath();
+            ctx.fillStyle = 'rgba(245, 158, 11, 0.2)';
+            ctx.fill();
+            ctx.strokeStyle = '#f59e0b';
+            ctx.lineWidth = 2;
+            ctx.stroke();
+
+            // Terminal Ray (Hypotenuse)
+            ctx.beginPath();
+            ctx.moveTo(cx, cy);
+            ctx.lineTo(px, py);
+            ctx.strokeStyle = '#1e1b4b';
+            ctx.lineWidth = 3;
+            ctx.stroke();
+
+            // Point Handle
+            ctx.beginPath();
+            ctx.arc(px, py, 8, 0, 2 * Math.PI);
+            ctx.fillStyle = '#2563eb';
+            ctx.fill();
+            ctx.strokeStyle = '#ffffff';
+            ctx.lineWidth = 2.5;
+            ctx.stroke();
+        }
+
+        // Mouse & Touch Input Handler for Canvas Dragging
+        function updateAngleFromCoords(clientX, clientY) {
+            const rect = canvas.getBoundingClientRect();
+            const width = rect.width;
+            const height = rect.height;
+            const cx = width / 2;
+            const cy = height / 2;
+
+            const mouseX = clientX - rect.left;
+            const mouseY = clientY - rect.top;
+
+            let angle = Math.atan2(cy - mouseY, mouseX - cx) * (180 / Math.PI);
+            if (angle < 0) angle += 360;
+
+            setAngle(Math.round(angle));
+        }
+
+        canvas.addEventListener('mousedown', (e) => {
+            isDragging = true;
+            if (isAnimating) stopExplorerAnimation();
+            updateAngleFromCoords(e.clientX, e.clientY);
+        });
+
+        window.addEventListener('mousemove', (e) => {
+            if (isDragging) updateAngleFromCoords(e.clientX, e.clientY);
+        });
+
+        window.addEventListener('mouseup', () => { isDragging = false; });
+
+        canvas.addEventListener('touchstart', (e) => {
+            isDragging = true;
+            if (isAnimating) stopExplorerAnimation();
+            const touch = e.touches[0];
+            updateAngleFromCoords(touch.clientX, touch.clientY);
+        }, { passive: true });
+
+        canvas.addEventListener('touchmove', (e) => {
+            if (isDragging && e.touches.length > 0) {
+                const touch = e.touches[0];
+                updateAngleFromCoords(touch.clientX, touch.clientY);
+            }
+        }, { passive: true });
+
+        window.addEventListener('touchend', () => { isDragging = false; });
+
+        // --- 3. DYNAMIC REDUCTION STEP ENGINE & UI UPDATER ---
+        function calculateReduction(deg) {
+            const normDeg = ((deg % 360) + 360) % 360; // Coterminal in [0, 360)
+            
+            let q = 'Quadrant I';
+            let refDeg = normDeg;
+            let refFormulaStr = `\\theta_R = ${normDeg}^\\circ`;
+            let astcStr = 'บวก (+) ทั้งหมด';
+
+            if (normDeg >= 0 && normDeg < 90) {
+                q = 'Quadrant I';
+                refDeg = normDeg;
+                refFormulaStr = `\\theta_R = \\theta = ${normDeg}^\\circ`;
+                astcStr = 'บวก (+) ทุกฟังก์ชัน';
+            } else if (normDeg >= 90 && normDeg < 180) {
+                q = 'Quadrant II';
+                refDeg = 180 - normDeg;
+                refFormulaStr = `\\theta_R = 180^\\circ - ${normDeg}^\\circ = ${refDeg}^\\circ`;
+                astcStr = 'Sin, Csc (+) | Cos, Sec, Tan, Cot (-)';
+            } else if (normDeg >= 180 && normDeg < 270) {
+                q = 'Quadrant III';
+                refDeg = normDeg - 180;
+                refFormulaStr = `\\theta_R = ${normDeg}^\\circ - 180^\\circ = ${refDeg}^\\circ`;
+                astcStr = 'Tan, Cot (+) | Sin, Cos, Csc, Sec (-)';
+            } else {
+                q = 'Quadrant IV';
+                refDeg = 360 - normDeg;
+                refFormulaStr = `\\theta_R = 360^\\circ - ${normDeg}^\\circ = ${refDeg}^\\circ`;
+                astcStr = 'Cos, Sec (+) | Sin, Csc, Tan, Cot (-)';
+            }
+
+            // Standard Angle Radical Values Lookup for precise outputs
+            const stdValues = {
+                0:   { sin: '0', cos: '1', tan: '0', csc: '\\text{หาค่าไม่ได้}', sec: '1', cot: '\\text{หาค่าไม่ได้}' },
+                30:  { sin: '\\frac{1}{2}', cos: '\\frac{\\sqrt{3}}{2}', tan: '\\frac{\\sqrt{3}}{3}', csc: '2', sec: '\\frac{2\\sqrt{3}}{3}', cot: '\\sqrt{3}' },
+                45:  { sin: '\\frac{\\sqrt{2}}{2}', cos: '\\frac{\\sqrt{2}}{2}', tan: '1', csc: '\\sqrt{2}', sec: '\\sqrt{2}', cot: '1' },
+                60:  { sin: '\\frac{\\sqrt{3}}{2}', cos: '\\frac{1}{2}', tan: '\\sqrt{3}', csc: '\\frac{2\\sqrt{3}}{3}', sec: '2', cot: '\\frac{\\sqrt{3}}{3}' },
+                90:  { sin: '1', cos: '0', tan: '\\text{หาค่าไม่ได้}', csc: '1', sec: '\\text{หาค่าไม่ได้}', cot: '0' }
+            };
+
+            const radVal = (deg * Math.PI) / 180;
+            const sinNum = Math.sin(radVal);
+            const cosNum = Math.cos(radVal);
+            const tanNum = Math.tan(radVal);
+            const cscNum = 1 / sinNum;
+            const secNum = 1 / cosNum;
+            const cotNum = 1 / tanNum;
+
+            // Generate exact latex representation if standard ref angle
+            let exactLatex = null;
+            if (stdValues[refDeg]) {
+                const base = stdValues[refDeg];
+                const sSign = sinNum < -1e-6 ? '-' : '';
+                const cSign = cosNum < -1e-6 ? '-' : '';
+                const tSign = (sinNum * cosNum) < -1e-6 ? '-' : '';
+
+                exactLatex = {
+                    sin: base.sin === '0' ? '0' : (sSign + base.sin),
+                    cos: base.cos === '0' ? '0' : (cSign + base.cos),
+                    tan: base.tan.includes('หาค่าไม่ได้') ? base.tan : (tSign + base.tan),
+                    csc: base.csc.includes('หาค่าไม่ได้') ? base.csc : (sSign + base.csc),
+                    sec: base.sec.includes('หาค่าไม่ได้') ? base.sec : (cSign + base.sec),
+                    cot: base.cot.includes('หาค่าไม่ได้') ? base.cot : (tSign + base.cot)
+                };
+            }
+
+            return {
+                coterminalDeg: normDeg,
+                quadrant: q,
+                refDeg: refDeg,
+                refFormula: refFormulaStr,
+                astcStr: astcStr,
+                radVal: radVal,
+                sinNum: sinNum,
+                cosNum: cosNum,
+                tanNum: tanNum,
+                cscNum: cscNum,
+                secNum: secNum,
+                cotNum: cotNum,
+                exactLatex: exactLatex
+            };
+        }
+
+        function setAngle(deg) {
+            currentAngleDeg = parseInt(deg, 10);
+            document.getElementById('angleSlider').value = currentAngleDeg;
+            document.getElementById('display-deg-badge').innerText = currentAngleDeg + '°';
+
+            const calc = calculateReduction(currentAngleDeg);
+
+            // Update Breakdown Panel
+            document.getElementById('calc-quadrant-badge').innerText = calc.quadrant;
+            document.getElementById('step1-coterminal').innerText = `${calc.coterminalDeg}° (รอบหมุน: ${Math.floor(currentAngleDeg/360)} รอบ)`;
+            
+            const step2Box = document.getElementById('step2-refangle');
+            step2Box.innerText = `$$${calc.refFormula}$$`;
+            
+            document.getElementById('step3-astc').innerText = calc.astcStr;
+            
+            const radFractionStr = (calc.coterminalDeg / 180).toFixed(2);
+            document.getElementById('step4-radian').innerText = `$$${(calc.coterminalDeg*Math.PI/180).toFixed(3)} \\text{ rad}$$`;
+
+            // Update 6 Trig Values
+            const formatVal = (num, exactStr, decId, valId) => {
+                const valElem = document.getElementById(valId);
+                const decElem = document.getElementById(decId);
+
+                if (Math.abs(num) > 1e4 || !isFinite(num)) {
+                    valElem.innerText = 'หาค่าไม่ได้';
+                    decElem.innerText = 'Undefined';
+                } else {
+                    valElem.innerText = exactStr ? `$$${exactStr}$$` : `$$${num.toFixed(4)}$$`;
+                    decElem.innerText = `≈ ${num >= 0 ? '+' : ''}${num.toFixed(4)}`;
+                }
+            };
+
+            formatVal(calc.sinNum, calc.exactLatex ? calc.exactLatex.sin : null, 'dec-sin', 'val-sin');
+            formatVal(calc.cosNum, calc.exactLatex ? calc.exactLatex.cos : null, 'dec-cos', 'val-cos');
+            formatVal(calc.tanNum, calc.exactLatex ? calc.exactLatex.tan : null, 'dec-tan', 'val-tan');
+            formatVal(calc.cscNum, calc.exactLatex ? calc.exactLatex.csc : null, 'dec-csc', 'val-csc');
+            formatVal(calc.secNum, calc.exactLatex ? calc.exactLatex.sec : null, 'dec-sec', 'val-sec');
+            formatVal(calc.cotNum, calc.exactLatex ? calc.exactLatex.cot : null, 'dec-cot', 'val-cot');
+
+            // MathJax Typeset trigger
+            if (window.MathJax && window.MathJax.typesetPromise) {
+                window.MathJax.typesetPromise([
+                    step2Box, document.getElementById('step4-radian'),
+                    document.getElementById('val-sin'), document.getElementById('val-cos'),
+                    document.getElementById('val-tan'), document.getElementById('val-csc'),
+                    document.getElementById('val-sec'), document.getElementById('val-cot')
+                ]).catch(err => {});
+            }
+
+            drawQuadrantScene();
+        }
+
+        function onAngleInputChange(val) {
+            if (isAnimating) stopExplorerAnimation();
+            setAngle(val);
+        }
+
+        function resetExplorer() {
+            if (isAnimating) stopExplorerAnimation();
+            setAngle(120);
+        }
+
+        function toggleExplorerAnimation() {
+            if (isAnimating) stopExplorerAnimation();
+            else startExplorerAnimation();
+        }
+
+        function startExplorerAnimation() {
+            isAnimating = true;
+            document.getElementById('label-animate').innerText = 'หยุดหมุน';
+            document.getElementById('icon-animate').className = 'fa-solid fa-pause';
+
+            function step() {
+                if (!isAnimating) return;
+                setAngle(currentAngleDeg >= 720 ? -360 : currentAngleDeg + 1);
+                animationReqId = requestAnimationFrame(step);
+            }
+            animationReqId = requestAnimationFrame(step);
+        }
+
+        function stopExplorerAnimation() {
+            isAnimating = false;
+            document.getElementById('label-animate').innerText = 'หมุนสำรวจ';
+            document.getElementById('icon-animate').className = 'fa-solid fa-play';
+            if (animationReqId) cancelAnimationFrame(animationReqId);
+        }
+
+        function renderPresetButtons() {
+            const container = document.getElementById('preset-angle-buttons');
+            container.innerHTML = PRESET_ANGLES.map(deg => `
+                <button onclick="setAngle(${deg}); if(isAnimating) stopExplorerAnimation();" 
+                    class="bg-white border border-slate-300 hover:border-blue-500 hover:bg-blue-50 text-slate-700 font-mono text-xs px-2 py-1 rounded transition">
+                    ${deg > 0 ? deg + '°' : deg + '°'}
+                </button>
+            `).join('');
+        }
+
+        // --- 4. INTERACTIVE QUIZ ENGINE ---
+        const QUIZ_QUESTIONS = [
+            {
+                question: "ค่าของ $\\sin(225^\\circ)$ มีค่าเท่ากับเท่าใด?",
+                options: [
+                    "\\frac{\\sqrt{2}}{2}",
+                    "-\\frac{\\sqrt{2}}{2}",
+                    "-\\frac{1}{2}",
+                    "\\frac{\\sqrt{3}}{2}"
+                ],
+                correctIndex: 1,
+                explanation: "มุม $225^\\circ$ อยู่ใน Quadrant III มีมุมอ้างอิง $\\theta_R = 225^\\circ - 180^\\circ = 45^\\circ$ ใน Q III ค่า ไซน์ ($\sin$) มีเครื่องหมายเป็นลบ (-) ดังนั้น $\\sin(225^\\circ) = -\\sin(45^\\circ) = -\\frac{\\sqrt{2}}{2}$"
+            },
+            {
+                question: "ข้อใดคือค่าของ $\\cos(-300^\\circ)$?",
+                options: [
+                    "\\frac{1}{2}",
+                    "-\\frac{1}{2}",
+                    "\\frac{\\sqrt{3}}{2}",
+                    "-\\frac{\\sqrt{3}}{2}"
+                ],
+                correctIndex: 0,
+                explanation: "ใช้สมบัติฟังก์ชันคู่ $\\cos(-\\theta) = \\cos(\\theta)$ จะได้ $\\cos(-300^\\circ) = \\cos(300^\\circ)$ ซึ่งอยู่ใน Quadrant IV มีมุมอ้างอิง $\\theta_R = 360^\\circ - 300^\\circ = 60^\\circ$ ใน Q IV ค่า $\\cos$ เป็นบวก (+) คำตอบคือ $\\cos(60^\\circ) = \\frac{1}{2}$"
+            },
+            {
+                question: "ถ้า $\\tan\\theta = -\\sqrt{3}$ และมุม $\\theta$ อยู่ใน Quadrant II มุมอ้างอิง $\\theta_R$ และมุม $\\theta$ ในรอบแรกมีขนาดเท่าใด?",
+                options: [
+                    "\\theta_R = 30^\\circ, \\theta = 150^\\circ",
+                    "\\theta_R = 60^\\circ, \\theta = 120^\\circ",
+                    "\\theta_R = 60^\\circ, \\theta = 300^\\circ",
+                    "\\theta_R = 45^\\circ, \\theta = 135^\\circ"
+                ],
+                correctIndex: 1,
+                explanation: "พิจารณาค่าสัมบูรณ์ $|\\tan\\theta| = \\sqrt{3}$ จะได้มุมอ้างอิง $\\theta_R = 60^\\circ$ เนื่องจากมุมอยู่ใน Quadrant II สูตรมุมคือ $\\theta = 180^\\circ - \\theta_R = 180^\\circ - 60^\\circ = 120^\\circ$"
+            },
+            {
+                question: "ค่าของ $\\sec(495^\\circ)$ มีค่าตรงกับข้อใด?",
+                options: [
+                    "-\\sqrt{2}",
+                    "\\sqrt{2}",
+                    "-2",
+                    "-\\frac{2\\sqrt{3}}{3}"
+                ],
+                correctIndex: 0,
+                explanation: "ลดทอนรอบหมุน $495^\\circ - 360^\\circ = 135^\\circ$ (Quadrant II) มีมุมอ้างอิง $\\theta_R = 180^\\circ - 135^\\circ = 45^\\circ$ ใน Q II ค่า $\\sec$ (ตรงข้ามกับ $\\cos$) เป็นลบ (-) ดังนั้น $\\sec(495^\\circ) = -\\sec(45^\\circ) = -\\sqrt{2}$"
+            },
+            {
+                question: "มุมในจตุภาคใดที่ค่า $\\csc\\theta < 0$ และ $\\cot\\theta > 0$ พร้อมกัน?",
+                options: [
+                    "Quadrant I",
+                    "Quadrant II",
+                    "Quadrant III",
+                    "Quadrant IV"
+                ],
+                correctIndex: 2,
+                explanation: "ตามกฎ ASTC: $\\csc\\theta < 0$ แสดงว่า $\\sin\\theta < 0$ (อยู่ใน Q III หรือ Q IV) และ $\\cot\\theta > 0$ แสดงว่า $\\tan\\theta > 0$ (อยู่ใน Q I หรือ Q III) ดังนั้น จตุภาคที่เงื่อนไขทั้งสองสอดคล้องกันคือ Quadrant III"
+            }
+        ];
+
+        let quizCurrentIdx = 0;
+        let quizAnswers = new Array(QUIZ_QUESTIONS.length).fill(null);
+
+        function renderQuizQuestion() {
+            const q = QUIZ_QUESTIONS[quizCurrentIdx];
+            document.getElementById('quiz-current-num').innerText = quizCurrentIdx + 1;
+            document.getElementById('quiz-total-num').innerText = QUIZ_QUESTIONS.length;
+
+            const qText = document.getElementById('quiz-question-text');
+            qText.innerText = `ข้อ ${quizCurrentIdx + 1}: ${q.question}`;
+
+            const optionsContainer = document.getElementById('quiz-options-container');
+            optionsContainer.innerHTML = '';
+
+            const isAnswered = quizAnswers[quizCurrentIdx] !== null;
+
+            q.options.forEach((opt, idx) => {
+                const btn = document.createElement('button');
+                btn.className = 'w-full text-left p-3.5 rounded-xl border text-xs sm:text-sm font-medium transition flex items-center justify-between ';
+
+                if (!isAnswered) {
+                    btn.className += 'bg-slate-50 border-slate-200 hover:border-blue-400 hover:bg-blue-50/50 text-slate-800';
+                } else {
+                    if (idx === q.correctIndex) {
+                        btn.className += 'bg-emerald-50 border-emerald-500 text-emerald-900 font-bold';
+                    } else if (idx === quizAnswers[quizCurrentIdx]) {
+                        btn.className += 'bg-rose-50 border-rose-400 text-rose-900';
+                    } else {
+                        btn.className += 'bg-slate-50 border-slate-200 text-slate-400 opacity-60';
+                    }
+                }
+
+                btn.innerHTML = `
+                    <span><strong class="mr-2">${String.fromCharCode(65 + idx)}.</strong> $${opt}$</span>
+                    ${isAnswered && idx === q.correctIndex ? '<i class="fa-solid fa-circle-check text-emerald-600"></i>' : ''}
+                    ${isAnswered && idx === quizAnswers[quizCurrentIdx] && idx !== q.correctIndex ? '<i class="fa-solid fa-circle-xmark text-rose-500"></i>' : ''}
+                `;
+
+                btn.onclick = () => selectQuizAnswer(idx);
+                optionsContainer.appendChild(btn);
+            });
+
+            // Feedback and Explanation Drawer
+            const feedbackBox = document.getElementById('quiz-feedback-box');
+            const explanationBox = document.getElementById('quiz-explanation-box');
+            const explanationText = document.getElementById('quiz-explanation-text');
+
+            if (isAnswered) {
+                const userChoice = quizAnswers[quizCurrentIdx];
+                const isCorrect = userChoice === q.correctIndex;
+
+                feedbackBox.classList.remove('hidden');
+                if (isCorrect) {
+                    feedbackBox.className = 'p-3.5 rounded-xl text-xs sm:text-sm font-semibold bg-emerald-100 text-emerald-800 border border-emerald-300';
+                    feedbackBox.innerHTML = '<i class="fa-solid fa-check-circle mr-1.5"></i> ถูกต้องครับ! เก่งมาก';
+                } else {
+                    feedbackBox.className = 'p-3.5 rounded-xl text-xs sm:text-sm font-semibold bg-rose-100 text-rose-800 border border-rose-300';
+                    feedbackBox.innerHTML = '<i class="fa-solid fa-times-circle mr-1.5"></i> ยังไม่ถูกต้อง ลองอ่านวิธีคิดด้านล่างนะครับ';
+                }
+
+                explanationBox.classList.remove('hidden');
+                explanationText.innerHTML = q.explanation;
+            } else {
+                feedbackBox.classList.add('hidden');
+                explanationBox.classList.add('hidden');
+            }
+
+            // Prev/Next Navigation State
+            document.getElementById('btn-quiz-prev').disabled = (quizCurrentIdx === 0);
+            const nextBtn = document.getElementById('btn-quiz-next');
+            if (quizCurrentIdx === QUIZ_QUESTIONS.length - 1) {
+                nextBtn.innerHTML = 'เสร็จสิ้นแบบทดสอบ <i class="fa-solid fa-flag-checkered"></i>';
+            } else {
+                nextBtn.innerHTML = 'ข้อถัดไป <i class="fa-solid fa-arrow-right"></i>';
+            }
+
+            if (window.MathJax && window.MathJax.typesetPromise) {
+                window.MathJax.typesetPromise([qText, optionsContainer, explanationText]).catch(err => {});
+            }
+
+            updateQuizScore();
+        }
+
+        function selectQuizAnswer(optionIdx) {
+            if (quizAnswers[quizCurrentIdx] !== null) return;
+            quizAnswers[quizCurrentIdx] = optionIdx;
+            renderQuizQuestion();
+        }
+
+        function updateQuizScore() {
+            let score = 0;
+            quizAnswers.forEach((ans, idx) => {
+                if (ans === QUIZ_QUESTIONS[idx].correctIndex) score++;
+            });
+            document.getElementById('quiz-score').innerText = score;
+        }
+
+        function quizPrevQuestion() {
+            if (quizCurrentIdx > 0) {
+                quizCurrentIdx--;
+                renderQuizQuestion();
+            }
+        }
+
+        function quizNextQuestion() {
+            if (quizCurrentIdx < QUIZ_QUESTIONS.length - 1) {
+                quizCurrentIdx++;
+                renderQuizQuestion();
+            } else {
+                alertQuizCompletion();
+            }
+        }
+
+        function alertQuizCompletion() {
+            let score = 0;
+            quizAnswers.forEach((ans, idx) => {
+                if (ans === QUIZ_QUESTIONS[idx].correctIndex) score++;
+            });
+
+            const feedbackBox = document.getElementById('quiz-feedback-box');
+            feedbackBox.classList.remove('hidden');
+            feedbackBox.className = 'p-4 rounded-xl text-center text-sm font-bold bg-blue-600 text-white shadow-md';
+            feedbackBox.innerHTML = `🎉 ยินดีด้วย! คุณทำแบบทดสอบเสร็จสิ้น ได้คะแนนรวม ${score} จาก ${QUIZ_QUESTIONS.length} คะแนน`;
+        }
+
+        // --- 5. CURRICULUM MODAL ENGINE ---
+        const ALL_LESSONS = [
+            "บทเรียนที่ 1: ฟังก์ชันไซน์และโคไซน์จากวงกลมหนึ่งหน่วย",
+            "บทเรียนที่ 2: การวัดมุมในหน่วยเรเดียนและองศา",
+            "บทเรียนที่ 3: ค่าฟังก์ชันตรีโกณมิติของมุมในทุกจตุภาค",
+            "บทเรียนที่ 4: ฟังก์ชันแทนเจนต์ คอตะแจนท์ เซแคนต์ และโคเซแคนต์",
+            "บทเรียนที่ 5: กราฟของฟังก์ชันตรีโกณมิติ และคาบ/แอมพลิจูด",
+            "บทเรียนที่ 6: ฟังก์ชันตรีโกณมิติของผลบวกและผลต่างของมุม",
+            "บทเรียนที่ 7: ฟังก์ชันตรีโกณมิติของมุมสองเท่าและมุมครึ่งหนึ่ง",
+            "บทเรียนที่ 8: การแปลงผลคูณเป็นผลบวกและผลต่าง",
+            "บทเรียนที่ 9: ฟังก์ชันตรีโกณมิติผกผัน (Arcsin, Arccos, Arctan)",
+            "บทเรียนที่ 10: สมการตรีโกณมิติและเทคนิคการแก้สมการ",
+            "บทเรียนที่ 11: อสมการตรีโกณมิติ",
+            "บทเรียนที่ 12: กฎของไซน์ (Law of Sines)",
+            "บทเรียนที่ 13: กฎของโคไซน์ (Law of Cosines)",
+            "บทเรียนที่ 14: การหาพื้นที่ของสามเหลี่ยมด้วยตรีโกณมิติ",
+            "บทเรียนที่ 15: การประยุกต์หาคือระยะทางและความสูง",
+            "บทเรียนที่ 16: เวคเตอร์และตรีโกณมิติใน 2 มิติ",
+            "บทเรียนที่ 17: รูปแบบเชิงขั้วของจำนวนเชิงซ้อน (Polar Form)",
+            "บทเรียนที่ 18: อนุกรมฟูเรียร์เบื้องต้น และคลื่นไซน์",
+            "บทเรียนที่ 19: การประยุกต์ตรีโกณมิติในงานวิศวกรรมและฟิสิกส์",
+            "บทเรียนที่ 20: แบบฝึกหัดท้าทายและการเตรียมสอบแข่งขัน"
+        ];
+
+        function renderCurriculumList() {
+            const container = document.getElementById('curriculum-list');
+            container.innerHTML = ALL_LESSONS.map((title, idx) => {
+                const isCurrent = idx === 2; // Lesson 3 index
+                return `
+                    <div class="p-3.5 rounded-xl flex items-center justify-between transition ${isCurrent ? 'bg-blue-50 border border-blue-200' : 'hover:bg-slate-50'}">
+                        <div class="flex items-center gap-3">
+                            <span class="w-7 h-7 rounded-lg flex items-center justify-center font-bold text-xs ${isCurrent ? 'bg-blue-600 text-white' : 'bg-slate-100 text-slate-500'}">
+                                ${idx + 1}
+                            </span>
+                            <span class="text-xs sm:text-sm font-medium ${isCurrent ? 'text-blue-950 font-bold' : 'text-slate-700'}">
+                                ${title}
+                            </span>
+                        </div>
+                        <div>
+                            ${isCurrent 
+                                ? '<span class="text-xs bg-blue-600 text-white px-2.5 py-1 rounded-full font-bold">กำลังเรียน</span>' 
+                                : '<span class="text-xs text-slate-400"><i class="fa-solid fa-lock text-slate-300"></i> บทเรียน</span>'}
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function toggleCurriculumModal() {
+            const modal = document.getElementById('curriculumModal');
+            modal.classList.toggle('hidden');
+        }
+
+        // --- 6. INITIALIZATION ON PAGE LOAD ---
+        window.addEventListener('load', () => {
+            renderPresetButtons();
+            renderQuizQuestion();
+            renderCurriculumList();
+
+            resizeCanvas();
+            setAngle(120);
+        });
+
+        window.addEventListener('resize', () => {
+            resizeCanvas();
+        });
+    </script>
+</body>
+
+</html>

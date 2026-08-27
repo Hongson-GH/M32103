@@ -1,1 +1,1070 @@
+<!DOCTYPE html>
+<html lang="th">
 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="เธเธ—เน€เธฃเธตเธขเธเธ—เธตเน 1: เธเธฑเธเธเนเธเธฑเธเนเธเธเนเนเธฅเธฐเนเธเนเธเธเนเธเธฒเธเธงเธเธเธฅเธกเธซเธเธถเนเธเธซเธเนเธงเธข - เธชเธทเนเธญเธเธฒเธฃเน€เธฃเธตเธขเธเธฃเธนเนเธ•เธฃเธตเนเธเธ“เธกเธดเธ•เธดเธญเธดเธเน€เธ—เธญเธฃเนเนเธญเนเธเธ—เธตเธ">
+    <title>เธเธ—เน€เธฃเธตเธขเธเธ—เธตเน 1: เธเธฑเธเธเนเธเธฑเธเนเธเธเนเนเธฅเธฐเนเธเนเธเธเนเธเธฒเธเธงเธเธเธฅเธกเธซเธเธถเนเธเธซเธเนเธงเธข</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>๐“</text></svg>">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Prompt -->
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- MathJax Configuration & Script -->
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <style>
+        html, body {
+            overflow-x: hidden !important;
+            max-width: 100vw;
+        }
+
+        body {
+            font-family: 'Prompt', sans-serif;
+            background: linear-gradient(135deg, #f8fafc 0%, #eef2ff 50%, #f0fdf4 100%);
+            min-height: 100vh;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #6366f1;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #4f46e5;
+        }
+
+        .fade-in {
+            animation: fadeIn 0.4s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+        }
+
+        .unit-circle-container {
+            position: relative;
+            width: 100%;
+            max-width: 460px;
+            height: 340px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        @media (min-width: 640px) {
+            .unit-circle-container {
+                height: 380px;
+            }
+        }
+
+        mjx-container {
+            font-size: 105% !important;
+            max-width: 100%;
+            overflow-x: auto;
+        }
+
+        .btn-interactive {
+            transition: all 0.25s ease;
+            box-shadow: 0 4px 6px -1px rgba(99, 102, 241, 0.15);
+        }
+
+        .btn-interactive:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(99, 102, 241, 0.25);
+        }
+
+        .btn-interactive:active {
+            transform: translateY(0);
+        }
+    </style>
+</head>
+
+<body class="text-slate-800">
+
+    <!-- Top Navigation Header -->
+    <header class="bg-white/90 backdrop-blur-md shadow-sm sticky top-0 z-40 border-b border-indigo-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <!-- Title & Lesson Indicator -->
+                <div class="flex items-center space-x-3">
+                    <div class="bg-indigo-600 text-white w-10 h-10 rounded-xl flex items-center justify-center font-bold text-lg shadow-sm">
+                        1
+                    </div>
+                    <div>
+                        <div class="text-xs font-semibold text-indigo-600 tracking-wider uppercase">เธซเธฅเธฑเธเธชเธนเธ•เธฃเธ•เธฃเธตเนเธเธ“เธกเธดเธ•เธด 20 เธเธ—เน€เธฃเธตเธขเธ</div>
+                        <h1 class="text-base sm:text-lg font-bold text-slate-900 leading-tight">เธเธ—เน€เธฃเธตเธขเธเธ—เธตเน 1: เธเธฑเธเธเนเธเธฑเธเนเธเธเนเนเธฅเธฐเนเธเนเธเธเนเธเธฒเธเธงเธเธเธฅเธกเธซเธเธถเนเธเธซเธเนเธงเธข</h1>
+                    </div>
+                </div>
+
+                <!-- Course Progress Button -->
+                <button onclick="toggleCurriculumModal()" class="flex items-center gap-2 bg-indigo-50 hover:bg-indigo-100 text-indigo-700 px-3 py-1.5 rounded-lg text-xs sm:text-sm font-medium transition">
+                    <i class="fa-solid fa-list-ol"></i>
+                    <span class="hidden sm:inline">เธชเธฒเธฃเธเธฑเธ 20 เธเธ—เน€เธฃเธตเธขเธ</span>
+                    <span class="bg-indigo-200 text-indigo-800 text-xs px-2 py-0.5 rounded-full font-bold">1/20</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="max-w-6xl mx-auto p-4 sm:p-6 lg:p-8 space-y-8">
+
+        <!-- INTRO & OBJECTIVES BANNER -->
+        <section class="glass-panel rounded-2xl p-6 shadow-sm border-l-4 border-indigo-600 fade-in">
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
+                <div class="space-y-3">
+                    <div class="inline-flex items-center gap-2 bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full text-xs font-bold">
+                        <i class="fa-solid fa-bullseye"></i> เธเธธเธ”เธเธฃเธฐเธชเธเธเนเธเธฒเธฃเน€เธฃเธตเธขเธเธฃเธนเนเธเธฃเธฐเธเธณเธเธ—เน€เธฃเธตเธขเธ
+                    </div>
+                    <h2 class="text-xl sm:text-2xl font-bold text-slate-800">เธ—เธณเธเธงเธฒเธกเธฃเธนเนเธเธฑเธเธเธฑเธเธเนเธเธฑเธ $\sin\theta$ เนเธฅเธฐ $\cos\theta$</h2>
+                    <p class="text-slate-600 text-sm sm:text-base leading-relaxed">
+                        เนเธเธเธ—เน€เธฃเธตเธขเธเนเธฃเธเธเธตเน เน€เธฃเธฒเธเธฐเธจเธถเธเธฉเธฒเธเธธเธ”เน€เธฃเธดเนเธกเธ•เนเธเธเธทเนเธเธเธฒเธเธ—เธตเนเธชเธธเธ”เธเธญเธเธ•เธฃเธตเนเธเธ“เธกเธดเธ•เธดเธขเธธเธเนเธซเธกเน เธเธฑเนเธเธเธทเธญ <strong>เธงเธเธเธฅเธกเธซเธเธถเนเธเธซเธเนเธงเธข (Unit Circle)</strong> เธเธถเนเธเธเธฐเธเนเธงเธขเนเธซเนเน€เธฃเธฒเธเธขเธฒเธขเธเธญเธเน€เธเธ•เธเธฒเธฃเธซเธฒเธกเธธเธกเธเธฒเธเน€เธ”เธดเธกเธ—เธตเนเน€เธเนเธเธกเธธเธกเนเธซเธฅเธกเนเธเธชเธฒเธกเน€เธซเธฅเธตเนเธขเธกเธกเธธเธกเธเธฒเธ เนเธซเนเธชเธฒเธกเธฒเธฃเธ–เธซเธฒเธเนเธฒเธเธญเธเธกเธธเธกเนเธ”เน เนเธเธฃเธฐเธเธฒเธเนเธ”เนเธญเธขเนเธฒเธเธชเธกเธเธนเธฃเธ“เน
+                    </p>
+                </div>
+            </div>
+
+            <!-- Learning Outcomes Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-6 pt-6 border-t border-slate-100">
+                <div class="flex items-start gap-3 bg-white p-3.5 rounded-xl border border-slate-100 shadow-xs">
+                    <div class="text-emerald-500 font-bold text-lg"><i class="fa-solid fa-circle-check"></i></div>
+                    <div class="text-xs sm:text-sm text-slate-700 font-medium">เน€เธเนเธฒเนเธเธเธดเธขเธฒเธกเธเธดเธเธฑเธ” $(x,y) = (\cos\theta, \sin\theta)$ เธเธเธงเธเธเธฅเธกเธซเธเธถเนเธเธซเธเนเธงเธข</div>
+                </div>
+                <div class="flex items-start gap-3 bg-white p-3.5 rounded-xl border border-slate-100 shadow-xs">
+                    <div class="text-emerald-500 font-bold text-lg"><i class="fa-solid fa-circle-check"></i></div>
+                    <div class="text-xs sm:text-sm text-slate-700 font-medium">เธงเธดเน€เธเธฃเธฒเธฐเธซเนเน€เธเธฃเธทเนเธญเธเธซเธกเธฒเธข $(+ / -)$ เธเธญเธ เนเธเธเน เนเธฅเธฐ เนเธเนเธเธเน เนเธเธ—เธฑเนเธ 4 เธเธ•เธธเธ เธฒเธ (ASTC)</div>
+                </div>
+                <div class="flex items-start gap-3 bg-white p-3.5 rounded-xl border border-slate-100 shadow-xs">
+                    <div class="text-emerald-500 font-bold text-lg"><i class="fa-solid fa-circle-check"></i></div>
+                    <div class="text-xs sm:text-sm text-slate-700 font-medium">เธเธดเธชเธนเธเธเนเน€เธญเธเธฅเธฑเธเธฉเธ“เนเธเธตเธ—เธฒเนเธเธฃเธฑเธชเธเธทเนเธเธเธฒเธ $\sin^2\theta + \cos^2\theta = 1$</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 1: INTERACTIVE UNIT CIRCLE VISUALIZER -->
+        <section class="glass-panel rounded-2xl p-4 sm:p-6 shadow-md border border-indigo-100 fade-in">
+            <div class="mb-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-100 pb-3">
+                <div>
+                    <h3 class="text-lg sm:text-xl font-bold text-indigo-950 flex items-center gap-2">
+                        <i class="fa-solid fa-compass text-indigo-600"></i>
+                        เธซเนเธญเธเธ—เธ”เธฅเธญเธเธเธเธดเธชเธฑเธกเธเธฑเธเธเน: เน€เธเธฃเธทเนเธญเธเธกเธทเธญเธชเธณเธฃเธงเธเธงเธเธเธฅเธกเธซเธเธถเนเธเธซเธเนเธงเธข
+                    </h3>
+                    <p class="text-xs sm:text-sm text-slate-500 mt-0.5">
+                        เธฅเธญเธเธฅเธฒเธเธเธธเธ”เธเธเธงเธเธเธฅเธก เธซเธฃเธทเธญเน€เธฅเธทเธญเธเธกเธธเธกเธกเธฒเธ•เธฃเธเธฒเธ เน€เธเธทเนเธญเธ”เธนเธงเนเธฒเธเนเธฒ $\cos\theta$ (เนเธเธ X) เนเธฅเธฐ $\sin\theta$ (เนเธเธ Y) เน€เธเธฅเธตเนเธขเธเนเธเธฅเธเธญเธขเนเธฒเธเนเธฃ
+                    </p>
+                </div>
+                <div class="flex items-center gap-2">
+                    <button id="btn-animate-circle" onclick="toggleCircleAnimation()" class="bg-indigo-600 hover:bg-indigo-700 text-white text-xs sm:text-sm px-3.5 py-2 rounded-lg transition flex items-center gap-1.5 shadow-sm">
+                        <i class="fa-solid fa-play" id="icon-animate"></i>
+                        <span id="label-animate">เธซเธกเธธเธเธญเธฑเธ•เนเธเธกเธฑเธ•เธด</span>
+                    </button>
+                    <button onclick="resetUnitCircle()" class="bg-slate-100 text-slate-600 hover:bg-slate-200 text-xs sm:text-sm px-3 py-2 rounded-lg transition flex items-center gap-1.5">
+                        <i class="fa-solid fa-rotate-right"></i> เธฃเธตเน€เธเนเธ•
+                    </button>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+                <!-- Visual Canvas Column -->
+                <div class="lg:col-span-7 flex flex-col items-center">
+                    <div class="unit-circle-container bg-white rounded-2xl shadow-inner border border-slate-200 overflow-hidden cursor-crosshair">
+                        <canvas id="unitCircleCanvas" class="w-full h-full block"></canvas>
+                    </div>
+                    <p class="text-xs text-slate-400 mt-2 text-center">
+                        <i class="fa-solid fa-hand-pointer text-indigo-500 mr-1"></i>เธเธฅเธดเธเธซเธฃเธทเธญเธชเธฑเธกเธเธฑเธชเธเธเธงเธเธเธฅเธกเน€เธเธทเนเธญเธเธฃเธฑเธเธกเธธเธกเธ•เธฒเธกเธ•เนเธญเธเธเธฒเธฃ
+                    </p>
+                </div>
+
+                <!-- Controls & Dynamic Reading Column -->
+                <div class="lg:col-span-5 space-y-4">
+                    <!-- Slider & Angle Selection -->
+                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-3">
+                        <div class="flex justify-between items-center">
+                            <label for="angleSlider" class="text-xs sm:text-sm font-semibold text-slate-700">เธเธฃเธฑเธเธกเธธเธก ($\theta$):</label>
+                            <span class="bg-indigo-600 text-white text-xs font-bold px-3 py-1 rounded-full font-mono shadow-xs" id="display-degree">0ยฐ</span>
+                        </div>
+                        <input type="range" id="angleSlider" min="0" max="360" value="0" step="1" 
+                            class="w-full accent-indigo-600 cursor-pointer h-2 bg-slate-200 rounded-lg" oninput="onSliderAngleChange(this.value)">
+
+                        <div>
+                            <span class="text-xs text-slate-500 font-medium block mb-1.5">เธกเธธเธกเธกเธฒเธ•เธฃเธเธฒเธเธ—เธตเนเธเธเธเนเธญเธข:</span>
+                            <div class="flex flex-wrap gap-1.5" id="quick-angles">
+                                <!-- Dynamic standard angle buttons generated by JS -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Dynamic Value Card -->
+                    <div class="bg-slate-900 text-white p-5 rounded-xl shadow-lg relative overflow-hidden space-y-3">
+                        <div class="flex justify-between items-center border-b border-slate-800 pb-2.5">
+                            <span class="text-xs font-semibold text-slate-400 uppercase tracking-wider">เธเธดเธเธฑเธ”เธเธเธงเธเธเธฅเธกเธซเธเธถเนเธเธซเธเนเธงเธข</span>
+                            <span class="text-xs font-bold bg-indigo-900 text-indigo-200 border border-indigo-700 px-2.5 py-0.5 rounded-full" id="display-quadrant">Quadrant I</span>
+                        </div>
+
+                        <div class="space-y-2 text-xs sm:text-sm font-mono">
+                            <div class="flex justify-between items-center">
+                                <span class="text-slate-400">เธกเธธเธกเนเธเธซเธเนเธงเธขเน€เธฃเน€เธ”เธตเธขเธ ($\theta$):</span>
+                                <span class="font-bold text-amber-300" id="display-radian">0 rad (0ฯ€)</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-slate-400 flex items-center gap-1.5">
+                                    <span class="w-3 h-3 rounded-full bg-blue-500 inline-block"></span>
+                                    $\cos\theta$ (เธเธงเธฒเธกเธขเธฒเธงเนเธเธ X):
+                                </span>
+                                <span class="font-bold text-blue-400 text-base" id="display-cos">1.0000</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-slate-400 flex items-center gap-1.5">
+                                    <span class="w-3 h-3 rounded-full bg-emerald-500 inline-block"></span>
+                                    $\sin\theta$ (เธเธงเธฒเธกเธขเธฒเธงเนเธเธ Y):
+                                </span>
+                                <span class="font-bold text-emerald-400 text-base" id="display-sin">0.0000</span>
+                            </div>
+                        </div>
+
+                        <div class="bg-slate-950 p-3 rounded-lg border border-slate-800 text-center">
+                            <span class="text-xs text-slate-400 block mb-1">เธฃเธนเธเธเธดเธเธฑเธ”เธเธ“เธดเธ•เธจเธฒเธชเธ•เธฃเน $P(\theta) = (x, y)$:</span>
+                            <div class="font-mono text-sm sm:text-base text-amber-400 font-bold" id="display-latex-coords">
+                                $$(1, 0)$$
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 2: CORE THEORY & DEFINITIONS -->
+        <section class="space-y-6 fade-in">
+            <div class="border-l-4 border-indigo-600 pl-4">
+                <h2 class="text-xl sm:text-2xl font-bold text-slate-900">1. เธเธดเธขเธฒเธกเนเธฅเธฐเธ—เธคเธฉเธเธตเธเธทเนเธเธเธฒเธ</h2>
+                <p class="text-slate-600 text-sm sm:text-base">เธ—เธณเธเธงเธฒเธกเน€เธเนเธฒเนเธเนเธเธฃเธเธชเธฃเนเธฒเธเธเธ“เธดเธ•เธจเธฒเธชเธ•เธฃเนเน€เธเธทเนเธญเธเธซเธฅเธฑเธเธงเธเธเธฅเธกเธซเธเธถเนเธเธซเธเนเธงเธข</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Card 1: Definition of Unit Circle -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 space-y-3">
+                    <div class="w-10 h-10 bg-indigo-100 text-indigo-600 rounded-lg flex items-center justify-center font-bold text-lg">
+                        <i class="fa-solid fa-circle"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-800">เธงเธเธเธฅเธกเธซเธเธถเนเธเธซเธเนเธงเธขเธเธทเธญเธญเธฐเนเธฃ?</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        <strong>เธงเธเธเธฅเธกเธซเธเธถเนเธเธซเธเนเธงเธข (Unit Circle)</strong> เธเธทเธญ เธงเธเธเธฅเธกเธ—เธตเนเธกเธตเธเธธเธ”เธจเธนเธเธขเนเธเธฅเธฒเธเธญเธขเธนเนเธ—เธตเนเธเธธเธ”เธเธณเน€เธเธดเธ” $(0,0)$ เธเธเธฃเธฐเธเธฒเธเธเธดเธเธฑเธ”เธเธฒเธ เนเธฅเธฐเธกเธตเธฃเธฑเธจเธกเธตเน€เธ—เนเธฒเธเธฑเธ $1$ เธซเธเนเธงเธข เธกเธตเธชเธกเธเธฒเธฃเธเธทเธญ:
+                    </p>
+                    <div class="bg-indigo-50/70 p-3 rounded-xl text-center font-bold text-indigo-900">
+                        $$ x^2 + y^2 = 1 $$
+                    </div>
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        เน€เธกเธทเนเธญเธงเธฑเธ”เธฃเธฐเธขเธฐเธ—เธฒเธเธ•เธฒเธกเธชเนเธงเธเนเธเนเธเธขเธฒเธง $\theta$ เธซเธเนเธงเธข เน€เธฃเธดเนเธกเธเธฒเธเธเธธเธ” $(1,0)$ เนเธเธซเธขเธธเธ”เธ—เธตเนเธเธธเธ” $P(x,y)$ เนเธ”เน เธเธเธงเธเธเธฅเธก เน€เธฃเธฒเธเธฐเธเธณเธซเธเธ”เธเธดเธขเธฒเธกเธเธญเธเนเธเธเนเนเธฅเธฐเนเธเนเธเธเนเธ”เธฑเธเธเธตเน:
+                    </p>
+                    <div class="bg-indigo-100/50 p-3 rounded-xl text-center font-bold text-slate-800">
+                        $$ \cos\theta = x \quad \text{เนเธฅเธฐ} \quad \sin\theta = y $$
+                    </div>
+                </div>
+
+                <!-- Card 2: Fundamental Pythagorean Identity -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 space-y-3">
+                    <div class="w-10 h-10 bg-emerald-100 text-emerald-600 rounded-lg flex items-center justify-center font-bold text-lg">
+                        <i class="fa-solid fa-square-root-variable"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-800">เน€เธญเธเธฅเธฑเธเธฉเธ“เนเธเธตเธ—เธฒเนเธเธฃเธฑเธชเธเธทเนเธเธเธฒเธ</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        เน€เธเธทเนเธญเธเธเธฒเธเธเธธเธ” $P(x,y)$ เธญเธขเธนเนเธเธเธงเธเธเธฅเธกเธซเธเธถเนเธเธซเธเนเธงเธข $x^2 + y^2 = 1$ เน€เธกเธทเนเธญเนเธ—เธเธเนเธฒ $x = \cos\theta$ เนเธฅเธฐ $y = \sin\theta$ เธฅเธเนเธเธชเธกเธเธฒเธฃ เธเธฐเนเธ”เนเธชเธนเธ•เธฃเน€เธญเธเธฅเธฑเธเธฉเธ“เนเธ—เธตเนเธชเธณเธเธฑเธเธ—เธตเนเธชเธธเธ”เธเธญเธเธ•เธฃเธตเนเธเธ“เธกเธดเธ•เธด:
+                    </p>
+                    <div class="bg-emerald-50 p-4 rounded-xl text-center font-bold text-emerald-950 text-base sm:text-lg border border-emerald-200">
+                        $$ \sin^2\theta + \cos^2\theta = 1 $$
+                    </div>
+                    <div class="text-xs text-slate-500 space-y-1 pt-1">
+                        <p><strong>เธเธธเธ“เธชเธกเธเธฑเธ•เธดเธชเธณเธเธฑเธเธเธญเธเนเธ”เน€เธกเธเนเธฅเธฐเน€เธฃเธเธเน:</strong></p>
+                        <p>โ€ข เธเนเธฒเธเธญเธ $\sin\theta$ เนเธฅเธฐ $\cos\theta$ เธเธฐเธ–เธนเธเธเธณเธเธฑเธ”เธญเธขเธนเนเนเธเธเนเธงเธ $[-1, 1]$ เน€เธชเธกเธญ</p>
+                        <p>โ€ข $-1 \le \sin\theta \le 1$ เนเธฅเธฐ $-1 \le \cos\theta \le 1$</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 3: ASTC QUADRANT SIGN RULES & STANDARD ANGLES TABLE -->
+        <section class="space-y-6 fade-in">
+            <div class="border-l-4 border-indigo-600 pl-4">
+                <h2 class="text-xl sm:text-2xl font-bold text-slate-900">2. เน€เธเธฃเธทเนเธญเธเธซเธกเธฒเธขเนเธเนเธ•เนเธฅเธฐเธเธ•เธธเธ เธฒเธ & เธเนเธฒเธกเธธเธกเธกเธฒเธ•เธฃเธเธฒเธ</h2>
+                <p class="text-slate-600 text-sm sm:text-base">เน€เธ—เธเธเธดเธเธเธฒเธฃเธเธณเน€เธเธฃเธทเนเธญเธเธซเธกเธฒเธข (+/-) เนเธฅเธฐเธ•เธฒเธฃเธฒเธเธชเธฃเธธเธเธเนเธฒเธกเธธเธกเธกเธฒเธ•เธฃเธเธฒเธเธ—เธตเนเธ•เนเธญเธเนเธเนเธเนเธญเธข</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                <!-- Quadrant Rule ASTC Visual Card (5 Cols) -->
+                <div class="lg:col-span-5 bg-white p-6 rounded-2xl shadow-sm border border-slate-100 flex flex-col justify-between">
+                    <div>
+                        <h3 class="text-lg font-bold text-slate-800 mb-2 flex items-center gap-2">
+                            <i class="fa-solid fa-chart-pie text-indigo-600"></i>
+                            เธเธเน€เธเธฃเธทเนเธญเธเธซเธกเธฒเธขเธเธฃเธฐเธเธณเธเธ•เธธเธ เธฒเธ (ASTC Rule)
+                        </h3>
+                        <p class="text-slate-600 text-xs sm:text-sm leading-relaxed mb-4">
+                            เธ•เธณเนเธซเธเนเธเธเธญเธเธกเธธเธก $\theta$ เนเธเนเธ•เนเธฅเธฐ Quadrant เธเธฐเน€เธเนเธเธ•เธฑเธงเธเธณเธซเธเธ”เธงเนเธฒเธเนเธฒ $x (\cos)$ เนเธฅเธฐ $y (\sin)$ เน€เธเนเธเธเธงเธเธซเธฃเธทเธญเธฅเธ
+                        </p>
+
+                        <!-- Quadrant Matrix Display -->
+                        <div class="grid grid-cols-2 gap-3 text-center font-medium text-xs sm:text-sm my-2">
+                            <!-- Q2 -->
+                            <div class="bg-indigo-50 border-2 border-indigo-200 p-3 rounded-xl">
+                                <div class="text-indigo-800 font-bold text-base mb-1">Quadrant II</div>
+                                <div class="text-slate-500 text-xs font-mono">90ยฐ < ฮธ < 180ยฐ</div>
+                                <div class="mt-2 text-emerald-700 font-bold">$\sin\theta > 0$ (+)</div>
+                                <div class="text-rose-600 font-semibold">$\cos\theta < 0$ (-)</div>
+                            </div>
+                            <!-- Q1 -->
+                            <div class="bg-emerald-50 border-2 border-emerald-200 p-3 rounded-xl">
+                                <div class="text-emerald-800 font-bold text-base mb-1">Quadrant I</div>
+                                <div class="text-slate-500 text-xs font-mono">0ยฐ < ฮธ < 90ยฐ</div>
+                                <div class="mt-2 text-emerald-700 font-bold">$\sin\theta > 0$ (+)</div>
+                                <div class="text-emerald-700 font-bold">$\cos\theta > 0$ (+)</div>
+                            </div>
+                            <!-- Q3 -->
+                            <div class="bg-amber-50 border-2 border-amber-200 p-3 rounded-xl">
+                                <div class="text-amber-900 font-bold text-base mb-1">Quadrant III</div>
+                                <div class="text-slate-500 text-xs font-mono">180ยฐ < ฮธ < 270ยฐ</div>
+                                <div class="mt-2 text-rose-600 font-semibold">$\sin\theta < 0$ (-)</div>
+                                <div class="text-rose-600 font-semibold">$\cos\theta < 0$ (-)</div>
+                            </div>
+                            <!-- Q4 -->
+                            <div class="bg-purple-50 border-2 border-purple-200 p-3 rounded-xl">
+                                <div class="text-purple-900 font-bold text-base mb-1">Quadrant IV</div>
+                                <div class="text-slate-500 text-xs font-mono">270ยฐ < ฮธ < 360ยฐ</div>
+                                <div class="mt-2 text-rose-600 font-semibold">$\sin\theta < 0$ (-)</div>
+                                <div class="text-indigo-700 font-bold">$\cos\theta > 0$ (+)</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-4 bg-slate-50 p-3 rounded-xl text-xs text-slate-600 border border-slate-200">
+                        <span class="font-bold text-indigo-700">๐’ก เน€เธ—เธเธเธดเธเธเธณเธขเนเธญ (ASTC):</span>
+                        <br>Q1: <strong>A</strong>ll (เธเธงเธเธ—เธฑเนเธเธซเธกเธ”) | Q2: <strong>S</strong>in (เนเธเธเนเธเธงเธ) | Q3: <strong>T</strong>an (เนเธ—เธเธเธงเธ) | Q4: <strong>C</strong>os (เนเธเนเธเธเนเธเธงเธ)
+                    </div>
+                </div>
+
+                <!-- Standard Angles Table (7 Cols) -->
+                <div class="lg:col-span-7 bg-white p-6 rounded-2xl shadow-sm border border-slate-100 space-y-3">
+                    <h3 class="text-lg font-bold text-slate-800 mb-2 flex items-center gap-2">
+                        <i class="fa-solid fa-table text-indigo-600"></i>
+                        เธ•เธฒเธฃเธฒเธเธชเธฃเธธเธเธเนเธฒเธกเธธเธกเธกเธฒเธ•เธฃเธเธฒเธเธซเธฅเธฑเธ (Standard Angles Table)
+                    </h3>
+                    <p class="text-slate-600 text-xs sm:text-sm">
+                        เธเนเธฒเธเธดเธเธฑเธ”เธเธดเธเธฒเธฃเธ“เธฒเธเธฃเธฐเธเธณเธกเธธเธกเธชเธณเธเธฑเธเนเธ Quadrant I เธ—เธตเนเธเธณเน€เธเนเธเธ•เนเธญเธเธเธ”เธเธณเน€เธเธทเนเธญเนเธเนเธญเนเธฒเธเธญเธดเธเธ—เธฑเนเธเธซเธฅเธฑเธเธชเธนเธ•เธฃ:
+                    </p>
+
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-center text-xs sm:text-sm border-collapse">
+                            <thead>
+                                <tr class="bg-indigo-900 text-white">
+                                    <th class="p-2.5 rounded-tl-lg">เธกเธธเธก (เธญเธเธจเธฒ)</th>
+                                    <th class="p-2.5">เธกเธธเธก (เน€เธฃเน€เธ”เธตเธขเธ)</th>
+                                    <th class="p-2.5 text-blue-300">$\cos\theta$ (เนเธเธ X)</th>
+                                    <th class="p-2.5 text-emerald-300">$\sin\theta$ (เนเธเธ Y)</th>
+                                    <th class="p-2.5 rounded-tr-lg">เธเธดเธเธฑเธ” $P(x,y)$</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-100 font-mono">
+                                <tr class="hover:bg-indigo-50/50">
+                                    <td class="p-2.5 font-bold text-slate-800">0ยฐ</td>
+                                    <td class="p-2.5 text-slate-600">0</td>
+                                    <td class="p-2.5 font-bold text-blue-600">1</td>
+                                    <td class="p-2.5 font-bold text-emerald-600">0</td>
+                                    <td class="p-2.5 text-slate-700">(1, 0)</td>
+                                </tr>
+                                <tr class="hover:bg-indigo-50/50">
+                                    <td class="p-2.5 font-bold text-slate-800">30ยฐ</td>
+                                    <td class="p-2.5 text-slate-600">$\frac{\pi}{6}$</td>
+                                    <td class="p-2.5 font-bold text-blue-600">$\frac{\sqrt{3}}{2}$</td>
+                                    <td class="p-2.5 font-bold text-emerald-600">$\frac{1}{2}$</td>
+                                    <td class="p-2.5 text-slate-700">$\left(\frac{\sqrt{3}}{2}, \frac{1}{2}\right)$</td>
+                                </tr>
+                                <tr class="hover:bg-indigo-50/50">
+                                    <td class="p-2.5 font-bold text-slate-800">45ยฐ</td>
+                                    <td class="p-2.5 text-slate-600">$\frac{\pi}{4}$</td>
+                                    <td class="p-2.5 font-bold text-blue-600">$\frac{\sqrt{2}}{2}$</td>
+                                    <td class="p-2.5 font-bold text-emerald-600">$\frac{\sqrt{2}}{2}$</td>
+                                    <td class="p-2.5 text-slate-700">$\left(\frac{\sqrt{2}}{2}, \frac{\sqrt{2}}{2}\right)$</td>
+                                </tr>
+                                <tr class="hover:bg-indigo-50/50">
+                                    <td class="p-2.5 font-bold text-slate-800">60ยฐ</td>
+                                    <td class="p-2.5 text-slate-600">$\frac{\pi}{3}$</td>
+                                    <td class="p-2.5 font-bold text-blue-600">$\frac{1}{2}$</td>
+                                    <td class="p-2.5 font-bold text-emerald-600">$\frac{\sqrt{3}}{2}$</td>
+                                    <td class="p-2.5 text-slate-700">$\left(\frac{1}{2}, \frac{\sqrt{3}}{2}\right)$</td>
+                                </tr>
+                                <tr class="hover:bg-indigo-50/50">
+                                    <td class="p-2.5 font-bold text-slate-800">90ยฐ</td>
+                                    <td class="p-2.5 text-slate-600">$\frac{\pi}{2}$</td>
+                                    <td class="p-2.5 font-bold text-blue-600">0</td>
+                                    <td class="p-2.5 font-bold text-emerald-600">1</td>
+                                    <td class="p-2.5 text-slate-700">(0, 1)</td>
+                                </tr>
+                                <tr class="hover:bg-indigo-50/50">
+                                    <td class="p-2.5 font-bold text-slate-800">180ยฐ</td>
+                                    <td class="p-2.5 text-slate-600">$\pi$</td>
+                                    <td class="p-2.5 font-bold text-blue-600">-1</td>
+                                    <td class="p-2.5 font-bold text-emerald-600">0</td>
+                                    <td class="p-2.5 text-slate-700">(-1, 0)</td>
+                                </tr>
+                                <tr class="hover:bg-indigo-50/50">
+                                    <td class="p-2.5 font-bold text-slate-800">270ยฐ</td>
+                                    <td class="p-2.5 text-slate-600">$\frac{3\pi}{2}$</td>
+                                    <td class="p-2.5 font-bold text-blue-600">0</td>
+                                    <td class="p-2.5 font-bold text-emerald-600">-1</td>
+                                    <td class="p-2.5 text-slate-700">(0, -1)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 4: INTERACTIVE QUIZ & ASSESSMENT -->
+        <section class="glass-panel rounded-2xl p-6 shadow-md border border-indigo-100 space-y-6 fade-in">
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 border-b border-slate-100 pb-4">
+                <div>
+                    <span class="inline-block bg-amber-100 text-amber-800 text-xs px-2.5 py-1 rounded-md font-bold mb-1">
+                        <i class="fa-solid fa-pen-clip mr-1"></i>เธงเธฑเธ”เธเธงเธฒเธกเธฃเธนเนเธเธงเธฒเธกเน€เธเนเธฒเนเธ
+                    </span>
+                    <h2 class="text-xl sm:text-2xl font-bold text-slate-900">เนเธเธเธ—เธ”เธชเธญเธเน€เธเนเธเธเธงเธฒเธกเน€เธเนเธฒเนเธเธเธฃเธฐเธเธณเธเธ—เน€เธฃเธตเธขเธเธ—เธตเน 1</h2>
+                </div>
+                <div class="flex items-center gap-3">
+                    <div class="bg-indigo-50 border border-indigo-200 px-3 py-1.5 rounded-xl text-xs font-semibold text-indigo-700">
+                        เธเนเธญเธ—เธตเน <span id="quiz-current-num">1</span> / <span id="quiz-total-num">5</span>
+                    </div>
+                    <div class="bg-emerald-600 text-white px-3.5 py-1.5 rounded-xl text-xs font-bold shadow-sm">
+                        เธเธฐเนเธเธ: <span id="quiz-score">0</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quiz Active Card -->
+            <div id="quiz-card" class="bg-white p-5 sm:p-7 rounded-2xl border border-slate-200 space-y-6">
+                <!-- Question Header -->
+                <div class="space-y-2">
+                    <h3 class="text-base sm:text-lg font-bold text-slate-800 leading-relaxed" id="quiz-question-text">
+                        --
+                    </h3>
+                </div>
+
+                <!-- Multiple Choice Options -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3" id="quiz-options-container">
+                    <!-- Dynamic option buttons rendered via JS -->
+                </div>
+
+                <!-- Feedback Box -->
+                <div id="quiz-feedback-box" class="hidden p-4 rounded-xl text-sm font-medium transition-all"></div>
+
+                <!-- Solution Drawer -->
+                <div id="quiz-explanation-box" class="hidden bg-indigo-50/70 border border-indigo-100 p-4 rounded-xl space-y-2">
+                    <h4 class="font-bold text-indigo-900 text-sm flex items-center gap-1.5">
+                        <i class="fa-solid fa-graduation-cap text-indigo-600"></i> เน€เธเธฅเธขเธฅเธฐเน€เธญเธตเธขเธ”เนเธฅเธฐเธงเธดเธเธตเธเธดเธ”:
+                    </h4>
+                    <div id="quiz-explanation-text" class="text-slate-700 text-xs sm:text-sm leading-relaxed"></div>
+                </div>
+
+                <!-- Navigation Controls -->
+                <div class="flex justify-between items-center pt-4 border-t border-slate-100">
+                    <button onclick="quizPrevQuestion()" id="btn-quiz-prev" class="px-4 py-2 border border-slate-200 hover:bg-slate-100 text-slate-600 text-xs sm:text-sm rounded-xl font-medium transition flex items-center gap-2 disabled:opacity-40 disabled:hover:bg-transparent">
+                        <i class="fa-solid fa-arrow-left"></i> เธเนเธญเธเนเธญเธเธซเธเนเธฒ
+                    </button>
+                    <button onclick="quizNextQuestion()" id="btn-quiz-next" class="px-5 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-xs sm:text-sm rounded-xl font-semibold shadow-sm transition flex items-center gap-2">
+                        เธเนเธญเธ–เธฑเธ”เนเธ <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 5: LESSON SUMMARY & NEXT STEP -->
+        <section class="bg-gradient-to-br from-indigo-900 to-slate-900 text-white rounded-2xl p-6 sm:p-8 shadow-xl space-y-4 fade-in">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                <div class="space-y-2 max-w-2xl">
+                    <span class="bg-indigo-500/30 text-indigo-200 text-xs font-bold px-3 py-1 rounded-full border border-indigo-400/30">
+                        <i class="fa-solid fa-flag-checkered mr-1"></i>เธชเธฃเธธเธเธเธ—เน€เธฃเธตเธขเธเธ—เธตเน 1
+                    </span>
+                    <h3 class="text-xl sm:text-2xl font-bold">เธเธธเธ“เนเธ”เนเน€เธฃเธตเธขเธเธฃเธนเนเธซเธฑเธงเนเธเธชเธณเธเธฑเธเธเธญเธเธงเธเธเธฅเธกเธซเธเธถเนเธเธซเธเนเธงเธขเนเธฅเนเธง!</h3>
+                    <p class="text-indigo-200 text-xs sm:text-sm leading-relaxed">
+                        เธเธฒเธเธเธธเธ”เธเธตเนเนเธ เนเธกเนเธงเนเธฒเธกเธธเธกเธเธฐเนเธ•เน€เธ—เนเธฒเนเธ” เธซเธฃเธทเธญเธซเธกเธธเธเธ—เธงเธ/เธ•เธฒเธกเน€เธเนเธกเธเธฒเธฌเธดเธเธฒ เธเนเธฒเธเธญเธ $\cos\theta$ เธเธฐเธเธทเธญเธเธดเธเธฑเธ” X เนเธฅเธฐ $\sin\theta$ เธเธฐเธเธทเธญเธเธดเธเธฑเธ” Y เน€เธชเธกเธญ เธเธฃเนเธญเธกเธเธธเธ“เธชเธกเธเธฑเธ•เธด $\sin^2\theta + \cos^2\theta = 1$
+                    </p>
+                </div>
+                <button onclick="toggleCurriculumModal()" class="btn-interactive bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-bold px-6 py-3 rounded-xl text-sm transition shrink-0 flex items-center gap-2 shadow-lg">
+                    <span>เธ”เธนเธเธ—เน€เธฃเธตเธขเธเธ–เธฑเธ”เนเธ (เธเธ—เธ—เธตเน 2)</span>
+                    <i class="fa-solid fa-circle-arrow-right"></i>
+                </button>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- CURRICULUM ROADMAP MODAL -->
+    <div id="curriculumModal" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-2xl w-full max-h-[85vh] flex flex-col shadow-2xl overflow-hidden fade-in">
+            <div class="bg-indigo-900 text-white p-5 flex justify-between items-center">
+                <div>
+                    <span class="text-xs text-indigo-300 font-semibold uppercase tracking-wider">เนเธเธฃเธเธชเธฃเนเธฒเธเธซเธฅเธฑเธเธชเธนเธ•เธฃเธ•เธฃเธตเนเธเธ“เธกเธดเธ•เธด</span>
+                    <h3 class="text-lg font-bold">เธชเธฒเธฃเธเธฑเธ 20 เธเธ—เน€เธฃเธตเธขเธเธเธเธฑเธเธชเธกเธเธนเธฃเธ“เน</h3>
+                </div>
+                <button onclick="toggleCurriculumModal()" class="text-slate-300 hover:text-white text-xl p-1">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            
+            <div class="p-4 overflow-y-auto space-y-2 flex-1" id="curriculum-list-container">
+                <!-- Curriculum items rendered by JS -->
+            </div>
+
+            <div class="p-4 border-t border-slate-100 bg-slate-50 text-right">
+                <button onclick="toggleCurriculumModal()" class="bg-slate-200 hover:bg-slate-300 text-slate-700 px-4 py-2 rounded-xl text-xs font-semibold transition">
+                    เธเธดเธ”เธซเธเนเธฒเธ•เนเธฒเธ
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT APP ENGINE -->
+    <script>
+        // Global State Variables
+        let currentAngleDeg = 0; // 0 to 360
+        let isAnimating = false;
+        let animationFrameId = null;
+        let isDraggingCanvas = false;
+
+        // Quiz State
+        let currentQuizIndex = 0;
+        let quizScore = 0;
+        let userQuizAnswers = {}; // questionIndex -> selectedOptionIndex
+
+        // Standard angles reference list for fast buttons
+        const standardAngles = [0, 30, 45, 60, 90, 120, 135, 150, 180, 210, 225, 240, 270, 300, 315, 330, 360];
+
+        // 20-Lesson Curriculum Data Sequence
+        const curriculumLessons = [
+            { num: 1, title: "เธเธฑเธเธเนเธเธฑเธเนเธเธเนเนเธฅเธฐเนเธเนเธเธเนเธเธฒเธเธงเธเธเธฅเธกเธซเธเธถเนเธเธซเธเนเธงเธข", active: true },
+            { num: 2, title: "เธเธฑเธเธเนเธเธฑเธเธ•เธฃเธตเนเธเธ“เธกเธดเธ•เธดเธญเธทเนเธเน (tan, sec, csc, cot)", active: false },
+            { num: 3, title: "เธเนเธฒเธเธฑเธเธเนเธเธฑเธเธ•เธฃเธตเนเธเธ“เธกเธดเธ•เธดเธเธญเธเธกเธธเธกเนเธเธ—เธธเธเธเธ•เธธเธ เธฒเธ", active: false },
+            { num: 4, title: "เธเธฃเธฒเธเธเธญเธเธเธฑเธเธเนเธเธฑเธเธ•เธฃเธตเนเธเธ“เธกเธดเธ•เธดเนเธฅเธฐเธเธฒเธ/เนเธญเธกเธเธฅเธดเธเธนเธ”", active: false },
+            { num: 5, title: "เธเธฑเธเธเนเธเธฑเธเธ•เธฃเธตเนเธเธ“เธกเธดเธ•เธดเธเธเธเธฑเธ (Arcsin, Arccos, Arctan)", active: false },
+            { num: 6, title: "เธชเธนเธ•เธฃเธเธฅเธเธงเธเนเธฅเธฐเธเธฅเธ•เนเธฒเธเธเธญเธเธกเธธเธก ($\sin(A\pm B), \cos(A\pm B)$)", active: false },
+            { num: 7, title: "เธชเธนเธ•เธฃเธกเธธเธกเธชเธญเธเน€เธ—เนเธฒ เธกเธธเธกเธเธฃเธถเนเธเน€เธ—เนเธฒ เนเธฅเธฐเธกเธธเธกเธชเธฒเธกเน€เธ—เนเธฒ", active: false },
+            { num: 8, title: "เธชเธนเธ•เธฃเนเธเธฅเธเธเธฅเธเธนเธ“เน€เธเนเธเธเธฅเธเธงเธเนเธฅเธฐเธเธฅเธ•เนเธฒเธ", active: false },
+            { num: 9, title: "เธเธฒเธฃเธเธดเธชเธนเธเธเนเน€เธญเธเธฅเธฑเธเธฉเธ“เนเธ•เธฃเธตเนเธเธ“เธกเธดเธ•เธดเธฃเธฐเธ”เธฑเธเธชเธนเธ", active: false },
+            { num: 10, title: "เธเธฒเธฃเนเธเนเธชเธกเธเธฒเธฃเธ•เธฃเธตเนเธเธ“เธกเธดเธ•เธดเน€เธเธทเนเธญเธเธ•เนเธ", active: false },
+            { num: 11, title: "เธเธฒเธฃเนเธเนเธชเธกเธเธฒเธฃเธ•เธฃเธตเนเธเธ“เธกเธดเธ•เธดเธเธฑเนเธเธชเธนเธเนเธฅเธฐเธเนเธงเธเธเธณเธ•เธญเธ", active: false },
+            { num: 12, title: "เธเธเธเธญเธเนเธเนเธเธเน (Law of Cosines)", active: false },
+            { num: 13, title: "เธเธเธเธญเธเนเธเธเน (Law of Sines)", active: false },
+            { num: 14, title: "เธเธฒเธฃเธเธฃเธฐเธขเธธเธเธ•เนเธซเธฒเธฃเธฐเธขเธฐเธ—เธฒเธเนเธฅเธฐเธเธงเธฒเธกเธชเธนเธเธ”เนเธงเธขเธ•เธฃเธตเนเธเธ“เธกเธดเธ•เธด", active: false },
+            { num: 15, title: "เธเธทเนเธเธ—เธตเนเธเธญเธเธฃเธนเธเธชเธฒเธกเน€เธซเธฅเธตเนเธขเธกเธ”เนเธงเธขเธชเธนเธ•เธฃเธ•เธฃเธตเนเธเธ“เธกเธดเธ•เธด", active: false },
+            { num: 16, title: "เน€เธงเธเน€เธ•เธญเธฃเนเธเธฑเธเธเธฒเธฃเธเธฃเธฐเธขเธธเธเธ•เนเธ•เธฃเธตเนเธเธ“เธกเธดเธ•เธด", active: false },
+            { num: 17, title: "เธเธณเธเธงเธเน€เธเธดเธเธเนเธญเธเนเธเธฃเธนเธเน€เธเธดเธเธเธฑเนเธง (Polar Form)", active: false },
+            { num: 18, title: "เธ—เธคเธฉเธเธตเธเธ—เธเธญเธเน€เธ”เธญเธกเธฑเธงเธเธฃเน (De Moivre's Theorem)", active: false },
+            { num: 19, title: "เธเธฒเธฃเธเธฃเธฐเธขเธธเธเธ•เนเธ•เธฃเธตเนเธเธ“เธกเธดเธ•เธดเนเธเธเธฅเธทเนเธเนเธฅเธฐเธเธดเธชเธดเธเธชเน", active: false },
+            { num: 20, title: "เธ•เธฐเธฅเธธเธขเนเธเธ—เธขเนเธเนเธญเธชเธญเธเธ•เธฃเธตเนเธเธ“เธกเธดเธ•เธดเน€เธเนเธฒเธกเธซเธฒเธงเธดเธ—เธขเธฒเธฅเธฑเธข", active: false }
+        ];
+
+        // Quiz Questions Data (5 Interactive Assessment Questions)
+        const quizData = [
+            {
+                question: "1. เธเธธเธ” $P(\theta)$ เธเธเธงเธเธเธฅเธกเธซเธเธถเนเธเธซเธเนเธงเธขเธ—เธตเนเธกเธธเธก $\theta = 150^\circ$ เธกเธตเธเนเธฒเธเธดเธเธฑเธ” $(x,y)$ เธ•เธฃเธเธเธฑเธเธเนเธญเนเธ”?",
+                options: [
+                    "\\(\\left(-\\frac{\\sqrt{3}}{2}, \\frac{1}{2}\\right)\\)",
+                    "\\(\\left(\\frac{\\sqrt{3}}{2}, -\\frac{1}{2}\\right)\\)",
+                    "\\(\\left(-\\frac{1}{2}, \\frac{\\sqrt{3}}{2}\\right)\\)",
+                    "\\(\\left(\\frac{1}{2}, -\\frac{\\sqrt{3}}{2}\\right)\\)"
+                ],
+                correct: 0,
+                explanation: "เธกเธธเธก $150^\circ$ เธญเธขเธนเนเนเธ Quadrant II ($90^\circ < 150^\circ < 180^\circ$)<br>โ€ข เธเนเธฒ $x = \\cos(150^\circ) = -\\cos(30^\circ) = -\\frac{\\sqrt{3}}{2}$ (เนเธเธ X เน€เธเนเธเธฅเธ)<br>โ€ข เธเนเธฒ $y = \\sin(150^\circ) = \\sin(30^\circ) = \\frac{1}{2}$ (เนเธเธ Y เน€เธเนเธเธเธงเธ)<br>เธ”เธฑเธเธเธฑเนเธ เธเธดเธเธฑเธ”เธเธทเธญ $\\left(-\\frac{\\sqrt{3}}{2}, \\frac{1}{2}\\right)$"
+            },
+            {
+                question: "2. เธซเธฒเธเธเธณเธซเธเธ”เนเธซเนเธกเธธเธก $\\theta$ เธญเธขเธนเนเนเธ Quadrant III เน€เธเธฃเธทเนเธญเธเธซเธกเธฒเธขเธเธญเธ $\\cos\\theta$ เนเธฅเธฐ $\\sin\\theta$ เธ•เธฒเธกเธฅเธณเธ”เธฑเธเธเธฐเน€เธเนเธเธญเธขเนเธฒเธเนเธฃ?",
+                options: [
+                    "เธเธงเธ (+), เธเธงเธ (+)",
+                    "เธฅเธ (-), เธเธงเธ (+)",
+                    "เธฅเธ (-), เธฅเธ (-)",
+                    "เธเธงเธ (+), เธฅเธ (-)"
+                ],
+                correct: 2,
+                explanation: "เนเธ Quadrant III เธกเธธเธกเธญเธขเธนเนเธฃเธฐเธซเธงเนเธฒเธ $180^\circ$ เธ–เธถเธ $270^\circ$:<br>โ€ข เธเนเธฒเธเธดเธเธฑเธ” $x$ เธญเธขเธนเนเธ—เธฒเธเธเนเธฒเธขเธเธญเธเนเธเธ Y เธเธถเธเน€เธเนเธ <b>เธฅเธ (-)</b> $\\rightarrow \\cos\\theta < 0$<br>โ€ข เธเนเธฒเธเธดเธเธฑเธ” $y$ เธญเธขเธนเนเนเธ•เนเนเธเธ X เธเธถเธเน€เธเนเธ <b>เธฅเธ (-)</b> $\\rightarrow \\sin\\theta < 0$<br>เธ”เธฑเธเธเธฑเนเธ เน€เธเนเธเธฅเธเธ—เธฑเนเธเธเธนเนเธ•เธฒเธกเธซเธฅเธฑเธ ASTC ( quadrant เธเธตเน Tan เน€เธเนเธเธเธงเธ)"
+            },
+            {
+                question: "3. เธเธณเธซเธเธ”เนเธซเน $\\cos\\theta = -\\frac{4}{5}$ เนเธฅเธฐเธกเธธเธก $\\theta$ เธญเธขเธนเนเนเธ Quadrant II เธเธเธซเธฒเธเนเธฒเธเธญเธ $\\sin\\theta$",
+                options: [
+                    "\\(\\frac{3}{5}\\)",
+                    "\\(-\\frac{3}{5}\\)",
+                    "\\(\\frac{4}{5}\\)",
+                    "\\(-\\frac{4}{5}\\)"
+                ],
+                correct: 0,
+                explanation: "เนเธเนเน€เธญเธเธฅเธฑเธเธฉเธ“เนเธเธตเธ—เธฒเนเธเธฃเธฑเธช $\\sin^2\\theta + \\cos^2\\theta = 1$:<br>$\\sin^2\\theta + \\left(-\\frac{4}{5}\\right)^2 = 1 \\implies \\sin^2\\theta + \\frac{16}{25} = 1$<br>$\\sin^2\\theta = 1 - \\frac{16}{25} = \\frac{9}{25} \\implies \\sin\\theta = \\pm \\frac{3}{5}$<br>เน€เธเธทเนเธญเธเธเธฒเธ $\\theta$ เธญเธขเธนเนเนเธ Quadrant II เธเนเธฒ $\\sin\\theta$ เธ•เนเธญเธเน€เธเนเธ <b>เธเธงเธ (+)</b> เธ”เธฑเธเธเธฑเนเธ $\\sin\\theta = \\frac{3}{5}$"
+            },
+            {
+                question: "4. เธเธดเธเธเธเน $\\sin^2(37^\circ) + \\cos^2(37^\circ)$ เธกเธตเธเนเธฒเน€เธ—เนเธฒเธเธฑเธเน€เธ—เนเธฒเนเธ”?",
+                options: [
+                    "0",
+                    "0.5",
+                    "1",
+                    "เธเธถเนเธเธญเธขเธนเนเธเธฑเธเธเนเธฒเธเธญเธเธกเธธเธก 37ยฐ"
+                ],
+                correct: 2,
+                explanation: "เธเธฒเธเน€เธญเธเธฅเธฑเธเธฉเธ“เนเธเธทเนเธเธเธฒเธเธเธตเธ—เธฒเนเธเธฃเธฑเธช $\\sin^2\\theta + \\cos^2\\theta = 1$ เธเธถเนเธเน€เธเนเธเธเธฃเธดเธเธชเธณเธซเธฃเธฑเธ <b>เธ—เธธเธเน เธเนเธฒเธเธญเธเธกเธธเธก $\\theta$</b> เธเธเธฃเธฐเธเธฒเธ<br>เธ”เธฑเธเธเธฑเนเธ เน€เธกเธทเนเธญ $\\theta = 37^\circ$ เธเธณเธ•เธญเธเธเธถเธเน€เธ—เนเธฒเธเธฑเธ $1$ เน€เธชเธกเธญเนเธ”เธขเนเธกเนเธ•เนเธญเธเน€เธเธดเธ”เธ•เธฒเธฃเธฒเธเธเธณเธเธงเธ“"
+            },
+            {
+                question: "5. เธกเธธเธก $240^\circ$ เนเธเธฅเธเน€เธเนเธเธซเธเนเธงเธขเน€เธฃเน€เธ”เธตเธขเธเนเธ”เนเน€เธ—เนเธฒเธเธฑเธเน€เธ—เนเธฒเนเธ”?",
+                options: [
+                    "\\(\\frac{5\\pi}{4}\\) rad",
+                    "\\(\\frac{4\\pi}{3}\\) rad",
+                    "\\(\\frac{7\\pi}{6}\\) rad",
+                    "\\(\\frac{5\\pi}{3}\\) rad"
+                ],
+                correct: 1,
+                explanation: "เธชเธนเธ•เธฃเนเธเธฅเธเธญเธเธจเธฒเน€เธเนเธเน€เธฃเน€เธ”เธตเธขเธ: $\\theta \\text{ (rad)} = \\text{เธญเธเธจเธฒ} \\times \\frac{\\pi}{180^\circ}$<br>เนเธ—เธเธเนเธฒ: $240^\circ \\times \\frac{\\pi}{180^\circ} = \\frac{240}{180}\\pi = \\frac{4\\pi}{3}$ rad"
+            }
+        ];
+
+        // Initialize HTML & Canvas listeners
+        window.addEventListener('DOMContentLoaded', () => {
+            renderQuickAngles();
+            renderCurriculumList();
+            initCanvas();
+            updateAngleDisplays(0);
+            renderQuizQuestion(0);
+        });
+
+        function renderQuickAngles() {
+            const container = document.getElementById('quick-angles');
+            container.innerHTML = '';
+            standardAngles.forEach(deg => {
+                const btn = document.createElement('button');
+                btn.type = 'button';
+                btn.className = `text-xs px-2.5 py-1 rounded-md font-mono transition border ${
+                    deg === currentAngleDeg 
+                    ? 'bg-indigo-600 text-white border-indigo-600 font-bold' 
+                    : 'bg-white hover:bg-indigo-50 text-slate-700 border-slate-200'
+                }`;
+                btn.innerText = `${deg}ยฐ`;
+                btn.onclick = () => setAngle(deg);
+                container.appendChild(btn);
+            });
+        }
+
+        function setAngle(deg) {
+            if (isAnimating) stopAnimation();
+            currentAngleDeg = (deg % 360 + 360) % 360;
+            document.getElementById('angleSlider').value = currentAngleDeg;
+            updateAngleDisplays(currentAngleDeg);
+            renderQuickAngles();
+            drawCanvas();
+        }
+
+        function onSliderAngleChange(val) {
+            if (isAnimating) stopAnimation();
+            currentAngleDeg = parseFloat(val);
+            updateAngleDisplays(currentAngleDeg);
+            renderQuickAngles();
+            drawCanvas();
+        }
+
+        function updateAngleDisplays(deg) {
+            const rad = (deg * Math.PI) / 180;
+            const cosVal = Math.cos(rad);
+            const sinVal = Math.sin(rad);
+
+            document.getElementById('display-degree').innerText = `${Math.round(deg)}ยฐ`;
+            
+            // Format Radian string
+            const piRatio = deg / 180;
+            let radText = `${rad.toFixed(3)} rad`;
+            if (deg === 0) radText = "0 rad (0ฯ€)";
+            else if (deg === 180) radText = "3.142 rad (1ฯ€)";
+            else radText = `${rad.toFixed(2)} rad (${piRatio.toFixed(2)}ฯ€)`;
+            document.getElementById('display-radian').innerText = radText;
+
+            document.getElementById('display-cos').innerText = cosVal.toFixed(4);
+            document.getElementById('display-sin').innerText = sinVal.toFixed(4);
+
+            // Quadrant Detection
+            let quadText = "เนเธเธเธชเธกเธกเธฒเธ•เธฃ";
+            if (deg > 0 && deg < 90) quadText = "Quadrant I (+, +)";
+            else if (deg === 90) quadText = "เนเธเธ Y เธ”เนเธฒเธเธเธ";
+            else if (deg > 90 && deg < 180) quadText = "Quadrant II (-, +)";
+            else if (deg === 180) quadText = "เนเธเธ X เธ”เนเธฒเธเธเนเธฒเธข";
+            else if (deg > 180 && deg < 270) quadText = "Quadrant III (-, -)";
+            else if (deg === 270) quadText = "เนเธเธ Y เธ”เนเธฒเธเธฅเนเธฒเธ";
+            else if (deg > 270 && deg < 360) quadText = "Quadrant IV (+, -)";
+            else if (deg === 0 || deg === 360) quadText = "เนเธเธ X เธ”เนเธฒเธเธเธงเธฒ";
+            document.getElementById('display-quadrant').innerText = quadText;
+
+            // MathJax Dynamic Coordinates Output
+            const latexBox = document.getElementById('display-latex-coords');
+            latexBox.innerHTML = `$$\\left(${cosVal.toFixed(3)},\\, ${sinVal.toFixed(3)}\\right)$$`;
+            if (window.MathJax && window.MathJax.typesetPromise) {
+                window.MathJax.typesetPromise([latexBox]);
+            }
+        }
+
+        function initCanvas() {
+            const canvas = document.getElementById('unitCircleCanvas');
+            const container = canvas.parentElement;
+
+            function resize() {
+                canvas.width = container.clientWidth * window.devicePixelRatio;
+                canvas.height = container.clientHeight * window.devicePixelRatio;
+                drawCanvas();
+            }
+
+            window.addEventListener('resize', resize);
+            resize();
+
+            // Interactivity: Drag & Click on Canvas
+            function handlePointerEvent(e) {
+                const rect = canvas.getBoundingClientRect();
+                const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+                const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+
+                const x = clientX - rect.left;
+                const y = clientY - rect.top;
+
+                const cx = rect.width / 2;
+                const cy = rect.height / 2;
+
+                const dx = x - cx;
+                const dy = y - cy;
+
+                let angleRad = Math.atan2(-dy, dx); // Invert y for canvas space
+                if (angleRad < 0) angleRad += 2 * Math.PI;
+
+                let angleDeg = (angleRad * 180) / Math.PI;
+                setAngle(Math.round(angleDeg));
+            }
+
+            canvas.addEventListener('mousedown', (e) => { isDraggingCanvas = true; handlePointerEvent(e); });
+            window.addEventListener('mousemove', (e) => { if (isDraggingCanvas) handlePointerEvent(e); });
+            window.addEventListener('mouseup', () => { isDraggingCanvas = false; });
+
+            canvas.addEventListener('touchstart', (e) => { isDraggingCanvas = true; handlePointerEvent(e); }, { passive: true });
+            window.addEventListener('touchmove', (e) => { if (isDraggingCanvas) handlePointerEvent(e); }, { passive: true });
+            window.addEventListener('touchend', () => { isDraggingCanvas = false; });
+        }
+
+        function drawCanvas() {
+            const canvas = document.getElementById('unitCircleCanvas');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            const dpr = window.devicePixelRatio || 1;
+
+            const w = canvas.width;
+            const h = canvas.height;
+
+            ctx.clearRect(0, 0, w, h);
+
+            const cx = w / 2;
+            const cy = h / 2;
+            const radius = Math.min(w, h) * 0.35;
+
+            // Draw Coordinate Axes X and Y
+            ctx.lineWidth = 1.5 * dpr;
+            ctx.strokeStyle = '#cbd5e1'; // slate-300
+            
+            // X-Axis
+            ctx.beginPath();
+            ctx.moveTo(20 * dpr, cy);
+            ctx.lineTo(w - 20 * dpr, cy);
+            ctx.stroke();
+
+            // Y-Axis
+            ctx.beginPath();
+            ctx.moveTo(cx, 20 * dpr);
+            ctx.lineTo(cx, h - 20 * dpr);
+            ctx.stroke();
+
+            // Axis Labels
+            ctx.font = `${12 * dpr}px Prompt, sans-serif`;
+            ctx.fillStyle = '#64748b';
+            ctx.fillText('X (cos)', w - 45 * dpr, cy - 8 * dpr);
+            ctx.fillText('Y (sin)', cx + 8 * dpr, 30 * dpr);
+
+            // Major Intersects Labels
+            ctx.font = `${10 * dpr}px monospace`;
+            ctx.fillText('(1,0)', cx + radius + 4 * dpr, cy + 14 * dpr);
+            ctx.fillText('(0,1)', cx + 6 * dpr, cy - radius - 6 * dpr);
+            ctx.fillText('(-1,0)', cx - radius - 35 * dpr, cy + 14 * dpr);
+            ctx.fillText('(0,-1)', cx + 6 * dpr, cy + radius + 14 * dpr);
+
+            // Draw Unit Circle
+            ctx.lineWidth = 2.5 * dpr;
+            ctx.strokeStyle = '#4338ca'; // indigo-700
+            ctx.beginPath();
+            ctx.arc(cx, cy, radius, 0, 2 * Math.PI);
+            ctx.stroke();
+
+            // Angles Radian Position calculation
+            const rad = (currentAngleDeg * Math.PI) / 180;
+            const px = cx + radius * Math.cos(rad);
+            const py = cy - radius * Math.sin(rad); // canvas Y inverted
+
+            // Angle Sector Arc Fill
+            ctx.fillStyle = 'rgba(99, 102, 241, 0.12)';
+            ctx.beginPath();
+            ctx.moveTo(cx, cy);
+            ctx.arc(cx, cy, radius * 0.3, 0, -rad, true); // counter-clockwise in math
+            ctx.closePath();
+            ctx.fill();
+
+            // Projection Line Cos (Horizontal Blue)
+            ctx.lineWidth = 3 * dpr;
+            ctx.strokeStyle = '#3b82f6'; // blue-500
+            ctx.beginPath();
+            ctx.moveTo(cx, cy);
+            ctx.lineTo(px, cy);
+            ctx.stroke();
+
+            // Projection Line Sin (Vertical Emerald)
+            ctx.lineWidth = 3 * dpr;
+            ctx.strokeStyle = '#10b981'; // emerald-500
+            ctx.beginPath();
+            ctx.moveTo(px, cy);
+            ctx.lineTo(px, py);
+            ctx.stroke();
+
+            // Dashed auxiliary line to Y axis
+            ctx.lineWidth = 1 * dpr;
+            ctx.setLineDash([4 * dpr, 4 * dpr]);
+            ctx.strokeStyle = '#94a3b8';
+            ctx.beginPath();
+            ctx.moveTo(cx, py);
+            ctx.lineTo(px, py);
+            ctx.stroke();
+            ctx.setLineDash([]); // Reset dash
+
+            // Radius Vector (Hypotenuse = 1)
+            ctx.lineWidth = 2.5 * dpr;
+            ctx.strokeStyle = '#f59e0b'; // amber-500
+            ctx.beginPath();
+            ctx.moveTo(cx, cy);
+            ctx.lineTo(px, py);
+            ctx.stroke();
+
+            // Point P(x,y)
+            ctx.fillStyle = '#6366f1';
+            ctx.beginPath();
+            ctx.arc(px, py, 7 * dpr, 0, 2 * Math.PI);
+            ctx.fill();
+            ctx.lineWidth = 2 * dpr;
+            ctx.strokeStyle = '#ffffff';
+            ctx.stroke();
+
+            // Text Label P(x,y)
+            ctx.font = `bold ${12 * dpr}px Prompt, sans-serif`;
+            ctx.fillStyle = '#1e1b4b';
+            ctx.fillText('P(cos ฮธ, sin ฮธ)', px + (Math.cos(rad) >= 0 ? 10 : -100) * dpr, py + (Math.sin(rad) >= 0 ? -10 : 20) * dpr);
+        }
+
+        function toggleCircleAnimation() {
+            if (isAnimating) {
+                stopAnimation();
+            } else {
+                startAnimation();
+            }
+        }
+
+        function startAnimation() {
+            isAnimating = true;
+            document.getElementById('icon-animate').className = 'fa-solid fa-pause';
+            document.getElementById('label-animate').innerText = 'เธซเธขเธธเธ”เธซเธกเธธเธ';
+            document.getElementById('btn-animate-circle').className = 'bg-amber-600 hover:bg-amber-700 text-white text-xs sm:text-sm px-3.5 py-2 rounded-lg transition flex items-center gap-1.5 shadow-sm';
+
+            function step() {
+                if (!isAnimating) return;
+                currentAngleDeg = (currentAngleDeg + 0.8) % 360;
+                document.getElementById('angleSlider').value = currentAngleDeg;
+                updateAngleDisplays(currentAngleDeg);
+                drawCanvas();
+                animationFrameId = requestAnimationFrame(step);
+            }
+            animationFrameId = requestAnimationFrame(step);
+        }
+
+        function stopAnimation() {
+            isAnimating = false;
+            if (animationFrameId) cancelAnimationFrame(animationFrameId);
+            document.getElementById('icon-animate').className = 'fa-solid fa-play';
+            document.getElementById('label-animate').innerText = 'เธซเธกเธธเธเธญเธฑเธ•เนเธเธกเธฑเธ•เธด';
+            document.getElementById('btn-animate-circle').className = 'bg-indigo-600 hover:bg-indigo-700 text-white text-xs sm:text-sm px-3.5 py-2 rounded-lg transition flex items-center gap-1.5 shadow-sm';
+            renderQuickAngles();
+        }
+
+        function resetUnitCircle() {
+            setAngle(0);
+        }
+
+        // Quiz Functions
+        function renderQuizQuestion(idx) {
+            currentQuizIndex = idx;
+            const q = quizData[idx];
+
+            document.getElementById('quiz-current-num').innerText = idx + 1;
+            document.getElementById('quiz-total-num').innerText = quizData.length;
+            document.getElementById('quiz-question-text').innerHTML = q.question;
+
+            const optionsContainer = document.getElementById('quiz-options-container');
+            optionsContainer.innerHTML = '';
+
+            const userSelected = userQuizAnswers[idx];
+
+            q.options.forEach((optText, optIdx) => {
+                const btn = document.createElement('button');
+                btn.type = 'button';
+                
+                let btnStyle = "bg-slate-50 hover:bg-indigo-50/60 border-slate-200 text-slate-800";
+                
+                if (userSelected !== undefined) {
+                    if (optIdx === q.correct) {
+                        btnStyle = "bg-emerald-100 border-emerald-400 text-emerald-900 font-bold";
+                    } else if (userSelected === optIdx) {
+                        btnStyle = "bg-rose-100 border-rose-300 text-rose-900";
+                    } else {
+                        btnStyle = "bg-slate-50 opacity-60 border-slate-200 text-slate-500";
+                    }
+                }
+
+                btn.className = `p-3.5 rounded-xl border text-left text-xs sm:text-sm transition flex items-center gap-3 ${btnStyle}`;
+                btn.innerHTML = `
+                    <span class="w-6 h-6 rounded-full border border-slate-300 flex items-center justify-center text-xs font-bold shrink-0 bg-white">
+                        ${String.fromCharCode(65 + optIdx)}
+                    </span>
+                    <span>${optText}</span>
+                `;
+
+                btn.onclick = () => selectQuizOption(idx, optIdx);
+                optionsContainer.appendChild(btn);
+            });
+
+            // Feedback & Explanation Drawer
+            const feedbackBox = document.getElementById('quiz-feedback-box');
+            const expBox = document.getElementById('quiz-explanation-box');
+            const expText = document.getElementById('quiz-explanation-text');
+
+            if (userSelected !== undefined) {
+                const isCorrect = (userSelected === q.correct);
+                feedbackBox.className = `p-4 rounded-xl text-xs sm:text-sm font-medium border ${
+                    isCorrect ? 'bg-emerald-50 border-emerald-200 text-emerald-800' : 'bg-rose-50 border-rose-200 text-rose-800'
+                } block`;
+                feedbackBox.innerHTML = isCorrect 
+                    ? `<i class="fa-solid fa-circle-check text-emerald-600 mr-1.5"></i><b>เธ–เธนเธเธ•เนเธญเธ!</b> เนเธ”เนเธฃเธฑเธ +10 เธเธฐเนเธเธ`
+                    : `<i class="fa-solid fa-circle-xmark text-rose-600 mr-1.5"></i><b>เธขเธฑเธเนเธกเนเธ–เธนเธเธ•เนเธญเธ!</b> เธฅเธญเธเธจเธถเธเธฉเธฒเธเธณเธญเธเธดเธเธฒเธขเธ”เนเธฒเธเธฅเนเธฒเธ`;
+
+                expText.innerHTML = q.explanation;
+                expBox.classList.remove('hidden');
+            } else {
+                feedbackBox.className = 'hidden';
+                expBox.classList.add('hidden');
+            }
+
+            // Buttons state
+            document.getElementById('btn-quiz-prev').disabled = (idx === 0);
+            document.getElementById('btn-quiz-next').innerText = (idx === quizData.length - 1) ? 'เน€เธชเธฃเนเธเธชเธดเนเธเธเธฒเธฃเธ—เธ”เธชเธญเธ' : 'เธเนเธญเธ–เธฑเธ”เนเธ';
+
+            if (window.MathJax && window.MathJax.typesetPromise) {
+                window.MathJax.typesetPromise([document.getElementById('quiz-card')]);
+            }
+        }
+
+        function selectQuizOption(qIdx, optIdx) {
+            if (userQuizAnswers[qIdx] !== undefined) return; // already answered
+
+            userQuizAnswers[qIdx] = optIdx;
+            if (optIdx === quizData[qIdx].correct) {
+                quizScore += 10;
+                document.getElementById('quiz-score').innerText = quizScore;
+            }
+
+            renderQuizQuestion(qIdx);
+        }
+
+        function quizPrevQuestion() {
+            if (currentQuizIndex > 0) {
+                renderQuizQuestion(currentQuizIndex - 1);
+            }
+        }
+
+        function quizNextQuestion() {
+            if (currentQuizIndex < quizData.length - 1) {
+                renderQuizQuestion(currentQuizIndex + 1);
+            } else {
+                // Show completion modal style toast
+                const feedbackBox = document.getElementById('quiz-feedback-box');
+                feedbackBox.className = "p-5 rounded-2xl bg-indigo-900 text-white font-medium block text-center space-y-2";
+                feedbackBox.innerHTML = `
+                    <div class="text-xl font-bold">๐ เธขเธดเธเธ”เธตเธ”เนเธงเธข! เธ—เธณเนเธเธเธ—เธ”เธชเธญเธเธเธฃเธเนเธฅเนเธง</div>
+                    <p class="text-indigo-200 text-xs sm:text-sm">เธเธธเธ“เนเธ”เนเธเธฐเนเธเธเธฃเธงเธกเธ—เธฑเนเธเธซเธกเธ” ${quizScore} เธเธฒเธ ${quizData.length * 10} เธเธฐเนเธเธ</p>
+                `;
+            }
+        }
+
+        // Curriculum Roadmap Modal Toggle
+        function toggleCurriculumModal() {
+            const modal = document.getElementById('curriculumModal');
+            modal.classList.toggle('hidden');
+        }
+
+        function renderCurriculumList() {
+            const container = document.getElementById('curriculum-list-container');
+            container.innerHTML = '';
+
+            curriculumLessons.forEach(item => {
+                const row = document.createElement('div');
+                row.className = `p-3.5 rounded-xl border flex items-center justify-between text-xs sm:text-sm transition ${
+                    item.active 
+                    ? 'bg-indigo-50 border-indigo-300 text-indigo-950 font-bold' 
+                    : 'bg-white border-slate-100 text-slate-600 opacity-75'
+                }`;
+
+                row.innerHTML = `
+                    <div class="flex items-center gap-3">
+                        <span class="w-7 h-7 rounded-lg ${item.active ? 'bg-indigo-600 text-white' : 'bg-slate-100 text-slate-500'} flex items-center justify-center font-bold text-xs">
+                            ${item.num}
+                        </span>
+                        <span>เธเธ—เธ—เธตเน ${item.num}: ${item.title}</span>
+                    </div>
+                    ${item.active ? '<span class="text-xs bg-indigo-600 text-white px-2.5 py-0.5 rounded-full">เธเธณเธฅเธฑเธเน€เธฃเธตเธขเธ</span>' : '<i class="fa-solid fa-lock text-slate-300 text-xs"></i>'}
+                `;
+                container.appendChild(row);
+            });
+        }
+    </script>
+</body>
+
+</html>

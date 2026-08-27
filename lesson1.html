@@ -1,1070 +1,516 @@
 <!DOCTYPE html>
 <html lang="th">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="เธเธ—เน€เธฃเธตเธขเธเธ—เธตเน 1: เธเธฑเธเธเนเธเธฑเธเนเธเธเนเนเธฅเธฐเนเธเนเธเธเนเธเธฒเธเธงเธเธเธฅเธกเธซเธเธถเนเธเธซเธเนเธงเธข - เธชเธทเนเธญเธเธฒเธฃเน€เธฃเธตเธขเธเธฃเธนเนเธ•เธฃเธตเนเธเธ“เธกเธดเธ•เธดเธญเธดเธเน€เธ—เธญเธฃเนเนเธญเนเธเธ—เธตเธ">
-    <title>เธเธ—เน€เธฃเธตเธขเธเธ—เธตเน 1: เธเธฑเธเธเนเธเธฑเธเนเธเธเนเนเธฅเธฐเนเธเนเธเธเนเธเธฒเธเธงเธเธเธฅเธกเธซเธเธถเนเธเธซเธเนเธงเธข</title>
-    
-    <!-- Favicon -->
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>๐“</text></svg>">
-    
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Google Fonts: Prompt -->
-    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- MathJax Configuration & Script -->
-    <script>
-        window.MathJax = {
-            tex: {
-                inlineMath: [['$', '$'], ['\\(', '\\)']],
-                displayMath: [['$$', '$$'], ['\\[', '\\]']]
-            },
-            svg: {
-                fontCache: 'global'
-            }
-        };
-    </script>
-    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>คณิตศาสตร์พื้นฐานวิทย์ 3 - ฟังก์ชันตรีโกณมิติ (ม.5)</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Font Awesome CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Google Fonts: Kanit -->
+  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- MathJax Configuration & Library -->
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
-    <style>
-        html, body {
-            overflow-x: hidden !important;
-            max-width: 100vw;
-        }
-
-        body {
-            font-family: 'Prompt', sans-serif;
-            background: linear-gradient(135deg, #f8fafc 0%, #eef2ff 50%, #f0fdf4 100%);
-            min-height: 100vh;
-        }
-
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: #f1f5f9;
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: #6366f1;
-            border-radius: 4px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: #4f46e5;
-        }
-
-        .fade-in {
-            animation: fadeIn 0.4s ease-in-out;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(8px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .glass-panel {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(226, 232, 240, 0.8);
-        }
-
-        .unit-circle-container {
-            position: relative;
-            width: 100%;
-            max-width: 460px;
-            height: 340px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        @media (min-width: 640px) {
-            .unit-circle-container {
-                height: 380px;
-            }
-        }
-
-        mjx-container {
-            font-size: 105% !important;
-            max-width: 100%;
-            overflow-x: auto;
-        }
-
-        .btn-interactive {
-            transition: all 0.25s ease;
-            box-shadow: 0 4px 6px -1px rgba(99, 102, 241, 0.15);
-        }
-
-        .btn-interactive:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 15px -3px rgba(99, 102, 241, 0.25);
-        }
-
-        .btn-interactive:active {
-            transform: translateY(0);
-        }
-    </style>
+  <style>
+    body {
+      font-family: 'Kanit', sans-serif;
+    }
+    .tab-active {
+      border-bottom: 3px solid #4f46e5;
+      color: #4f46e5;
+      font-weight: 600;
+    }
+  </style>
 </head>
+<body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col justify-between">
 
-<body class="text-slate-800">
-
-    <!-- Top Navigation Header -->
-    <header class="bg-white/90 backdrop-blur-md shadow-sm sticky top-0 z-40 border-b border-indigo-100">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-16 items-center">
-                <!-- Title & Lesson Indicator -->
-                <div class="flex items-center space-x-3">
-                    <div class="bg-indigo-600 text-white w-10 h-10 rounded-xl flex items-center justify-center font-bold text-lg shadow-sm">
-                        1
-                    </div>
-                    <div>
-                        <div class="text-xs font-semibold text-indigo-600 tracking-wider uppercase">เธซเธฅเธฑเธเธชเธนเธ•เธฃเธ•เธฃเธตเนเธเธ“เธกเธดเธ•เธด 20 เธเธ—เน€เธฃเธตเธขเธ</div>
-                        <h1 class="text-base sm:text-lg font-bold text-slate-900 leading-tight">เธเธ—เน€เธฃเธตเธขเธเธ—เธตเน 1: เธเธฑเธเธเนเธเธฑเธเนเธเธเนเนเธฅเธฐเนเธเนเธเธเนเธเธฒเธเธงเธเธเธฅเธกเธซเธเธถเนเธเธซเธเนเธงเธข</h1>
-                    </div>
-                </div>
-
-                <!-- Course Progress Button -->
-                <button onclick="toggleCurriculumModal()" class="flex items-center gap-2 bg-indigo-50 hover:bg-indigo-100 text-indigo-700 px-3 py-1.5 rounded-lg text-xs sm:text-sm font-medium transition">
-                    <i class="fa-solid fa-list-ol"></i>
-                    <span class="hidden sm:inline">เธชเธฒเธฃเธเธฑเธ 20 เธเธ—เน€เธฃเธตเธขเธ</span>
-                    <span class="bg-indigo-200 text-indigo-800 text-xs px-2 py-0.5 rounded-full font-bold">1/20</span>
-                </button>
-            </div>
+  <!-- Header Banner -->
+  <header class="bg-gradient-to-r from-indigo-700 via-indigo-600 to-sky-600 text-white shadow-lg">
+    <div class="max-w-5xl mx-auto px-4 py-6 flex flex-col md:flex-row justify-between items-center gap-4">
+      <div class="text-center md:text-left">
+        <div class="inline-block bg-indigo-800/60 text-indigo-100 text-xs px-3 py-1 rounded-full font-medium mb-1">
+          <i class="fa-solid font-bold fa-graduation-cap mr-1"></i> ระดับชั้นมัธยมศึกษาปีที่ 5
         </div>
-    </header>
-
-    <!-- Main Content Container -->
-    <main class="max-w-6xl mx-auto p-4 sm:p-6 lg:p-8 space-y-8">
-
-        <!-- INTRO & OBJECTIVES BANNER -->
-        <section class="glass-panel rounded-2xl p-6 shadow-sm border-l-4 border-indigo-600 fade-in">
-            <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
-                <div class="space-y-3">
-                    <div class="inline-flex items-center gap-2 bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full text-xs font-bold">
-                        <i class="fa-solid fa-bullseye"></i> เธเธธเธ”เธเธฃเธฐเธชเธเธเนเธเธฒเธฃเน€เธฃเธตเธขเธเธฃเธนเนเธเธฃเธฐเธเธณเธเธ—เน€เธฃเธตเธขเธ
-                    </div>
-                    <h2 class="text-xl sm:text-2xl font-bold text-slate-800">เธ—เธณเธเธงเธฒเธกเธฃเธนเนเธเธฑเธเธเธฑเธเธเนเธเธฑเธ $\sin\theta$ เนเธฅเธฐ $\cos\theta$</h2>
-                    <p class="text-slate-600 text-sm sm:text-base leading-relaxed">
-                        เนเธเธเธ—เน€เธฃเธตเธขเธเนเธฃเธเธเธตเน เน€เธฃเธฒเธเธฐเธจเธถเธเธฉเธฒเธเธธเธ”เน€เธฃเธดเนเธกเธ•เนเธเธเธทเนเธเธเธฒเธเธ—เธตเนเธชเธธเธ”เธเธญเธเธ•เธฃเธตเนเธเธ“เธกเธดเธ•เธดเธขเธธเธเนเธซเธกเน เธเธฑเนเธเธเธทเธญ <strong>เธงเธเธเธฅเธกเธซเธเธถเนเธเธซเธเนเธงเธข (Unit Circle)</strong> เธเธถเนเธเธเธฐเธเนเธงเธขเนเธซเนเน€เธฃเธฒเธเธขเธฒเธขเธเธญเธเน€เธเธ•เธเธฒเธฃเธซเธฒเธกเธธเธกเธเธฒเธเน€เธ”เธดเธกเธ—เธตเนเน€เธเนเธเธกเธธเธกเนเธซเธฅเธกเนเธเธชเธฒเธกเน€เธซเธฅเธตเนเธขเธกเธกเธธเธกเธเธฒเธ เนเธซเนเธชเธฒเธกเธฒเธฃเธ–เธซเธฒเธเนเธฒเธเธญเธเธกเธธเธกเนเธ”เน เนเธเธฃเธฐเธเธฒเธเนเธ”เนเธญเธขเนเธฒเธเธชเธกเธเธนเธฃเธ“เน
-                    </p>
-                </div>
-            </div>
-
-            <!-- Learning Outcomes Grid -->
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-6 pt-6 border-t border-slate-100">
-                <div class="flex items-start gap-3 bg-white p-3.5 rounded-xl border border-slate-100 shadow-xs">
-                    <div class="text-emerald-500 font-bold text-lg"><i class="fa-solid fa-circle-check"></i></div>
-                    <div class="text-xs sm:text-sm text-slate-700 font-medium">เน€เธเนเธฒเนเธเธเธดเธขเธฒเธกเธเธดเธเธฑเธ” $(x,y) = (\cos\theta, \sin\theta)$ เธเธเธงเธเธเธฅเธกเธซเธเธถเนเธเธซเธเนเธงเธข</div>
-                </div>
-                <div class="flex items-start gap-3 bg-white p-3.5 rounded-xl border border-slate-100 shadow-xs">
-                    <div class="text-emerald-500 font-bold text-lg"><i class="fa-solid fa-circle-check"></i></div>
-                    <div class="text-xs sm:text-sm text-slate-700 font-medium">เธงเธดเน€เธเธฃเธฒเธฐเธซเนเน€เธเธฃเธทเนเธญเธเธซเธกเธฒเธข $(+ / -)$ เธเธญเธ เนเธเธเน เนเธฅเธฐ เนเธเนเธเธเน เนเธเธ—เธฑเนเธ 4 เธเธ•เธธเธ เธฒเธ (ASTC)</div>
-                </div>
-                <div class="flex items-start gap-3 bg-white p-3.5 rounded-xl border border-slate-100 shadow-xs">
-                    <div class="text-emerald-500 font-bold text-lg"><i class="fa-solid fa-circle-check"></i></div>
-                    <div class="text-xs sm:text-sm text-slate-700 font-medium">เธเธดเธชเธนเธเธเนเน€เธญเธเธฅเธฑเธเธฉเธ“เนเธเธตเธ—เธฒเนเธเธฃเธฑเธชเธเธทเนเธเธเธฒเธ $\sin^2\theta + \cos^2\theta = 1$</div>
-                </div>
-            </div>
-        </section>
-
-        <!-- SECTION 1: INTERACTIVE UNIT CIRCLE VISUALIZER -->
-        <section class="glass-panel rounded-2xl p-4 sm:p-6 shadow-md border border-indigo-100 fade-in">
-            <div class="mb-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-100 pb-3">
-                <div>
-                    <h3 class="text-lg sm:text-xl font-bold text-indigo-950 flex items-center gap-2">
-                        <i class="fa-solid fa-compass text-indigo-600"></i>
-                        เธซเนเธญเธเธ—เธ”เธฅเธญเธเธเธเธดเธชเธฑเธกเธเธฑเธเธเน: เน€เธเธฃเธทเนเธญเธเธกเธทเธญเธชเธณเธฃเธงเธเธงเธเธเธฅเธกเธซเธเธถเนเธเธซเธเนเธงเธข
-                    </h3>
-                    <p class="text-xs sm:text-sm text-slate-500 mt-0.5">
-                        เธฅเธญเธเธฅเธฒเธเธเธธเธ”เธเธเธงเธเธเธฅเธก เธซเธฃเธทเธญเน€เธฅเธทเธญเธเธกเธธเธกเธกเธฒเธ•เธฃเธเธฒเธ เน€เธเธทเนเธญเธ”เธนเธงเนเธฒเธเนเธฒ $\cos\theta$ (เนเธเธ X) เนเธฅเธฐ $\sin\theta$ (เนเธเธ Y) เน€เธเธฅเธตเนเธขเธเนเธเธฅเธเธญเธขเนเธฒเธเนเธฃ
-                    </p>
-                </div>
-                <div class="flex items-center gap-2">
-                    <button id="btn-animate-circle" onclick="toggleCircleAnimation()" class="bg-indigo-600 hover:bg-indigo-700 text-white text-xs sm:text-sm px-3.5 py-2 rounded-lg transition flex items-center gap-1.5 shadow-sm">
-                        <i class="fa-solid fa-play" id="icon-animate"></i>
-                        <span id="label-animate">เธซเธกเธธเธเธญเธฑเธ•เนเธเธกเธฑเธ•เธด</span>
-                    </button>
-                    <button onclick="resetUnitCircle()" class="bg-slate-100 text-slate-600 hover:bg-slate-200 text-xs sm:text-sm px-3 py-2 rounded-lg transition flex items-center gap-1.5">
-                        <i class="fa-solid fa-rotate-right"></i> เธฃเธตเน€เธเนเธ•
-                    </button>
-                </div>
-            </div>
-
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
-                <!-- Visual Canvas Column -->
-                <div class="lg:col-span-7 flex flex-col items-center">
-                    <div class="unit-circle-container bg-white rounded-2xl shadow-inner border border-slate-200 overflow-hidden cursor-crosshair">
-                        <canvas id="unitCircleCanvas" class="w-full h-full block"></canvas>
-                    </div>
-                    <p class="text-xs text-slate-400 mt-2 text-center">
-                        <i class="fa-solid fa-hand-pointer text-indigo-500 mr-1"></i>เธเธฅเธดเธเธซเธฃเธทเธญเธชเธฑเธกเธเธฑเธชเธเธเธงเธเธเธฅเธกเน€เธเธทเนเธญเธเธฃเธฑเธเธกเธธเธกเธ•เธฒเธกเธ•เนเธญเธเธเธฒเธฃ
-                    </p>
-                </div>
-
-                <!-- Controls & Dynamic Reading Column -->
-                <div class="lg:col-span-5 space-y-4">
-                    <!-- Slider & Angle Selection -->
-                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-3">
-                        <div class="flex justify-between items-center">
-                            <label for="angleSlider" class="text-xs sm:text-sm font-semibold text-slate-700">เธเธฃเธฑเธเธกเธธเธก ($\theta$):</label>
-                            <span class="bg-indigo-600 text-white text-xs font-bold px-3 py-1 rounded-full font-mono shadow-xs" id="display-degree">0ยฐ</span>
-                        </div>
-                        <input type="range" id="angleSlider" min="0" max="360" value="0" step="1" 
-                            class="w-full accent-indigo-600 cursor-pointer h-2 bg-slate-200 rounded-lg" oninput="onSliderAngleChange(this.value)">
-
-                        <div>
-                            <span class="text-xs text-slate-500 font-medium block mb-1.5">เธกเธธเธกเธกเธฒเธ•เธฃเธเธฒเธเธ—เธตเนเธเธเธเนเธญเธข:</span>
-                            <div class="flex flex-wrap gap-1.5" id="quick-angles">
-                                <!-- Dynamic standard angle buttons generated by JS -->
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Dynamic Value Card -->
-                    <div class="bg-slate-900 text-white p-5 rounded-xl shadow-lg relative overflow-hidden space-y-3">
-                        <div class="flex justify-between items-center border-b border-slate-800 pb-2.5">
-                            <span class="text-xs font-semibold text-slate-400 uppercase tracking-wider">เธเธดเธเธฑเธ”เธเธเธงเธเธเธฅเธกเธซเธเธถเนเธเธซเธเนเธงเธข</span>
-                            <span class="text-xs font-bold bg-indigo-900 text-indigo-200 border border-indigo-700 px-2.5 py-0.5 rounded-full" id="display-quadrant">Quadrant I</span>
-                        </div>
-
-                        <div class="space-y-2 text-xs sm:text-sm font-mono">
-                            <div class="flex justify-between items-center">
-                                <span class="text-slate-400">เธกเธธเธกเนเธเธซเธเนเธงเธขเน€เธฃเน€เธ”เธตเธขเธ ($\theta$):</span>
-                                <span class="font-bold text-amber-300" id="display-radian">0 rad (0ฯ€)</span>
-                            </div>
-                            <div class="flex justify-between items-center">
-                                <span class="text-slate-400 flex items-center gap-1.5">
-                                    <span class="w-3 h-3 rounded-full bg-blue-500 inline-block"></span>
-                                    $\cos\theta$ (เธเธงเธฒเธกเธขเธฒเธงเนเธเธ X):
-                                </span>
-                                <span class="font-bold text-blue-400 text-base" id="display-cos">1.0000</span>
-                            </div>
-                            <div class="flex justify-between items-center">
-                                <span class="text-slate-400 flex items-center gap-1.5">
-                                    <span class="w-3 h-3 rounded-full bg-emerald-500 inline-block"></span>
-                                    $\sin\theta$ (เธเธงเธฒเธกเธขเธฒเธงเนเธเธ Y):
-                                </span>
-                                <span class="font-bold text-emerald-400 text-base" id="display-sin">0.0000</span>
-                            </div>
-                        </div>
-
-                        <div class="bg-slate-950 p-3 rounded-lg border border-slate-800 text-center">
-                            <span class="text-xs text-slate-400 block mb-1">เธฃเธนเธเธเธดเธเธฑเธ”เธเธ“เธดเธ•เธจเธฒเธชเธ•เธฃเน $P(\theta) = (x, y)$:</span>
-                            <div class="font-mono text-sm sm:text-base text-amber-400 font-bold" id="display-latex-coords">
-                                $$(1, 0)$$
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- SECTION 2: CORE THEORY & DEFINITIONS -->
-        <section class="space-y-6 fade-in">
-            <div class="border-l-4 border-indigo-600 pl-4">
-                <h2 class="text-xl sm:text-2xl font-bold text-slate-900">1. เธเธดเธขเธฒเธกเนเธฅเธฐเธ—เธคเธฉเธเธตเธเธทเนเธเธเธฒเธ</h2>
-                <p class="text-slate-600 text-sm sm:text-base">เธ—เธณเธเธงเธฒเธกเน€เธเนเธฒเนเธเนเธเธฃเธเธชเธฃเนเธฒเธเธเธ“เธดเธ•เธจเธฒเธชเธ•เธฃเนเน€เธเธทเนเธญเธเธซเธฅเธฑเธเธงเธเธเธฅเธกเธซเธเธถเนเธเธซเธเนเธงเธข</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <!-- Card 1: Definition of Unit Circle -->
-                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 space-y-3">
-                    <div class="w-10 h-10 bg-indigo-100 text-indigo-600 rounded-lg flex items-center justify-center font-bold text-lg">
-                        <i class="fa-solid fa-circle"></i>
-                    </div>
-                    <h3 class="text-lg font-bold text-slate-800">เธงเธเธเธฅเธกเธซเธเธถเนเธเธซเธเนเธงเธขเธเธทเธญเธญเธฐเนเธฃ?</h3>
-                    <p class="text-slate-600 text-sm leading-relaxed">
-                        <strong>เธงเธเธเธฅเธกเธซเธเธถเนเธเธซเธเนเธงเธข (Unit Circle)</strong> เธเธทเธญ เธงเธเธเธฅเธกเธ—เธตเนเธกเธตเธเธธเธ”เธจเธนเธเธขเนเธเธฅเธฒเธเธญเธขเธนเนเธ—เธตเนเธเธธเธ”เธเธณเน€เธเธดเธ” $(0,0)$ เธเธเธฃเธฐเธเธฒเธเธเธดเธเธฑเธ”เธเธฒเธ เนเธฅเธฐเธกเธตเธฃเธฑเธจเธกเธตเน€เธ—เนเธฒเธเธฑเธ $1$ เธซเธเนเธงเธข เธกเธตเธชเธกเธเธฒเธฃเธเธทเธญ:
-                    </p>
-                    <div class="bg-indigo-50/70 p-3 rounded-xl text-center font-bold text-indigo-900">
-                        $$ x^2 + y^2 = 1 $$
-                    </div>
-                    <p class="text-slate-600 text-sm leading-relaxed">
-                        เน€เธกเธทเนเธญเธงเธฑเธ”เธฃเธฐเธขเธฐเธ—เธฒเธเธ•เธฒเธกเธชเนเธงเธเนเธเนเธเธขเธฒเธง $\theta$ เธซเธเนเธงเธข เน€เธฃเธดเนเธกเธเธฒเธเธเธธเธ” $(1,0)$ เนเธเธซเธขเธธเธ”เธ—เธตเนเธเธธเธ” $P(x,y)$ เนเธ”เน เธเธเธงเธเธเธฅเธก เน€เธฃเธฒเธเธฐเธเธณเธซเธเธ”เธเธดเธขเธฒเธกเธเธญเธเนเธเธเนเนเธฅเธฐเนเธเนเธเธเนเธ”เธฑเธเธเธตเน:
-                    </p>
-                    <div class="bg-indigo-100/50 p-3 rounded-xl text-center font-bold text-slate-800">
-                        $$ \cos\theta = x \quad \text{เนเธฅเธฐ} \quad \sin\theta = y $$
-                    </div>
-                </div>
-
-                <!-- Card 2: Fundamental Pythagorean Identity -->
-                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 space-y-3">
-                    <div class="w-10 h-10 bg-emerald-100 text-emerald-600 rounded-lg flex items-center justify-center font-bold text-lg">
-                        <i class="fa-solid fa-square-root-variable"></i>
-                    </div>
-                    <h3 class="text-lg font-bold text-slate-800">เน€เธญเธเธฅเธฑเธเธฉเธ“เนเธเธตเธ—เธฒเนเธเธฃเธฑเธชเธเธทเนเธเธเธฒเธ</h3>
-                    <p class="text-slate-600 text-sm leading-relaxed">
-                        เน€เธเธทเนเธญเธเธเธฒเธเธเธธเธ” $P(x,y)$ เธญเธขเธนเนเธเธเธงเธเธเธฅเธกเธซเธเธถเนเธเธซเธเนเธงเธข $x^2 + y^2 = 1$ เน€เธกเธทเนเธญเนเธ—เธเธเนเธฒ $x = \cos\theta$ เนเธฅเธฐ $y = \sin\theta$ เธฅเธเนเธเธชเธกเธเธฒเธฃ เธเธฐเนเธ”เนเธชเธนเธ•เธฃเน€เธญเธเธฅเธฑเธเธฉเธ“เนเธ—เธตเนเธชเธณเธเธฑเธเธ—เธตเนเธชเธธเธ”เธเธญเธเธ•เธฃเธตเนเธเธ“เธกเธดเธ•เธด:
-                    </p>
-                    <div class="bg-emerald-50 p-4 rounded-xl text-center font-bold text-emerald-950 text-base sm:text-lg border border-emerald-200">
-                        $$ \sin^2\theta + \cos^2\theta = 1 $$
-                    </div>
-                    <div class="text-xs text-slate-500 space-y-1 pt-1">
-                        <p><strong>เธเธธเธ“เธชเธกเธเธฑเธ•เธดเธชเธณเธเธฑเธเธเธญเธเนเธ”เน€เธกเธเนเธฅเธฐเน€เธฃเธเธเน:</strong></p>
-                        <p>โ€ข เธเนเธฒเธเธญเธ $\sin\theta$ เนเธฅเธฐ $\cos\theta$ เธเธฐเธ–เธนเธเธเธณเธเธฑเธ”เธญเธขเธนเนเนเธเธเนเธงเธ $[-1, 1]$ เน€เธชเธกเธญ</p>
-                        <p>โ€ข $-1 \le \sin\theta \le 1$ เนเธฅเธฐ $-1 \le \cos\theta \le 1$</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- SECTION 3: ASTC QUADRANT SIGN RULES & STANDARD ANGLES TABLE -->
-        <section class="space-y-6 fade-in">
-            <div class="border-l-4 border-indigo-600 pl-4">
-                <h2 class="text-xl sm:text-2xl font-bold text-slate-900">2. เน€เธเธฃเธทเนเธญเธเธซเธกเธฒเธขเนเธเนเธ•เนเธฅเธฐเธเธ•เธธเธ เธฒเธ & เธเนเธฒเธกเธธเธกเธกเธฒเธ•เธฃเธเธฒเธ</h2>
-                <p class="text-slate-600 text-sm sm:text-base">เน€เธ—เธเธเธดเธเธเธฒเธฃเธเธณเน€เธเธฃเธทเนเธญเธเธซเธกเธฒเธข (+/-) เนเธฅเธฐเธ•เธฒเธฃเธฒเธเธชเธฃเธธเธเธเนเธฒเธกเธธเธกเธกเธฒเธ•เธฃเธเธฒเธเธ—เธตเนเธ•เนเธญเธเนเธเนเธเนเธญเธข</p>
-            </div>
-
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
-                <!-- Quadrant Rule ASTC Visual Card (5 Cols) -->
-                <div class="lg:col-span-5 bg-white p-6 rounded-2xl shadow-sm border border-slate-100 flex flex-col justify-between">
-                    <div>
-                        <h3 class="text-lg font-bold text-slate-800 mb-2 flex items-center gap-2">
-                            <i class="fa-solid fa-chart-pie text-indigo-600"></i>
-                            เธเธเน€เธเธฃเธทเนเธญเธเธซเธกเธฒเธขเธเธฃเธฐเธเธณเธเธ•เธธเธ เธฒเธ (ASTC Rule)
-                        </h3>
-                        <p class="text-slate-600 text-xs sm:text-sm leading-relaxed mb-4">
-                            เธ•เธณเนเธซเธเนเธเธเธญเธเธกเธธเธก $\theta$ เนเธเนเธ•เนเธฅเธฐ Quadrant เธเธฐเน€เธเนเธเธ•เธฑเธงเธเธณเธซเธเธ”เธงเนเธฒเธเนเธฒ $x (\cos)$ เนเธฅเธฐ $y (\sin)$ เน€เธเนเธเธเธงเธเธซเธฃเธทเธญเธฅเธ
-                        </p>
-
-                        <!-- Quadrant Matrix Display -->
-                        <div class="grid grid-cols-2 gap-3 text-center font-medium text-xs sm:text-sm my-2">
-                            <!-- Q2 -->
-                            <div class="bg-indigo-50 border-2 border-indigo-200 p-3 rounded-xl">
-                                <div class="text-indigo-800 font-bold text-base mb-1">Quadrant II</div>
-                                <div class="text-slate-500 text-xs font-mono">90ยฐ < ฮธ < 180ยฐ</div>
-                                <div class="mt-2 text-emerald-700 font-bold">$\sin\theta > 0$ (+)</div>
-                                <div class="text-rose-600 font-semibold">$\cos\theta < 0$ (-)</div>
-                            </div>
-                            <!-- Q1 -->
-                            <div class="bg-emerald-50 border-2 border-emerald-200 p-3 rounded-xl">
-                                <div class="text-emerald-800 font-bold text-base mb-1">Quadrant I</div>
-                                <div class="text-slate-500 text-xs font-mono">0ยฐ < ฮธ < 90ยฐ</div>
-                                <div class="mt-2 text-emerald-700 font-bold">$\sin\theta > 0$ (+)</div>
-                                <div class="text-emerald-700 font-bold">$\cos\theta > 0$ (+)</div>
-                            </div>
-                            <!-- Q3 -->
-                            <div class="bg-amber-50 border-2 border-amber-200 p-3 rounded-xl">
-                                <div class="text-amber-900 font-bold text-base mb-1">Quadrant III</div>
-                                <div class="text-slate-500 text-xs font-mono">180ยฐ < ฮธ < 270ยฐ</div>
-                                <div class="mt-2 text-rose-600 font-semibold">$\sin\theta < 0$ (-)</div>
-                                <div class="text-rose-600 font-semibold">$\cos\theta < 0$ (-)</div>
-                            </div>
-                            <!-- Q4 -->
-                            <div class="bg-purple-50 border-2 border-purple-200 p-3 rounded-xl">
-                                <div class="text-purple-900 font-bold text-base mb-1">Quadrant IV</div>
-                                <div class="text-slate-500 text-xs font-mono">270ยฐ < ฮธ < 360ยฐ</div>
-                                <div class="mt-2 text-rose-600 font-semibold">$\sin\theta < 0$ (-)</div>
-                                <div class="text-indigo-700 font-bold">$\cos\theta > 0$ (+)</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="mt-4 bg-slate-50 p-3 rounded-xl text-xs text-slate-600 border border-slate-200">
-                        <span class="font-bold text-indigo-700">๐’ก เน€เธ—เธเธเธดเธเธเธณเธขเนเธญ (ASTC):</span>
-                        <br>Q1: <strong>A</strong>ll (เธเธงเธเธ—เธฑเนเธเธซเธกเธ”) | Q2: <strong>S</strong>in (เนเธเธเนเธเธงเธ) | Q3: <strong>T</strong>an (เนเธ—เธเธเธงเธ) | Q4: <strong>C</strong>os (เนเธเนเธเธเนเธเธงเธ)
-                    </div>
-                </div>
-
-                <!-- Standard Angles Table (7 Cols) -->
-                <div class="lg:col-span-7 bg-white p-6 rounded-2xl shadow-sm border border-slate-100 space-y-3">
-                    <h3 class="text-lg font-bold text-slate-800 mb-2 flex items-center gap-2">
-                        <i class="fa-solid fa-table text-indigo-600"></i>
-                        เธ•เธฒเธฃเธฒเธเธชเธฃเธธเธเธเนเธฒเธกเธธเธกเธกเธฒเธ•เธฃเธเธฒเธเธซเธฅเธฑเธ (Standard Angles Table)
-                    </h3>
-                    <p class="text-slate-600 text-xs sm:text-sm">
-                        เธเนเธฒเธเธดเธเธฑเธ”เธเธดเธเธฒเธฃเธ“เธฒเธเธฃเธฐเธเธณเธกเธธเธกเธชเธณเธเธฑเธเนเธ Quadrant I เธ—เธตเนเธเธณเน€เธเนเธเธ•เนเธญเธเธเธ”เธเธณเน€เธเธทเนเธญเนเธเนเธญเนเธฒเธเธญเธดเธเธ—เธฑเนเธเธซเธฅเธฑเธเธชเธนเธ•เธฃ:
-                    </p>
-
-                    <div class="overflow-x-auto">
-                        <table class="w-full text-center text-xs sm:text-sm border-collapse">
-                            <thead>
-                                <tr class="bg-indigo-900 text-white">
-                                    <th class="p-2.5 rounded-tl-lg">เธกเธธเธก (เธญเธเธจเธฒ)</th>
-                                    <th class="p-2.5">เธกเธธเธก (เน€เธฃเน€เธ”เธตเธขเธ)</th>
-                                    <th class="p-2.5 text-blue-300">$\cos\theta$ (เนเธเธ X)</th>
-                                    <th class="p-2.5 text-emerald-300">$\sin\theta$ (เนเธเธ Y)</th>
-                                    <th class="p-2.5 rounded-tr-lg">เธเธดเธเธฑเธ” $P(x,y)$</th>
-                                </tr>
-                            </thead>
-                            <tbody class="divide-y divide-slate-100 font-mono">
-                                <tr class="hover:bg-indigo-50/50">
-                                    <td class="p-2.5 font-bold text-slate-800">0ยฐ</td>
-                                    <td class="p-2.5 text-slate-600">0</td>
-                                    <td class="p-2.5 font-bold text-blue-600">1</td>
-                                    <td class="p-2.5 font-bold text-emerald-600">0</td>
-                                    <td class="p-2.5 text-slate-700">(1, 0)</td>
-                                </tr>
-                                <tr class="hover:bg-indigo-50/50">
-                                    <td class="p-2.5 font-bold text-slate-800">30ยฐ</td>
-                                    <td class="p-2.5 text-slate-600">$\frac{\pi}{6}$</td>
-                                    <td class="p-2.5 font-bold text-blue-600">$\frac{\sqrt{3}}{2}$</td>
-                                    <td class="p-2.5 font-bold text-emerald-600">$\frac{1}{2}$</td>
-                                    <td class="p-2.5 text-slate-700">$\left(\frac{\sqrt{3}}{2}, \frac{1}{2}\right)$</td>
-                                </tr>
-                                <tr class="hover:bg-indigo-50/50">
-                                    <td class="p-2.5 font-bold text-slate-800">45ยฐ</td>
-                                    <td class="p-2.5 text-slate-600">$\frac{\pi}{4}$</td>
-                                    <td class="p-2.5 font-bold text-blue-600">$\frac{\sqrt{2}}{2}$</td>
-                                    <td class="p-2.5 font-bold text-emerald-600">$\frac{\sqrt{2}}{2}$</td>
-                                    <td class="p-2.5 text-slate-700">$\left(\frac{\sqrt{2}}{2}, \frac{\sqrt{2}}{2}\right)$</td>
-                                </tr>
-                                <tr class="hover:bg-indigo-50/50">
-                                    <td class="p-2.5 font-bold text-slate-800">60ยฐ</td>
-                                    <td class="p-2.5 text-slate-600">$\frac{\pi}{3}$</td>
-                                    <td class="p-2.5 font-bold text-blue-600">$\frac{1}{2}$</td>
-                                    <td class="p-2.5 font-bold text-emerald-600">$\frac{\sqrt{3}}{2}$</td>
-                                    <td class="p-2.5 text-slate-700">$\left(\frac{1}{2}, \frac{\sqrt{3}}{2}\right)$</td>
-                                </tr>
-                                <tr class="hover:bg-indigo-50/50">
-                                    <td class="p-2.5 font-bold text-slate-800">90ยฐ</td>
-                                    <td class="p-2.5 text-slate-600">$\frac{\pi}{2}$</td>
-                                    <td class="p-2.5 font-bold text-blue-600">0</td>
-                                    <td class="p-2.5 font-bold text-emerald-600">1</td>
-                                    <td class="p-2.5 text-slate-700">(0, 1)</td>
-                                </tr>
-                                <tr class="hover:bg-indigo-50/50">
-                                    <td class="p-2.5 font-bold text-slate-800">180ยฐ</td>
-                                    <td class="p-2.5 text-slate-600">$\pi$</td>
-                                    <td class="p-2.5 font-bold text-blue-600">-1</td>
-                                    <td class="p-2.5 font-bold text-emerald-600">0</td>
-                                    <td class="p-2.5 text-slate-700">(-1, 0)</td>
-                                </tr>
-                                <tr class="hover:bg-indigo-50/50">
-                                    <td class="p-2.5 font-bold text-slate-800">270ยฐ</td>
-                                    <td class="p-2.5 text-slate-600">$\frac{3\pi}{2}$</td>
-                                    <td class="p-2.5 font-bold text-blue-600">0</td>
-                                    <td class="p-2.5 font-bold text-emerald-600">-1</td>
-                                    <td class="p-2.5 text-slate-700">(0, -1)</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- SECTION 4: INTERACTIVE QUIZ & ASSESSMENT -->
-        <section class="glass-panel rounded-2xl p-6 shadow-md border border-indigo-100 space-y-6 fade-in">
-            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 border-b border-slate-100 pb-4">
-                <div>
-                    <span class="inline-block bg-amber-100 text-amber-800 text-xs px-2.5 py-1 rounded-md font-bold mb-1">
-                        <i class="fa-solid fa-pen-clip mr-1"></i>เธงเธฑเธ”เธเธงเธฒเธกเธฃเธนเนเธเธงเธฒเธกเน€เธเนเธฒเนเธ
-                    </span>
-                    <h2 class="text-xl sm:text-2xl font-bold text-slate-900">เนเธเธเธ—เธ”เธชเธญเธเน€เธเนเธเธเธงเธฒเธกเน€เธเนเธฒเนเธเธเธฃเธฐเธเธณเธเธ—เน€เธฃเธตเธขเธเธ—เธตเน 1</h2>
-                </div>
-                <div class="flex items-center gap-3">
-                    <div class="bg-indigo-50 border border-indigo-200 px-3 py-1.5 rounded-xl text-xs font-semibold text-indigo-700">
-                        เธเนเธญเธ—เธตเน <span id="quiz-current-num">1</span> / <span id="quiz-total-num">5</span>
-                    </div>
-                    <div class="bg-emerald-600 text-white px-3.5 py-1.5 rounded-xl text-xs font-bold shadow-sm">
-                        เธเธฐเนเธเธ: <span id="quiz-score">0</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Quiz Active Card -->
-            <div id="quiz-card" class="bg-white p-5 sm:p-7 rounded-2xl border border-slate-200 space-y-6">
-                <!-- Question Header -->
-                <div class="space-y-2">
-                    <h3 class="text-base sm:text-lg font-bold text-slate-800 leading-relaxed" id="quiz-question-text">
-                        --
-                    </h3>
-                </div>
-
-                <!-- Multiple Choice Options -->
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3" id="quiz-options-container">
-                    <!-- Dynamic option buttons rendered via JS -->
-                </div>
-
-                <!-- Feedback Box -->
-                <div id="quiz-feedback-box" class="hidden p-4 rounded-xl text-sm font-medium transition-all"></div>
-
-                <!-- Solution Drawer -->
-                <div id="quiz-explanation-box" class="hidden bg-indigo-50/70 border border-indigo-100 p-4 rounded-xl space-y-2">
-                    <h4 class="font-bold text-indigo-900 text-sm flex items-center gap-1.5">
-                        <i class="fa-solid fa-graduation-cap text-indigo-600"></i> เน€เธเธฅเธขเธฅเธฐเน€เธญเธตเธขเธ”เนเธฅเธฐเธงเธดเธเธตเธเธดเธ”:
-                    </h4>
-                    <div id="quiz-explanation-text" class="text-slate-700 text-xs sm:text-sm leading-relaxed"></div>
-                </div>
-
-                <!-- Navigation Controls -->
-                <div class="flex justify-between items-center pt-4 border-t border-slate-100">
-                    <button onclick="quizPrevQuestion()" id="btn-quiz-prev" class="px-4 py-2 border border-slate-200 hover:bg-slate-100 text-slate-600 text-xs sm:text-sm rounded-xl font-medium transition flex items-center gap-2 disabled:opacity-40 disabled:hover:bg-transparent">
-                        <i class="fa-solid fa-arrow-left"></i> เธเนเธญเธเนเธญเธเธซเธเนเธฒ
-                    </button>
-                    <button onclick="quizNextQuestion()" id="btn-quiz-next" class="px-5 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-xs sm:text-sm rounded-xl font-semibold shadow-sm transition flex items-center gap-2">
-                        เธเนเธญเธ–เธฑเธ”เนเธ <i class="fa-solid fa-arrow-right"></i>
-                    </button>
-                </div>
-            </div>
-        </section>
-
-        <!-- SECTION 5: LESSON SUMMARY & NEXT STEP -->
-        <section class="bg-gradient-to-br from-indigo-900 to-slate-900 text-white rounded-2xl p-6 sm:p-8 shadow-xl space-y-4 fade-in">
-            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
-                <div class="space-y-2 max-w-2xl">
-                    <span class="bg-indigo-500/30 text-indigo-200 text-xs font-bold px-3 py-1 rounded-full border border-indigo-400/30">
-                        <i class="fa-solid fa-flag-checkered mr-1"></i>เธชเธฃเธธเธเธเธ—เน€เธฃเธตเธขเธเธ—เธตเน 1
-                    </span>
-                    <h3 class="text-xl sm:text-2xl font-bold">เธเธธเธ“เนเธ”เนเน€เธฃเธตเธขเธเธฃเธนเนเธซเธฑเธงเนเธเธชเธณเธเธฑเธเธเธญเธเธงเธเธเธฅเธกเธซเธเธถเนเธเธซเธเนเธงเธขเนเธฅเนเธง!</h3>
-                    <p class="text-indigo-200 text-xs sm:text-sm leading-relaxed">
-                        เธเธฒเธเธเธธเธ”เธเธตเนเนเธ เนเธกเนเธงเนเธฒเธกเธธเธกเธเธฐเนเธ•เน€เธ—เนเธฒเนเธ” เธซเธฃเธทเธญเธซเธกเธธเธเธ—เธงเธ/เธ•เธฒเธกเน€เธเนเธกเธเธฒเธฌเธดเธเธฒ เธเนเธฒเธเธญเธ $\cos\theta$ เธเธฐเธเธทเธญเธเธดเธเธฑเธ” X เนเธฅเธฐ $\sin\theta$ เธเธฐเธเธทเธญเธเธดเธเธฑเธ” Y เน€เธชเธกเธญ เธเธฃเนเธญเธกเธเธธเธ“เธชเธกเธเธฑเธ•เธด $\sin^2\theta + \cos^2\theta = 1$
-                    </p>
-                </div>
-                <button onclick="toggleCurriculumModal()" class="btn-interactive bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-bold px-6 py-3 rounded-xl text-sm transition shrink-0 flex items-center gap-2 shadow-lg">
-                    <span>เธ”เธนเธเธ—เน€เธฃเธตเธขเธเธ–เธฑเธ”เนเธ (เธเธ—เธ—เธตเน 2)</span>
-                    <i class="fa-solid fa-circle-arrow-right"></i>
-                </button>
-            </div>
-        </section>
-
-    </main>
-
-    <!-- CURRICULUM ROADMAP MODAL -->
-    <div id="curriculumModal" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
-        <div class="bg-white rounded-2xl max-w-2xl w-full max-h-[85vh] flex flex-col shadow-2xl overflow-hidden fade-in">
-            <div class="bg-indigo-900 text-white p-5 flex justify-between items-center">
-                <div>
-                    <span class="text-xs text-indigo-300 font-semibold uppercase tracking-wider">เนเธเธฃเธเธชเธฃเนเธฒเธเธซเธฅเธฑเธเธชเธนเธ•เธฃเธ•เธฃเธตเนเธเธ“เธกเธดเธ•เธด</span>
-                    <h3 class="text-lg font-bold">เธชเธฒเธฃเธเธฑเธ 20 เธเธ—เน€เธฃเธตเธขเธเธเธเธฑเธเธชเธกเธเธนเธฃเธ“เน</h3>
-                </div>
-                <button onclick="toggleCurriculumModal()" class="text-slate-300 hover:text-white text-xl p-1">
-                    <i class="fa-solid fa-xmark"></i>
-                </button>
-            </div>
-            
-            <div class="p-4 overflow-y-auto space-y-2 flex-1" id="curriculum-list-container">
-                <!-- Curriculum items rendered by JS -->
-            </div>
-
-            <div class="p-4 border-t border-slate-100 bg-slate-50 text-right">
-                <button onclick="toggleCurriculumModal()" class="bg-slate-200 hover:bg-slate-300 text-slate-700 px-4 py-2 rounded-xl text-xs font-semibold transition">
-                    เธเธดเธ”เธซเธเนเธฒเธ•เนเธฒเธ
-                </button>
-            </div>
-        </div>
+        <h1 class="text-2xl md:text-3xl font-bold tracking-tight">วิชา คณิตศาสตร์พื้นฐานวิทย์ 3</h1>
+        <p class="text-indigo-100 text-sm md:text-base mt-1">
+          <i class="fa-solid fa-shapes mr-1"></i> หน่วยการเรียนรู้: ฟังก์ชันตรีโกณมิติ (Trigonometric Functions)
+        </p>
+      </div>
+      <div class="bg-white/10 backdrop-blur-md px-4 py-2 rounded-xl text-right border border-white/20 text-xs md:text-sm">
+        <p class="text-indigo-200">ครูผู้สอน</p>
+        <p class="font-semibold text-white"><i class="fa-solid fa-chalkboard-user mr-1"></i> นายสมชาย ซอแอ</p>
+      </div>
     </div>
+  </header>
 
-    <!-- JAVASCRIPT APP ENGINE -->
-    <script>
-        // Global State Variables
-        let currentAngleDeg = 0; // 0 to 360
-        let isAnimating = false;
-        let animationFrameId = null;
-        let isDraggingCanvas = false;
+  <!-- Navigation Tabs -->
+  <nav class="bg-white border-b border-slate-200 shadow-sm sticky top-0 z-30">
+    <div class="max-w-5xl mx-auto px-4 flex justify-center space-x-8">
+      <button id="btnTabLearn" onclick="switchTab('learn')" class="tab-active py-3 px-4 text-slate-600 hover:text-indigo-600 flex items-center space-x-2 transition-all">
+        <i class="fa-solid fa-book-open"></i>
+        <span>เรียนรู้เนื้อหา (Learn)</span>
+      </button>
+      <button id="btnTabQuiz" onclick="switchTab('quiz')" class="py-3 px-4 text-slate-600 hover:text-indigo-600 flex items-center space-x-2 transition-all">
+        <i class="fa-solid fa-pen-ruler"></i>
+        <span>แบบทดสอบ Interactive (Quiz)</span>
+      </button>
+    </div>
+  </nav>
 
-        // Quiz State
-        let currentQuizIndex = 0;
-        let quizScore = 0;
-        let userQuizAnswers = {}; // questionIndex -> selectedOptionIndex
+  <!-- Main Content Container -->
+  <main class="max-w-5xl mx-auto px-4 py-8 flex-grow w-full">
 
-        // Standard angles reference list for fast buttons
-        const standardAngles = [0, 30, 45, 60, 90, 120, 135, 150, 180, 210, 225, 240, 270, 300, 315, 330, 360];
+    <!-- SECTION 1: LEARN (เรียนรู้เนื้อหา) -->
+    <section id="secLearn" class="space-block space-y-6">
+      <!-- Course Intro Card -->
+      <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+        <h2 class="text-xl font-bold text-indigo-700 mb-3 flex items-center">
+          <i class="fa-solid fa-circle-info mr-2"></i> สรุปสาระสำคัญ: ฟังก์ชันตรีโกณมิติ
+        </h2>
+        <p class="text-slate-600 leading-relaxed text-sm md:text-base">
+          ฟังก์ชันตรีโกณมิติเป็นฟังก์ชันของมุมซึ่งมีความสำคัญในการศึกษารูปสามเหลี่ยมและปรากฏการณ์ที่มีลักษณะเป็นคาบ (Periodic Functions) เช่น คลื่นเสียง คลื่นแสง และการแกว่ง ตัวอย่างอัตราส่วนพื้นฐานบนสามเหลี่ยมมุมฉาก ได้แก่ $\sin\theta = \frac{\text{ข้าม}}{\text{ฉาก}}$, $\cos\theta = \frac{\text{ชิด}}{\text{ฉาก}}$ และ $\tan\theta = \frac{\text{ข้าม}}{\text{ชิด}}$
+        </p>
+      </div>
 
-        // 20-Lesson Curriculum Data Sequence
-        const curriculumLessons = [
-            { num: 1, title: "เธเธฑเธเธเนเธเธฑเธเนเธเธเนเนเธฅเธฐเนเธเนเธเธเนเธเธฒเธเธงเธเธเธฅเธกเธซเธเธถเนเธเธซเธเนเธงเธข", active: true },
-            { num: 2, title: "เธเธฑเธเธเนเธเธฑเธเธ•เธฃเธตเนเธเธ“เธกเธดเธ•เธดเธญเธทเนเธเน (tan, sec, csc, cot)", active: false },
-            { num: 3, title: "เธเนเธฒเธเธฑเธเธเนเธเธฑเธเธ•เธฃเธตเนเธเธ“เธกเธดเธ•เธดเธเธญเธเธกเธธเธกเนเธเธ—เธธเธเธเธ•เธธเธ เธฒเธ", active: false },
-            { num: 4, title: "เธเธฃเธฒเธเธเธญเธเธเธฑเธเธเนเธเธฑเธเธ•เธฃเธตเนเธเธ“เธกเธดเธ•เธดเนเธฅเธฐเธเธฒเธ/เนเธญเธกเธเธฅเธดเธเธนเธ”", active: false },
-            { num: 5, title: "เธเธฑเธเธเนเธเธฑเธเธ•เธฃเธตเนเธเธ“เธกเธดเธ•เธดเธเธเธเธฑเธ (Arcsin, Arccos, Arctan)", active: false },
-            { num: 6, title: "เธชเธนเธ•เธฃเธเธฅเธเธงเธเนเธฅเธฐเธเธฅเธ•เนเธฒเธเธเธญเธเธกเธธเธก ($\sin(A\pm B), \cos(A\pm B)$)", active: false },
-            { num: 7, title: "เธชเธนเธ•เธฃเธกเธธเธกเธชเธญเธเน€เธ—เนเธฒ เธกเธธเธกเธเธฃเธถเนเธเน€เธ—เนเธฒ เนเธฅเธฐเธกเธธเธกเธชเธฒเธกเน€เธ—เนเธฒ", active: false },
-            { num: 8, title: "เธชเธนเธ•เธฃเนเธเธฅเธเธเธฅเธเธนเธ“เน€เธเนเธเธเธฅเธเธงเธเนเธฅเธฐเธเธฅเธ•เนเธฒเธ", active: false },
-            { num: 9, title: "เธเธฒเธฃเธเธดเธชเธนเธเธเนเน€เธญเธเธฅเธฑเธเธฉเธ“เนเธ•เธฃเธตเนเธเธ“เธกเธดเธ•เธดเธฃเธฐเธ”เธฑเธเธชเธนเธ", active: false },
-            { num: 10, title: "เธเธฒเธฃเนเธเนเธชเธกเธเธฒเธฃเธ•เธฃเธตเนเธเธ“เธกเธดเธ•เธดเน€เธเธทเนเธญเธเธ•เนเธ", active: false },
-            { num: 11, title: "เธเธฒเธฃเนเธเนเธชเธกเธเธฒเธฃเธ•เธฃเธตเนเธเธ“เธกเธดเธ•เธดเธเธฑเนเธเธชเธนเธเนเธฅเธฐเธเนเธงเธเธเธณเธ•เธญเธ", active: false },
-            { num: 12, title: "เธเธเธเธญเธเนเธเนเธเธเน (Law of Cosines)", active: false },
-            { num: 13, title: "เธเธเธเธญเธเนเธเธเน (Law of Sines)", active: false },
-            { num: 14, title: "เธเธฒเธฃเธเธฃเธฐเธขเธธเธเธ•เนเธซเธฒเธฃเธฐเธขเธฐเธ—เธฒเธเนเธฅเธฐเธเธงเธฒเธกเธชเธนเธเธ”เนเธงเธขเธ•เธฃเธตเนเธเธ“เธกเธดเธ•เธด", active: false },
-            { num: 15, title: "เธเธทเนเธเธ—เธตเนเธเธญเธเธฃเธนเธเธชเธฒเธกเน€เธซเธฅเธตเนเธขเธกเธ”เนเธงเธขเธชเธนเธ•เธฃเธ•เธฃเธตเนเธเธ“เธกเธดเธ•เธด", active: false },
-            { num: 16, title: "เน€เธงเธเน€เธ•เธญเธฃเนเธเธฑเธเธเธฒเธฃเธเธฃเธฐเธขเธธเธเธ•เนเธ•เธฃเธตเนเธเธ“เธกเธดเธ•เธด", active: false },
-            { num: 17, title: "เธเธณเธเธงเธเน€เธเธดเธเธเนเธญเธเนเธเธฃเธนเธเน€เธเธดเธเธเธฑเนเธง (Polar Form)", active: false },
-            { num: 18, title: "เธ—เธคเธฉเธเธตเธเธ—เธเธญเธเน€เธ”เธญเธกเธฑเธงเธเธฃเน (De Moivre's Theorem)", active: false },
-            { num: 19, title: "เธเธฒเธฃเธเธฃเธฐเธขเธธเธเธ•เนเธ•เธฃเธตเนเธเธ“เธกเธดเธ•เธดเนเธเธเธฅเธทเนเธเนเธฅเธฐเธเธดเธชเธดเธเธชเน", active: false },
-            { num: 20, title: "เธ•เธฐเธฅเธธเธขเนเธเธ—เธขเนเธเนเธญเธชเธญเธเธ•เธฃเธตเนเธเธ“เธกเธดเธ•เธดเน€เธเนเธฒเธกเธซเธฒเธงเธดเธ—เธขเธฒเธฅเธฑเธข", active: false }
-        ];
+      <!-- Examples List -->
+      <h3 class="text-lg font-bold text-slate-800 flex items-center mt-6">
+        <i class="fa-solid fa-lightbulb text-amber-500 mr-2"></i> ตัวอย่างการคำนวณและวิธีคิด (5 ตัวอย่าง)
+      </h3>
+      
+      <div id="exampleListContainer" class="space-y-4">
+        <!-- Rendered by JavaScript exampleData -->
+      </div>
+    </section>
 
-        // Quiz Questions Data (5 Interactive Assessment Questions)
-        const quizData = [
-            {
-                question: "1. เธเธธเธ” $P(\theta)$ เธเธเธงเธเธเธฅเธกเธซเธเธถเนเธเธซเธเนเธงเธขเธ—เธตเนเธกเธธเธก $\theta = 150^\circ$ เธกเธตเธเนเธฒเธเธดเธเธฑเธ” $(x,y)$ เธ•เธฃเธเธเธฑเธเธเนเธญเนเธ”?",
-                options: [
-                    "\\(\\left(-\\frac{\\sqrt{3}}{2}, \\frac{1}{2}\\right)\\)",
-                    "\\(\\left(\\frac{\\sqrt{3}}{2}, -\\frac{1}{2}\\right)\\)",
-                    "\\(\\left(-\\frac{1}{2}, \\frac{\\sqrt{3}}{2}\\right)\\)",
-                    "\\(\\left(\\frac{1}{2}, -\\frac{\\sqrt{3}}{2}\\right)\\)"
-                ],
-                correct: 0,
-                explanation: "เธกเธธเธก $150^\circ$ เธญเธขเธนเนเนเธ Quadrant II ($90^\circ < 150^\circ < 180^\circ$)<br>โ€ข เธเนเธฒ $x = \\cos(150^\circ) = -\\cos(30^\circ) = -\\frac{\\sqrt{3}}{2}$ (เนเธเธ X เน€เธเนเธเธฅเธ)<br>โ€ข เธเนเธฒ $y = \\sin(150^\circ) = \\sin(30^\circ) = \\frac{1}{2}$ (เนเธเธ Y เน€เธเนเธเธเธงเธ)<br>เธ”เธฑเธเธเธฑเนเธ เธเธดเธเธฑเธ”เธเธทเธญ $\\left(-\\frac{\\sqrt{3}}{2}, \\frac{1}{2}\\right)$"
-            },
-            {
-                question: "2. เธซเธฒเธเธเธณเธซเธเธ”เนเธซเนเธกเธธเธก $\\theta$ เธญเธขเธนเนเนเธ Quadrant III เน€เธเธฃเธทเนเธญเธเธซเธกเธฒเธขเธเธญเธ $\\cos\\theta$ เนเธฅเธฐ $\\sin\\theta$ เธ•เธฒเธกเธฅเธณเธ”เธฑเธเธเธฐเน€เธเนเธเธญเธขเนเธฒเธเนเธฃ?",
-                options: [
-                    "เธเธงเธ (+), เธเธงเธ (+)",
-                    "เธฅเธ (-), เธเธงเธ (+)",
-                    "เธฅเธ (-), เธฅเธ (-)",
-                    "เธเธงเธ (+), เธฅเธ (-)"
-                ],
-                correct: 2,
-                explanation: "เนเธ Quadrant III เธกเธธเธกเธญเธขเธนเนเธฃเธฐเธซเธงเนเธฒเธ $180^\circ$ เธ–เธถเธ $270^\circ$:<br>โ€ข เธเนเธฒเธเธดเธเธฑเธ” $x$ เธญเธขเธนเนเธ—เธฒเธเธเนเธฒเธขเธเธญเธเนเธเธ Y เธเธถเธเน€เธเนเธ <b>เธฅเธ (-)</b> $\\rightarrow \\cos\\theta < 0$<br>โ€ข เธเนเธฒเธเธดเธเธฑเธ” $y$ เธญเธขเธนเนเนเธ•เนเนเธเธ X เธเธถเธเน€เธเนเธ <b>เธฅเธ (-)</b> $\\rightarrow \\sin\\theta < 0$<br>เธ”เธฑเธเธเธฑเนเธ เน€เธเนเธเธฅเธเธ—เธฑเนเธเธเธนเนเธ•เธฒเธกเธซเธฅเธฑเธ ASTC ( quadrant เธเธตเน Tan เน€เธเนเธเธเธงเธ)"
-            },
-            {
-                question: "3. เธเธณเธซเธเธ”เนเธซเน $\\cos\\theta = -\\frac{4}{5}$ เนเธฅเธฐเธกเธธเธก $\\theta$ เธญเธขเธนเนเนเธ Quadrant II เธเธเธซเธฒเธเนเธฒเธเธญเธ $\\sin\\theta$",
-                options: [
-                    "\\(\\frac{3}{5}\\)",
-                    "\\(-\\frac{3}{5}\\)",
-                    "\\(\\frac{4}{5}\\)",
-                    "\\(-\\frac{4}{5}\\)"
-                ],
-                correct: 0,
-                explanation: "เนเธเนเน€เธญเธเธฅเธฑเธเธฉเธ“เนเธเธตเธ—เธฒเนเธเธฃเธฑเธช $\\sin^2\\theta + \\cos^2\\theta = 1$:<br>$\\sin^2\\theta + \\left(-\\frac{4}{5}\\right)^2 = 1 \\implies \\sin^2\\theta + \\frac{16}{25} = 1$<br>$\\sin^2\\theta = 1 - \\frac{16}{25} = \\frac{9}{25} \\implies \\sin\\theta = \\pm \\frac{3}{5}$<br>เน€เธเธทเนเธญเธเธเธฒเธ $\\theta$ เธญเธขเธนเนเนเธ Quadrant II เธเนเธฒ $\\sin\\theta$ เธ•เนเธญเธเน€เธเนเธ <b>เธเธงเธ (+)</b> เธ”เธฑเธเธเธฑเนเธ $\\sin\\theta = \\frac{3}{5}$"
-            },
-            {
-                question: "4. เธเธดเธเธเธเน $\\sin^2(37^\circ) + \\cos^2(37^\circ)$ เธกเธตเธเนเธฒเน€เธ—เนเธฒเธเธฑเธเน€เธ—เนเธฒเนเธ”?",
-                options: [
-                    "0",
-                    "0.5",
-                    "1",
-                    "เธเธถเนเธเธญเธขเธนเนเธเธฑเธเธเนเธฒเธเธญเธเธกเธธเธก 37ยฐ"
-                ],
-                correct: 2,
-                explanation: "เธเธฒเธเน€เธญเธเธฅเธฑเธเธฉเธ“เนเธเธทเนเธเธเธฒเธเธเธตเธ—เธฒเนเธเธฃเธฑเธช $\\sin^2\\theta + \\cos^2\\theta = 1$ เธเธถเนเธเน€เธเนเธเธเธฃเธดเธเธชเธณเธซเธฃเธฑเธ <b>เธ—เธธเธเน เธเนเธฒเธเธญเธเธกเธธเธก $\\theta$</b> เธเธเธฃเธฐเธเธฒเธ<br>เธ”เธฑเธเธเธฑเนเธ เน€เธกเธทเนเธญ $\\theta = 37^\circ$ เธเธณเธ•เธญเธเธเธถเธเน€เธ—เนเธฒเธเธฑเธ $1$ เน€เธชเธกเธญเนเธ”เธขเนเธกเนเธ•เนเธญเธเน€เธเธดเธ”เธ•เธฒเธฃเธฒเธเธเธณเธเธงเธ“"
-            },
-            {
-                question: "5. เธกเธธเธก $240^\circ$ เนเธเธฅเธเน€เธเนเธเธซเธเนเธงเธขเน€เธฃเน€เธ”เธตเธขเธเนเธ”เนเน€เธ—เนเธฒเธเธฑเธเน€เธ—เนเธฒเนเธ”?",
-                options: [
-                    "\\(\\frac{5\\pi}{4}\\) rad",
-                    "\\(\\frac{4\\pi}{3}\\) rad",
-                    "\\(\\frac{7\\pi}{6}\\) rad",
-                    "\\(\\frac{5\\pi}{3}\\) rad"
-                ],
-                correct: 1,
-                explanation: "เธชเธนเธ•เธฃเนเธเธฅเธเธญเธเธจเธฒเน€เธเนเธเน€เธฃเน€เธ”เธตเธขเธ: $\\theta \\text{ (rad)} = \\text{เธญเธเธจเธฒ} \\times \\frac{\\pi}{180^\circ}$<br>เนเธ—เธเธเนเธฒ: $240^\circ \\times \\frac{\\pi}{180^\circ} = \\frac{240}{180}\\pi = \\frac{4\\pi}{3}$ rad"
-            }
-        ];
+    <!-- SECTION 2: QUIZ (แบบทดสอบ Interactive) -->
+    <section id="secQuiz" class="hidden space-y-6">
+      
+      <!-- Quiz Progress Header -->
+      <div class="bg-indigo-50 border border-indigo-100 p-4 rounded-xl flex flex-wrap justify-between items-center gap-4">
+        <div>
+          <span class="text-xs text-indigo-600 uppercase font-bold tracking-wider">โหมดการทดสอบ</span>
+          <h3 class="text-base font-bold text-indigo-900" id="quizHeaderTitle">คำถามตรีโกณมิติ</h3>
+        </div>
+        <div class="flex items-center gap-4 text-sm">
+          <div class="bg-white px-3 py-1.5 rounded-lg shadow-sm font-medium border border-indigo-100">
+            ข้อที่: <span id="currentQuestionNum" class="text-indigo-600 font-bold">1</span> / <span id="totalQuestionNum">7</span>
+          </div>
+          <div class="bg-emerald-500 text-white px-3 py-1.5 rounded-lg font-bold shadow-sm">
+            คะแนน: <span id="scoreDisplay">0</span>
+          </div>
+        </div>
+      </div>
 
-        // Initialize HTML & Canvas listeners
-        window.addEventListener('DOMContentLoaded', () => {
-            renderQuickAngles();
-            renderCurriculumList();
-            initCanvas();
-            updateAngleDisplays(0);
-            renderQuizQuestion(0);
-        });
+      <!-- Interactive Question Card -->
+      <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 md:p-8 space-y-6">
+        
+        <!-- Scenario Title & Variable N Indicator -->
+        <div class="flex justify-between items-start gap-4 border-b border-slate-100 pb-4">
+          <div>
+            <span id="scenarioTag" class="inline-block bg-indigo-100 text-indigo-700 text-xs px-2.5 py-1 rounded-md font-semibold mb-2">
+              สถานการณ์โจทย์
+            </span>
+            <h3 id="scenarioTitle" class="text-lg md:text-xl font-bold text-slate-800">
+              --
+            </h3>
+          </div>
+          <button onclick="randomizeN()" class="text-xs bg-slate-100 hover:bg-slate-200 text-slate-600 px-3 py-1.5 rounded-lg transition-all flex items-center gap-1 shrink-0">
+            <i class="fa-solid fa-shuffle text-indigo-500"></i> สุ่มตัวเลข [N] ใหม่
+          </button>
+        </div>
 
-        function renderQuickAngles() {
-            const container = document.getElementById('quick-angles');
-            container.innerHTML = '';
-            standardAngles.forEach(deg => {
-                const btn = document.createElement('button');
-                btn.type = 'button';
-                btn.className = `text-xs px-2.5 py-1 rounded-md font-mono transition border ${
-                    deg === currentAngleDeg 
-                    ? 'bg-indigo-600 text-white border-indigo-600 font-bold' 
-                    : 'bg-white hover:bg-indigo-50 text-slate-700 border-slate-200'
-                }`;
-                btn.innerText = `${deg}ยฐ`;
-                btn.onclick = () => setAngle(deg);
-                container.appendChild(btn);
-            });
+        <!-- Question Text -->
+        <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 text-base md:text-lg text-slate-800 leading-relaxed" id="questionText">
+          --
+        </div>
+
+        <!-- Answer Input Controls -->
+        <div class="space-y-4 pt-2">
+          <label class="block text-sm font-medium text-slate-700">
+            กรอกคำตอบของคุณ (คำนวณตามค่าตัวเลข [N] ในโจทย์):
+          </label>
+          <div class="flex flex-col sm:flex-row gap-3">
+            <div class="relative flex-grow">
+              <input type="number" step="any" id="userAnswerInput" placeholder="ใส่คำตอบเชิงตัวเลข..." class="w-full px-4 py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none text-base transition-all">
+              <span id="unitDisplay" class="absolute right-4 top-3.5 text-sm text-slate-400 font-medium"></span>
+            </div>
+            <button onclick="checkAnswer()" id="btnSubmit" class="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3 rounded-xl font-semibold shadow-md transition-all flex items-center justify-center gap-2 shrink-0">
+              <i class="fa-solid fa-paper-plane"></i> ส่งคำตอบ
+            </button>
+          </div>
+        </div>
+
+        <!-- Feedback Alert Box -->
+        <div id="feedbackBox" class="hidden p-4 rounded-xl border text-sm font-medium transition-all"></div>
+
+        <!-- Explanation Drawer -->
+        <div id="explanationBox" class="hidden bg-amber-50 border border-amber-200 p-5 rounded-xl space-y-2">
+          <h4 class="font-bold text-amber-900 flex items-center gap-2">
+            <i class="fa-solid fa-graduation-cap"></i> เฉลยละเอียดและวิธีคิด:
+          </h4>
+          <div id="explanationText" class="text-slate-700 text-sm md:text-base leading-relaxed"></div>
+        </div>
+
+        <!-- Navigation Controls -->
+        <div class="flex justify-between items-center pt-4 border-t border-slate-100">
+          <button onclick="prevQuestion()" id="btnPrev" class="px-4 py-2 border border-slate-300 hover:bg-slate-100 text-slate-600 text-sm rounded-lg font-medium transition-all flex items-center gap-2 disabled:opacity-50">
+            <i class="fa-solid fa-arrow-left"></i> ข้อก่อนหน้า
+          </button>
+          
+          <button onclick="showExplanation()" id="btnToggleExp" class="text-xs text-indigo-600 hover:text-indigo-800 underline font-medium">
+            ดูวิธีคิดละเอียด
+          </button>
+
+          <button onclick="nextQuestion()" id="btnNext" class="px-4 py-2 bg-slate-800 hover:bg-slate-900 text-white text-sm rounded-lg font-medium transition-all flex items-center gap-2">
+            ข้อถัดไป <i class="fa-solid fa-arrow-right"></i>
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-white border-t border-slate-200 py-4 text-center text-xs text-slate-500">
+    <div class="max-w-5xl mx-auto px-4">
+      <p>สื่อการเรียนรู้แบบ Interactive Web - วิชาคณิตศาสตร์พื้นฐานวิทย์ 3 (ม.5)</p>
+      <p class="mt-1">พัฒนาสำหรับการเรียนการสอนโดย ครูสมชาย ซอแอ</p>
+    </div>
+  </footer>
+
+  <!-- Javascript Logic -->
+  <script>
+    // Global State Variables
+    let currentQuizIndex = 0;
+    let score = 0;
+    let currentN = 10;
+    let currentSolvedResult = null;
+    let answeredQuestions = new Set();
+
+    // 1. DATA STRUCTURE: Learn Section Examples (5 Examples with LaTeX)
+    const exampleData = [
+      {
+        title: "ตัวอย่างที่ 1: การหาค่าฟังก์ชันตรีโกณมิติจากมุมบนวงกลมหนึ่งหน่วย",
+        problem: "จงหาค่าของ $\\sin\\left(\\frac{\\pi}{3}\\right)$ และ $\\cos\\left(\\frac{\\pi}{3}\\right)$",
+        solution: "<b>วิธีทำ:</b><br>มุม $\\frac{\\pi}{3}$ เรเดียน มีค่าเท่ากับ $60^\\circ$<br>จากพิกัดบนวงกลมหนึ่งหน่วย $(x, y) = (\\cos\\theta, \\sin\\theta)$ ที่มุม $60^\\circ$ คือ $\\left(\\frac{1}{2}, \\frac{\\sqrt{3}}{2}\\right)$<br>ดังนั้นจะได้ $\\cos\\left(\\frac{\\pi}{3}\\right) = \\frac{1}{2} = 0.5$ และ $\\sin\\left(\\frac{\\pi}{3}\\right) = \\frac{\\sqrt{3}}{2} \\approx 0.866$"
+      },
+      {
+        title: "ตัวอย่างที่ 2: การประยุกต์ใช้เอกลักษณ์ตรีโกณมิติพื้นฐาน",
+        problem: "กำหนดให้ $\\sin\\theta = \\frac{3}{5}$ โดยที่ $0 < \\theta < \\frac{\\pi}{2}$ จงหาค่าของ $\\cos\\theta$ และ $\\tan\\theta$",
+        solution: "<b>วิธีทำ:</b><br>จากเอกลักษณ์ตรีโกณมิติ $\\sin^2\\theta + \\cos^2\\theta = 1$<br>แทนค่า: $\\left(\\frac{3}{5}\\right)^2 + \\cos^2\\theta = 1 \\Rightarrow \\frac{9}{25} + \\cos^2\\theta = 1$<br>$\\cos^2\\theta = 1 - \\frac{9}{25} = \\frac{16}{25} \\Rightarrow \\cos\\theta = \\frac{4}{5}$ (เนื่องจากอยู่ในจตุภาคที่ 1 ค่า $\\cos$ เป็นบวก)<br>หาค่า $\\tan\\theta = \\frac{\\sin\\theta}{\\cos\\theta} = \\frac{3/5}{4/5} = \\frac{3}{4} = 0.75$"
+      },
+      {
+        title: "ตัวอย่างที่ 3: การหาคาบ (Period) และแอมพลิจูด (Amplitude) ของกราฟ",
+        problem: "กำหนดฟังก์ชัน $y = 4\\sin(2x) - 1$ จงหาแอมพลิจูดและคาบของฟังก์ชันนี้",
+        solution: "<b>วิธีทำ:</b><br>เทียบกับรูปทั่วไป $y = A\\sin(Bx - C) + D$<br>1) <b>แอมพลิจูด (Amplitude)</b> $= |A| = |4| = 4$<br>2) <b>คาบ (Period)</b> $= \\frac{2\\pi}{|B|} = \\frac{2\\pi}{2} = \\pi$ Radians ($180^\\circ$)"
+      },
+      {
+        title: "ตัวอย่างที่ 4: การคำนวณระยะทางด้วยกฎของไซน์ (Law of Sines)",
+        problem: "ในรูปสามเหลี่ยม $ABC$ มีมุม $A = 30^\\circ$, มุม $B = 45^\\circ$ และด้าน $a = 10$ ซม. จงหาความยาวด้าน $b$",
+        solution: "<b>วิธีทำ:</b><br>จากกฎของไซน์: $\\frac{a}{\\sin A} = \\frac{b}{\\sin B}$<br>แทนค่า: $\\frac{10}{\\sin 30^\\circ} = \\frac{b}{\\sin 45^\\circ} \\Rightarrow \\frac{10}{0.5} = \\frac{b}{\\frac{\\sqrt{2}}{2}}$<br>$20 = \\frac{b}{0.7071} \\Rightarrow b = 20 \\times 0.7071 \\approx 14.14$ เซนติเมตร"
+      },
+      {
+        title: "ตัวอย่างที่ 5: การแก้โจทย์ระยะทางด้วยกฎของโคไซน์ (Law of Cosines)",
+        problem: "สามเหลี่ยม $ABC$ มีด้าน $a = 5$ หน่วย, ด้าน $b = 8$ หน่วย และมุม $C = 60^\\circ$ จงหาความยาวของด้าน $c$",
+        solution: "<b>วิธีทำ:</b><br>จากกฎของโคไซน์: $c^2 = a^2 + b^2 - 2ab\\cos C$<br>แทนค่า: $c^2 = 5^2 + 8^2 - 2(5)(8)\\cos(60^\\circ)$<br>$c^2 = 25 + 64 - 80(0.5) = 89 - 40 = 49$<br>ดังนั้น $c = \\sqrt{49} = 7$ หน่วย"
+      }
+    ];
+
+    // 2. DATA STRUCTURE: Quiz Scenarios Base Array (7 Scenarios with [N] variable & solve logic)
+    const scenariosBase = [
+      {
+        id: 1,
+        title: "การหาความสูงสิ่งก่อสร้างโดยใช้มุมเงย",
+        question: "นักเรียนยืนห่างจากเสาธง $[N]$ เมตร มองเห็นยอดเสาธงเป็นมุมเงย $45^\\circ$ โดยระดับสายตาของนักเรียนสูงจากพื้น $1.5$ เมตร อยากทราบว่าเสาธงนี้สูงกี่เมตร (ตอบเป็นทศนิยม 2 ตำแหน่ง)",
+        minN: 6,
+        maxN: 30,
+        stepN: 2,
+        unit: "เมตร",
+        solve: function(n) {
+          // tan(45°) = height_part / n => height_part = n * 1 = n
+          // total_height = n + 1.5
+          const ans = parseFloat((n + 1.5).toFixed(2));
+          const exp = `<b>ขั้นตอนการคิด:</b><br>1) จากสูตร $\\tan(45^\\circ) = \\frac{\\text{ความสูงเฉพาะเสา}}{\\text{ระยะห่างจากโคนเสา}}$<br>2) เนื่องจาก $\\tan(45^\\circ) = 1$ ดังนั้น ความสูงเฉพาะเสา $= [N] \\times 1 = ${n}$ เมตร<br>3) รวมความสูงระดับสายตา $1.5$ เมตร $\\rightarrow$ ความสูงเสาธง $= ${n} + 1.5 = \\mathbf{${ans}}$ เมตร`;
+          return { answer: ans, explanation: exp };
         }
-
-        function setAngle(deg) {
-            if (isAnimating) stopAnimation();
-            currentAngleDeg = (deg % 360 + 360) % 360;
-            document.getElementById('angleSlider').value = currentAngleDeg;
-            updateAngleDisplays(currentAngleDeg);
-            renderQuickAngles();
-            drawCanvas();
+      },
+      {
+        id: 2,
+        title: "การหาแอมพลิจูดของฟังก์ชันตรีโกณมิติ",
+        question: "กำหนดฟังก์ชันคลื่น $y = [N]\\sin(3x) - 4$ จงหาค่าแอมพลิจูด (Amplitude) ของฟังก์ชันนี้",
+        minN: 3,
+        maxN: 25,
+        stepN: 1,
+        unit: "",
+        solve: function(n) {
+          const ans = n;
+          const exp = `<b>ขั้นตอนการคิด:</b><br>1) รูปทั่วไปของฟังก์ชันคือ $y = A\\sin(Bx - C) + D$<br>2) แอมพลิจูด (Amplitude) คือค่าสัมบูรณ์ของสัมประสิทธิ์หน้าฟังก์ชัน $\\sin$ นั่นคือ $|A|$<br>3) ในข้อนี้ $A = [N] = ${n}$ ดังนั้น แอมพลิจูด $= |${n}| = \\mathbf{${ans}}$`;
+          return { answer: ans, explanation: exp };
         }
-
-        function onSliderAngleChange(val) {
-            if (isAnimating) stopAnimation();
-            currentAngleDeg = parseFloat(val);
-            updateAngleDisplays(currentAngleDeg);
-            renderQuickAngles();
-            drawCanvas();
+      },
+      {
+        id: 3,
+        title: "การหาคาบ (Period) ของฟังก์ชันโคไซน์",
+        question: "กำหนดให้ฟังก์ชัน $y = \\cos([N]x)$ มีคาบการแกว่งเท่ากับ $\\frac{2\\pi}{[N]}$ จงคำนวณหาค่าตัวเลขตัวคูณหน้า $\\pi$ (หรือค่าของ $\\frac{2}{[N]}$) ตอบเป็นทศนิยม 2 ตำแหน่ง",
+        minN: 2,
+        maxN: 12,
+        stepN: 1,
+        unit: "π",
+        solve: function(n) {
+          const ans = parseFloat((2 / n).toFixed(2));
+          const exp = `<b>ขั้นตอนการคิด:</b><br>1) สูตรการหาคาบของฟังก์ชัน $y = \\cos(Bx)$ คือ $\\text{Period} = \\frac{2\\pi}{|B|}$<br>2) แทนค่า $B = [N] = ${n}$ จะได้ คาบ $= \\frac{2\\pi}{${n}} = \\left(\\frac{2}{${n}}\\right)\\pi$<br>3) คำนวณ $\\frac{2}{${n}} = \\mathbf{${ans}}$`;
+          return { answer: ans, explanation: exp };
         }
-
-        function updateAngleDisplays(deg) {
-            const rad = (deg * Math.PI) / 180;
-            const cosVal = Math.cos(rad);
-            const sinVal = Math.sin(rad);
-
-            document.getElementById('display-degree').innerText = `${Math.round(deg)}ยฐ`;
-            
-            // Format Radian string
-            const piRatio = deg / 180;
-            let radText = `${rad.toFixed(3)} rad`;
-            if (deg === 0) radText = "0 rad (0ฯ€)";
-            else if (deg === 180) radText = "3.142 rad (1ฯ€)";
-            else radText = `${rad.toFixed(2)} rad (${piRatio.toFixed(2)}ฯ€)`;
-            document.getElementById('display-radian').innerText = radText;
-
-            document.getElementById('display-cos').innerText = cosVal.toFixed(4);
-            document.getElementById('display-sin').innerText = sinVal.toFixed(4);
-
-            // Quadrant Detection
-            let quadText = "เนเธเธเธชเธกเธกเธฒเธ•เธฃ";
-            if (deg > 0 && deg < 90) quadText = "Quadrant I (+, +)";
-            else if (deg === 90) quadText = "เนเธเธ Y เธ”เนเธฒเธเธเธ";
-            else if (deg > 90 && deg < 180) quadText = "Quadrant II (-, +)";
-            else if (deg === 180) quadText = "เนเธเธ X เธ”เนเธฒเธเธเนเธฒเธข";
-            else if (deg > 180 && deg < 270) quadText = "Quadrant III (-, -)";
-            else if (deg === 270) quadText = "เนเธเธ Y เธ”เนเธฒเธเธฅเนเธฒเธ";
-            else if (deg > 270 && deg < 360) quadText = "Quadrant IV (+, -)";
-            else if (deg === 0 || deg === 360) quadText = "เนเธเธ X เธ”เนเธฒเธเธเธงเธฒ";
-            document.getElementById('display-quadrant').innerText = quadText;
-
-            // MathJax Dynamic Coordinates Output
-            const latexBox = document.getElementById('display-latex-coords');
-            latexBox.innerHTML = `$$\\left(${cosVal.toFixed(3)},\\, ${sinVal.toFixed(3)}\\right)$$`;
-            if (window.MathJax && window.MathJax.typesetPromise) {
-                window.MathJax.typesetPromise([latexBox]);
-            }
+      },
+      {
+        id: 4,
+        title: "การประยุกต์กฎของไซน์ (Law of Sines)",
+        question: "ในสามเหลี่ยมมุมฉาก $ABC$ มีมุม $A = 30^\\circ$ ด้านตรงข้ามมุม $A$ ยาว $[N]$ เซนติเมตร และมุม $B = 90^\\circ$ จงหาความยาวของด้านตรงข้ามมุมฉาก $b$",
+        minN: 5,
+        maxN: 40,
+        stepN: 5,
+        unit: "ซม.",
+        solve: function(n) {
+          // sin(30°) = a / b => 0.5 = n / b => b = 2n
+          const ans = n * 2;
+          const exp = `<b>ขั้นตอนการคิด:</b><br>1) จากกฎของไซน์ $\\frac{a}{\\sin A} = \\frac{b}{\\sin B}$<br>2) แทนค่า: $\\frac{${n}}{\\sin 30^\\circ} = \\frac{b}{\\sin 90^\\circ} \\Rightarrow \\frac{${n}}{0.5} = \\frac{b}{1}$<br>3) ได้ความยาวด้าน $b = ${n} \\times 2 = \\mathbf{${ans}}$ เซนติเมตร`;
+          return { answer: ans, explanation: exp };
         }
-
-        function initCanvas() {
-            const canvas = document.getElementById('unitCircleCanvas');
-            const container = canvas.parentElement;
-
-            function resize() {
-                canvas.width = container.clientWidth * window.devicePixelRatio;
-                canvas.height = container.clientHeight * window.devicePixelRatio;
-                drawCanvas();
-            }
-
-            window.addEventListener('resize', resize);
-            resize();
-
-            // Interactivity: Drag & Click on Canvas
-            function handlePointerEvent(e) {
-                const rect = canvas.getBoundingClientRect();
-                const clientX = e.touches ? e.touches[0].clientX : e.clientX;
-                const clientY = e.touches ? e.touches[0].clientY : e.clientY;
-
-                const x = clientX - rect.left;
-                const y = clientY - rect.top;
-
-                const cx = rect.width / 2;
-                const cy = rect.height / 2;
-
-                const dx = x - cx;
-                const dy = y - cy;
-
-                let angleRad = Math.atan2(-dy, dx); // Invert y for canvas space
-                if (angleRad < 0) angleRad += 2 * Math.PI;
-
-                let angleDeg = (angleRad * 180) / Math.PI;
-                setAngle(Math.round(angleDeg));
-            }
-
-            canvas.addEventListener('mousedown', (e) => { isDraggingCanvas = true; handlePointerEvent(e); });
-            window.addEventListener('mousemove', (e) => { if (isDraggingCanvas) handlePointerEvent(e); });
-            window.addEventListener('mouseup', () => { isDraggingCanvas = false; });
-
-            canvas.addEventListener('touchstart', (e) => { isDraggingCanvas = true; handlePointerEvent(e); }, { passive: true });
-            window.addEventListener('touchmove', (e) => { if (isDraggingCanvas) handlePointerEvent(e); }, { passive: true });
-            window.addEventListener('touchend', () => { isDraggingCanvas = false; });
+      },
+      {
+        id: 5,
+        title: "การทอนรูปด้วยเอกลักษณ์ตรีโกณมิติ",
+        question: "จงหาค่าของนิพจน์ทางคณิตศาสตร์ $E = [N]\\sin^2(40^\\circ) + [N]\\cos^2(40^\\circ) + 8$",
+        minN: 2,
+        maxN: 18,
+        stepN: 1,
+        unit: "",
+        solve: function(n) {
+          // N*(sin^2 + cos^2) + 8 = N(1) + 8 = N + 8
+          const ans = n + 8;
+          const exp = `<b>ขั้นตอนการคิด:</b><br>1) จากเอกลักษณ์ $\\sin^2\\theta + \\cos^2\\theta = 1$<br>2) ดึงตัวร่วม $[N] = ${n}$ ออกมาจากสองเทอมแรก: $${n}(\\sin^2(40^\\circ) + \\cos^2(40^\\circ)) + 8$<br>3) แทนค่าเอกลักษณ์: $${n}(1) + 8 = ${n} + 8 = \\mathbf{${ans}}$`;
+          return { answer: ans, explanation: exp };
         }
-
-        function drawCanvas() {
-            const canvas = document.getElementById('unitCircleCanvas');
-            if (!canvas) return;
-            const ctx = canvas.getContext('2d');
-            const dpr = window.devicePixelRatio || 1;
-
-            const w = canvas.width;
-            const h = canvas.height;
-
-            ctx.clearRect(0, 0, w, h);
-
-            const cx = w / 2;
-            const cy = h / 2;
-            const radius = Math.min(w, h) * 0.35;
-
-            // Draw Coordinate Axes X and Y
-            ctx.lineWidth = 1.5 * dpr;
-            ctx.strokeStyle = '#cbd5e1'; // slate-300
-            
-            // X-Axis
-            ctx.beginPath();
-            ctx.moveTo(20 * dpr, cy);
-            ctx.lineTo(w - 20 * dpr, cy);
-            ctx.stroke();
-
-            // Y-Axis
-            ctx.beginPath();
-            ctx.moveTo(cx, 20 * dpr);
-            ctx.lineTo(cx, h - 20 * dpr);
-            ctx.stroke();
-
-            // Axis Labels
-            ctx.font = `${12 * dpr}px Prompt, sans-serif`;
-            ctx.fillStyle = '#64748b';
-            ctx.fillText('X (cos)', w - 45 * dpr, cy - 8 * dpr);
-            ctx.fillText('Y (sin)', cx + 8 * dpr, 30 * dpr);
-
-            // Major Intersects Labels
-            ctx.font = `${10 * dpr}px monospace`;
-            ctx.fillText('(1,0)', cx + radius + 4 * dpr, cy + 14 * dpr);
-            ctx.fillText('(0,1)', cx + 6 * dpr, cy - radius - 6 * dpr);
-            ctx.fillText('(-1,0)', cx - radius - 35 * dpr, cy + 14 * dpr);
-            ctx.fillText('(0,-1)', cx + 6 * dpr, cy + radius + 14 * dpr);
-
-            // Draw Unit Circle
-            ctx.lineWidth = 2.5 * dpr;
-            ctx.strokeStyle = '#4338ca'; // indigo-700
-            ctx.beginPath();
-            ctx.arc(cx, cy, radius, 0, 2 * Math.PI);
-            ctx.stroke();
-
-            // Angles Radian Position calculation
-            const rad = (currentAngleDeg * Math.PI) / 180;
-            const px = cx + radius * Math.cos(rad);
-            const py = cy - radius * Math.sin(rad); // canvas Y inverted
-
-            // Angle Sector Arc Fill
-            ctx.fillStyle = 'rgba(99, 102, 241, 0.12)';
-            ctx.beginPath();
-            ctx.moveTo(cx, cy);
-            ctx.arc(cx, cy, radius * 0.3, 0, -rad, true); // counter-clockwise in math
-            ctx.closePath();
-            ctx.fill();
-
-            // Projection Line Cos (Horizontal Blue)
-            ctx.lineWidth = 3 * dpr;
-            ctx.strokeStyle = '#3b82f6'; // blue-500
-            ctx.beginPath();
-            ctx.moveTo(cx, cy);
-            ctx.lineTo(px, cy);
-            ctx.stroke();
-
-            // Projection Line Sin (Vertical Emerald)
-            ctx.lineWidth = 3 * dpr;
-            ctx.strokeStyle = '#10b981'; // emerald-500
-            ctx.beginPath();
-            ctx.moveTo(px, cy);
-            ctx.lineTo(px, py);
-            ctx.stroke();
-
-            // Dashed auxiliary line to Y axis
-            ctx.lineWidth = 1 * dpr;
-            ctx.setLineDash([4 * dpr, 4 * dpr]);
-            ctx.strokeStyle = '#94a3b8';
-            ctx.beginPath();
-            ctx.moveTo(cx, py);
-            ctx.lineTo(px, py);
-            ctx.stroke();
-            ctx.setLineDash([]); // Reset dash
-
-            // Radius Vector (Hypotenuse = 1)
-            ctx.lineWidth = 2.5 * dpr;
-            ctx.strokeStyle = '#f59e0b'; // amber-500
-            ctx.beginPath();
-            ctx.moveTo(cx, cy);
-            ctx.lineTo(px, py);
-            ctx.stroke();
-
-            // Point P(x,y)
-            ctx.fillStyle = '#6366f1';
-            ctx.beginPath();
-            ctx.arc(px, py, 7 * dpr, 0, 2 * Math.PI);
-            ctx.fill();
-            ctx.lineWidth = 2 * dpr;
-            ctx.strokeStyle = '#ffffff';
-            ctx.stroke();
-
-            // Text Label P(x,y)
-            ctx.font = `bold ${12 * dpr}px Prompt, sans-serif`;
-            ctx.fillStyle = '#1e1b4b';
-            ctx.fillText('P(cos ฮธ, sin ฮธ)', px + (Math.cos(rad) >= 0 ? 10 : -100) * dpr, py + (Math.sin(rad) >= 0 ? -10 : 20) * dpr);
+      },
+      {
+        id: 6,
+        title: "คำนวณความยาวเงาตึก",
+        question: "ตึกสูง $[N]$ เมตร คำนวณทิศทางแสงอาทิตย์พบว่าทำมุมเงย $60^\\circ$ กับพื้นดิน จงหาความยาวของเงาตึกบนพื้นราบ (กำหนด $\\tan(60^\\circ) \\approx 1.732$ ตอบทศนิยม 2 ตำแหน่ง)",
+        minN: 10,
+        maxN: 50,
+        stepN: 5,
+        unit: "เมตร",
+        solve: function(n) {
+          // tan(60°) = height / shadow => shadow = N / tan(60°) = N / 1.732
+          const ans = parseFloat((n / 1.732).toFixed(2));
+          const exp = `<b>ขั้นตอนการคิด:</b><br>1) จากอัตราส่วนตรีโกณมิติ $\\tan(60^\\circ) = \\frac{\\text{ความสูงตึก}}{\\text{ความยาวเงา}}$<br>2) แทนค่า: $1.732 = \\frac{${n}}{\\text{ความยาวเงา}}$<br>3) ความยาวเงา $= \\frac{${n}}{1.732} = \\mathbf{${ans}}$ เมตร`;
+          return { answer: ans, explanation: exp };
         }
-
-        function toggleCircleAnimation() {
-            if (isAnimating) {
-                stopAnimation();
-            } else {
-                startAnimation();
-            }
+      },
+      {
+        id: 7,
+        title: "กฎของโคไซน์หาด้านที่เหลือ",
+        question: "สามเหลี่ยม $ABC$ มีด้าน $a = [N]$ หน่วย, ด้าน $b = [N]$ หน่วย และมีมุมระหว่างด้านทั้งสอง $C = 60^\\circ$ จงหาความยาวของด้าน $c$",
+        minN: 4,
+        maxN: 20,
+        stepN: 2,
+        unit: "หน่วย",
+        solve: function(n) {
+          // c^2 = n^2 + n^2 - 2*n*n*cos(60°) = 2n^2 - 2n^2(0.5) = n^2 => c = n
+          const ans = n;
+          const exp = `<b>ขั้นตอนการคิด:</b><br>1) จากกฎของโคไซน์ $c^2 = a^2 + b^2 - 2ab\\cos C$<br>2) แทนค่า $a=${n}, b=${n}, C=60^\\circ$:<br>&nbsp;&nbsp;&nbsp;&nbsp;$c^2 = ${n}^2 + ${n}^2 - 2(${n})(${n})\\cos(60^\\circ)$<br>&nbsp;&nbsp;&nbsp;&nbsp;$c^2 = ${n*n} + ${n*n} - 2(${n*n})(0.5) = ${n*n}$<br>3) ได้ด้าน $c = \\sqrt{${n*n}} = \\mathbf{${ans}}$ หน่วย`;
+          return { answer: ans, explanation: exp };
         }
+      }
+    ];
 
-        function startAnimation() {
-            isAnimating = true;
-            document.getElementById('icon-animate').className = 'fa-solid fa-pause';
-            document.getElementById('label-animate').innerText = 'เธซเธขเธธเธ”เธซเธกเธธเธ';
-            document.getElementById('btn-animate-circle').className = 'bg-amber-600 hover:bg-amber-700 text-white text-xs sm:text-sm px-3.5 py-2 rounded-lg transition flex items-center gap-1.5 shadow-sm';
+    // Helper: Typeset MathJax dynamically
+    function renderMath() {
+      if (window.MathJax && window.MathJax.typesetPromise) {
+        window.MathJax.typesetPromise();
+      }
+    }
 
-            function step() {
-                if (!isAnimating) return;
-                currentAngleDeg = (currentAngleDeg + 0.8) % 360;
-                document.getElementById('angleSlider').value = currentAngleDeg;
-                updateAngleDisplays(currentAngleDeg);
-                drawCanvas();
-                animationFrameId = requestAnimationFrame(step);
-            }
-            animationFrameId = requestAnimationFrame(step);
+    // Render Learn Section Examples
+    function renderLearnSection() {
+      const container = document.getElementById('exampleListContainer');
+      container.innerHTML = '';
+
+      exampleData.forEach((ex, idx) => {
+        const card = document.createElement('div');
+        card.className = "bg-white p-5 rounded-xl border border-slate-200 shadow-sm space-y-3 hover:border-indigo-300 transition-all";
+        card.innerHTML = `
+          <h4 class="font-bold text-indigo-800 text-base md:text-lg flex items-center">
+            <span class="bg-indigo-100 text-indigo-700 w-7 h-7 rounded-lg flex items-center justify-center text-xs mr-2 font-bold">${idx + 1}</span>
+            ${ex.title}
+          </h4>
+          <div class="bg-slate-50 p-3 rounded-lg text-slate-700 text-sm font-medium border border-slate-100">
+            <strong>โจทย์:</strong> ${ex.problem}
+          </div>
+          <div class="text-sm text-slate-600 bg-amber-50/50 p-3 rounded-lg border border-amber-100 leading-relaxed">
+            ${ex.solution}
+          </div>
+        `;
+        container.appendChild(card);
+      });
+      renderMath();
+    }
+
+    // TAB SWITCHER FUNCTION
+    function switchTab(tab) {
+      const btnLearn = document.getElementById('btnTabLearn');
+      const btnQuiz = document.getElementById('btnTabQuiz');
+      const secLearn = document.getElementById('secLearn');
+      const secQuiz = document.getElementById('secQuiz');
+
+      if (tab === 'learn') {
+        btnLearn.className = "tab-active py-3 px-4 text-indigo-600 flex items-center space-x-2 transition-all font-semibold";
+        btnQuiz.className = "py-3 px-4 text-slate-600 hover:text-indigo-600 flex items-center space-x-2 transition-all font-normal";
+        secLearn.classList.remove('hidden');
+        secQuiz.classList.add('hidden');
+      } else {
+        btnQuiz.className = "tab-active py-3 px-4 text-indigo-600 flex items-center space-x-2 transition-all font-semibold";
+        btnLearn.className = "py-3 px-4 text-slate-600 hover:text-indigo-600 flex items-center space-x-2 transition-all font-normal";
+        secQuiz.classList.remove('hidden');
+        secLearn.classList.add('hidden');
+        runQuiz(currentQuizIndex);
+      }
+    }
+
+    // MAIN QUIZ LOGIC FUNCTIONS (Protected Structure)
+    function getRandomN(min, max, step) {
+      const stepsCount = Math.floor((max - min) / step);
+      const randStep = Math.floor(Math.random() * (stepsCount + 1));
+      return min + (randStep * step);
+    }
+
+    function randomizeN() {
+      const scenario = scenariosBase[currentQuizIndex];
+      currentN = getRandomN(scenario.minN, scenario.maxN, scenario.stepN);
+      runQuiz(currentQuizIndex, currentN);
+    }
+
+    function runQuiz(index, forcedN = null) {
+      currentQuizIndex = index;
+      const scenario = scenariosBase[index];
+
+      // Update question counters
+      document.getElementById('currentQuestionNum').innerText = index + 1;
+      document.getElementById('totalQuestionNum').innerText = scenariosBase.length;
+      document.getElementById('quizHeaderTitle').innerText = scenario.title;
+      document.getElementById('scenarioTitle').innerText = scenario.title;
+      document.getElementById('unitDisplay').innerText = scenario.unit;
+
+      // Select N
+      if (forcedN !== null) {
+        currentN = forcedN;
+      } else {
+        currentN = getRandomN(scenario.minN, scenario.maxN, scenario.stepN);
+      }
+
+      // Compute Answer via solve(n)
+      currentSolvedResult = scenario.solve(currentN);
+
+      // Render Question text with substituted N
+      const processedQuestion = scenario.question.replace(/\[N\]/g, `<span class="inline-block bg-indigo-600 text-white font-bold px-2 py-0.5 rounded mx-1">${currentN}</span>`);
+      document.getElementById('questionText').innerHTML = processedQuestion;
+
+      // Reset Input & UI States
+      document.getElementById('userAnswerInput').value = '';
+      document.getElementById('userAnswerInput').disabled = false;
+      document.getElementById('btnSubmit').disabled = false;
+      document.getElementById('feedbackBox').className = 'hidden';
+      document.getElementById('explanationBox').className = 'hidden';
+
+      // Navigation Buttons State
+      document.getElementById('btnPrev').disabled = (index === 0);
+      document.getElementById('btnNext').innerText = (index === scenariosBase.length - 1) ? 'เสร็จสิ้นการทดสอบ' : 'ข้อถัดไป';
+
+      renderMath();
+    }
+
+    function checkAnswer() {
+      const userVal = parseFloat(document.getElementById('userAnswerInput').value);
+      const feedback = document.getElementById('feedbackBox');
+      
+      if (isNaN(userVal)) {
+        feedback.className = "p-4 rounded-xl border text-sm font-medium bg-rose-50 border-rose-200 text-rose-700 block";
+        feedback.innerHTML = '<i class="fa-solid fa-triangle-exclamation mr-1"></i> กรุณากรอกคำตอบเป็นตัวเลขก่อนส่งคำตอบ';
+        return;
+      }
+
+      const expected = currentSolvedResult.answer;
+      // Precision tolerance for float comparison
+      const isCorrect = Math.abs(userVal - expected) <= 0.05;
+
+      if (isCorrect) {
+        feedback.className = "p-4 rounded-xl border text-sm font-medium bg-emerald-50 border-emerald-200 text-emerald-800 block";
+        feedback.innerHTML = `<i class="fa-solid fa-circle-check text-emerald-600 mr-1"></i> <b>ถูกต้องเรียบร้อย!</b> คำตอบคือ ${expected} ${scenariosBase[currentQuizIndex].unit}`;
+        
+        if (!answeredQuestions.has(currentQuizIndex)) {
+          score += 10;
+          answeredQuestions.add(currentQuizIndex);
+          document.getElementById('scoreDisplay').innerText = score;
         }
+      } else {
+        feedback.className = "p-4 rounded-xl border text-sm font-medium bg-rose-50 border-rose-200 text-rose-800 block";
+        feedback.innerHTML = `<i class="fa-solid fa-circle-xmark text-rose-600 mr-1"></i> <b>ยังไม่ถูกต้อง!</b> คำตอบของคุณคือ ${userVal} (ลองคำนวณใหม่อีกครั้ง หรือกดดูเฉลยละเอียด)`;
+      }
 
-        function stopAnimation() {
-            isAnimating = false;
-            if (animationFrameId) cancelAnimationFrame(animationFrameId);
-            document.getElementById('icon-animate').className = 'fa-solid fa-play';
-            document.getElementById('label-animate').innerText = 'เธซเธกเธธเธเธญเธฑเธ•เนเธเธกเธฑเธ•เธด';
-            document.getElementById('btn-animate-circle').className = 'bg-indigo-600 hover:bg-indigo-700 text-white text-xs sm:text-sm px-3.5 py-2 rounded-lg transition flex items-center gap-1.5 shadow-sm';
-            renderQuickAngles();
-        }
+      showExplanation(true);
+    }
 
-        function resetUnitCircle() {
-            setAngle(0);
-        }
+    function showExplanation(forceShow = false) {
+      const expBox = document.getElementById('explanationBox');
+      const expText = document.getElementById('explanationText');
 
-        // Quiz Functions
-        function renderQuizQuestion(idx) {
-            currentQuizIndex = idx;
-            const q = quizData[idx];
+      expText.innerHTML = currentSolvedResult.explanation;
 
-            document.getElementById('quiz-current-num').innerText = idx + 1;
-            document.getElementById('quiz-total-num').innerText = quizData.length;
-            document.getElementById('quiz-question-text').innerHTML = q.question;
+      if (forceShow || expBox.classList.contains('hidden')) {
+        expBox.classList.remove('hidden');
+      } else {
+        expBox.classList.add('hidden');
+      }
 
-            const optionsContainer = document.getElementById('quiz-options-container');
-            optionsContainer.innerHTML = '';
+      renderMath();
+    }
 
-            const userSelected = userQuizAnswers[idx];
+    function prevQuestion() {
+      if (currentQuizIndex > 0) {
+        runQuiz(currentQuizIndex - 1);
+      }
+    }
 
-            q.options.forEach((optText, optIdx) => {
-                const btn = document.createElement('button');
-                btn.type = 'button';
-                
-                let btnStyle = "bg-slate-50 hover:bg-indigo-50/60 border-slate-200 text-slate-800";
-                
-                if (userSelected !== undefined) {
-                    if (optIdx === q.correct) {
-                        btnStyle = "bg-emerald-100 border-emerald-400 text-emerald-900 font-bold";
-                    } else if (userSelected === optIdx) {
-                        btnStyle = "bg-rose-100 border-rose-300 text-rose-900";
-                    } else {
-                        btnStyle = "bg-slate-50 opacity-60 border-slate-200 text-slate-500";
-                    }
-                }
+    function nextQuestion() {
+      if (currentQuizIndex < scenariosBase.length - 1) {
+        runQuiz(currentQuizIndex + 1);
+      } else {
+        alert(`🎉 ยินดีด้วย! คุณทำแบบทดสอบครบแล้ว\nคะแนนรวมทั้งหมด: ${score} คะแนน`);
+      }
+    }
 
-                btn.className = `p-3.5 rounded-xl border text-left text-xs sm:text-sm transition flex items-center gap-3 ${btnStyle}`;
-                btn.innerHTML = `
-                    <span class="w-6 h-6 rounded-full border border-slate-300 flex items-center justify-center text-xs font-bold shrink-0 bg-white">
-                        ${String.fromCharCode(65 + optIdx)}
-                    </span>
-                    <span>${optText}</span>
-                `;
-
-                btn.onclick = () => selectQuizOption(idx, optIdx);
-                optionsContainer.appendChild(btn);
-            });
-
-            // Feedback & Explanation Drawer
-            const feedbackBox = document.getElementById('quiz-feedback-box');
-            const expBox = document.getElementById('quiz-explanation-box');
-            const expText = document.getElementById('quiz-explanation-text');
-
-            if (userSelected !== undefined) {
-                const isCorrect = (userSelected === q.correct);
-                feedbackBox.className = `p-4 rounded-xl text-xs sm:text-sm font-medium border ${
-                    isCorrect ? 'bg-emerald-50 border-emerald-200 text-emerald-800' : 'bg-rose-50 border-rose-200 text-rose-800'
-                } block`;
-                feedbackBox.innerHTML = isCorrect 
-                    ? `<i class="fa-solid fa-circle-check text-emerald-600 mr-1.5"></i><b>เธ–เธนเธเธ•เนเธญเธ!</b> เนเธ”เนเธฃเธฑเธ +10 เธเธฐเนเธเธ`
-                    : `<i class="fa-solid fa-circle-xmark text-rose-600 mr-1.5"></i><b>เธขเธฑเธเนเธกเนเธ–เธนเธเธ•เนเธญเธ!</b> เธฅเธญเธเธจเธถเธเธฉเธฒเธเธณเธญเธเธดเธเธฒเธขเธ”เนเธฒเธเธฅเนเธฒเธ`;
-
-                expText.innerHTML = q.explanation;
-                expBox.classList.remove('hidden');
-            } else {
-                feedbackBox.className = 'hidden';
-                expBox.classList.add('hidden');
-            }
-
-            // Buttons state
-            document.getElementById('btn-quiz-prev').disabled = (idx === 0);
-            document.getElementById('btn-quiz-next').innerText = (idx === quizData.length - 1) ? 'เน€เธชเธฃเนเธเธชเธดเนเธเธเธฒเธฃเธ—เธ”เธชเธญเธ' : 'เธเนเธญเธ–เธฑเธ”เนเธ';
-
-            if (window.MathJax && window.MathJax.typesetPromise) {
-                window.MathJax.typesetPromise([document.getElementById('quiz-card')]);
-            }
-        }
-
-        function selectQuizOption(qIdx, optIdx) {
-            if (userQuizAnswers[qIdx] !== undefined) return; // already answered
-
-            userQuizAnswers[qIdx] = optIdx;
-            if (optIdx === quizData[qIdx].correct) {
-                quizScore += 10;
-                document.getElementById('quiz-score').innerText = quizScore;
-            }
-
-            renderQuizQuestion(qIdx);
-        }
-
-        function quizPrevQuestion() {
-            if (currentQuizIndex > 0) {
-                renderQuizQuestion(currentQuizIndex - 1);
-            }
-        }
-
-        function quizNextQuestion() {
-            if (currentQuizIndex < quizData.length - 1) {
-                renderQuizQuestion(currentQuizIndex + 1);
-            } else {
-                // Show completion modal style toast
-                const feedbackBox = document.getElementById('quiz-feedback-box');
-                feedbackBox.className = "p-5 rounded-2xl bg-indigo-900 text-white font-medium block text-center space-y-2";
-                feedbackBox.innerHTML = `
-                    <div class="text-xl font-bold">๐ เธขเธดเธเธ”เธตเธ”เนเธงเธข! เธ—เธณเนเธเธเธ—เธ”เธชเธญเธเธเธฃเธเนเธฅเนเธง</div>
-                    <p class="text-indigo-200 text-xs sm:text-sm">เธเธธเธ“เนเธ”เนเธเธฐเนเธเธเธฃเธงเธกเธ—เธฑเนเธเธซเธกเธ” ${quizScore} เธเธฒเธ ${quizData.length * 10} เธเธฐเนเธเธ</p>
-                `;
-            }
-        }
-
-        // Curriculum Roadmap Modal Toggle
-        function toggleCurriculumModal() {
-            const modal = document.getElementById('curriculumModal');
-            modal.classList.toggle('hidden');
-        }
-
-        function renderCurriculumList() {
-            const container = document.getElementById('curriculum-list-container');
-            container.innerHTML = '';
-
-            curriculumLessons.forEach(item => {
-                const row = document.createElement('div');
-                row.className = `p-3.5 rounded-xl border flex items-center justify-between text-xs sm:text-sm transition ${
-                    item.active 
-                    ? 'bg-indigo-50 border-indigo-300 text-indigo-950 font-bold' 
-                    : 'bg-white border-slate-100 text-slate-600 opacity-75'
-                }`;
-
-                row.innerHTML = `
-                    <div class="flex items-center gap-3">
-                        <span class="w-7 h-7 rounded-lg ${item.active ? 'bg-indigo-600 text-white' : 'bg-slate-100 text-slate-500'} flex items-center justify-center font-bold text-xs">
-                            ${item.num}
-                        </span>
-                        <span>เธเธ—เธ—เธตเน ${item.num}: ${item.title}</span>
-                    </div>
-                    ${item.active ? '<span class="text-xs bg-indigo-600 text-white px-2.5 py-0.5 rounded-full">เธเธณเธฅเธฑเธเน€เธฃเธตเธขเธ</span>' : '<i class="fa-solid fa-lock text-slate-300 text-xs"></i>'}
-                `;
-                container.appendChild(row);
-            });
-        }
-    </script>
+    // INITIALIZATION ON PAGE LOAD
+    window.addEventListener('DOMContentLoaded', () => {
+      renderLearnSection();
+    });
+  </script>
 </body>
-
 </html>
